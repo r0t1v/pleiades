@@ -1,0 +1,71 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Varela;
+}
+/* main */
+.mainmenu{
+    margin-top: 150px;
+    color: #000;
+}
+.mainmenu p{
+    font-size: 52px;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+.mainmenu span{
+    font-size: 14px;
+}
+.mainmenu cite{
+    font-size: 26px;
+    color: #747d8c;
+}
+.formlogin{
+    width: 375px;
+    margin: 20px auto;
+}
+.formlogin .formmodel label{
+    font-size: 22px;
+    color: #ED4C67;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.formlogin button{
+    width: 85%;
+    margin: 25px auto;
+    padding: 9px 5px;
+    font-size: 22px;
+}
+.systemsupport {
+    color: #95a5a6;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.mainfoot{
+    font-size: 36px;
+}
+.mainfoot a{
+    margin: 5px 20px;
+}
+/* main */
+/* error404 */
+.errorall{
+    margin: 100px auto;
+    padding: 10px;
+    width: 60%;
+    border-radius: 1rem;
+    background-color: #f1f2f6;
+    color: #000;
+}
+.errorall h1 i:nth-child(1){
+     color: #e74c3c;
+}
+.errorall p{
+    color: #747d8c;
+}
+.errorall a{
+    text-decoration: none;
+    font-size: 24px;
+}
+/* error404 */

@@ -1,3 +1,7 @@
+<?php 
+session_start();
+require __DIR__ .'./config.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -15,12 +19,21 @@
     <body>
         <nav class="mainmenu" align="center">
             <img src="assets/base/index_logo.png" alt="indexlogo"/>
-            <p>Pleiades <cite>v0.1.1</cite> <span class="badge rounded-pill text-bg-warning">Beta</span></p>
+            <p>Pleiades <cite><?= $releaseversion; ?></cite> <span class="badge rounded-pill text-bg-warning">Beta</span></p>
         </nav>
         <section class="formlogin" align="center">
-            <form>
+            <?php
+                if(isset($_SESSION['msglogin'])){
+                    echo $_SESSION['msglogin'];
+                    unset($_SESSION['msglogin']);
+                }
+                else{
+                    unset($_SESSION['msglogin']);
+                }
+            ?>
+            <form action="scripts/login.php" method="POST">
                 <div class="formmodel" align="left">
-                    <label for="loginuser"><i class="bi bi-person-badge"></i> Usuário</label> 
+                    <label for="loginuser"><i class="bi bi-person-badge"></i> Email</label> 
                     <input class="form-control" name="loginuser" id="loginuser" type="text" placeholder="Login" required/>
                     <label for="loginpass"><i class="bi bi-key"></i> Senha</label> 
                     <input class="form-control" name="loginpass" id="loginpass" type="password" placeholder="********" required/>
@@ -30,13 +43,14 @@
         </section>
         <div class="systemsupport" align="center">
             <h6>Se você não possui acesso ao seu login, entre em contato com o administrador do seu servidor!</h6>
+            <p>Pleiades <?= $releaseversion; ?> - <?= date('Y'); ?></p>
         </div>
         <footer align="center">
             <div class="mainfoot">
                 <a href="https://github.com/r0t1v/pleiades" target="blank"><i class="bi bi-github"></i></a>
-                <a href="https://github.com/r0t1v/pleiades/wiki" target="blank"><i class="bi bi-book"></i></a>
+                <a href="https://github.com/r0t1v/pleiades/wiki" target="blank"><i class="bi bi-book"></i></a>  
             </div>
         </footer>
-        <script type="text/javascript" src="libs/bootstrap.js"></script>
+        <script type="text/javascript" src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
     </body>
 </html>

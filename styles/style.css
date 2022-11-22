@@ -4,7 +4,7 @@
     padding: 0;
     font-family: Varela;
 }
-/* main */
+/* ---------------- index.php ------------------------ */
 .mainmenu{
     margin-top: 150px;
     color: #000;
@@ -48,8 +48,8 @@
 .mainfoot a{
     margin: 5px 20px;
 }
-/* main */
-/* error404 */
+/* ---------------- index.php ------------------------ */
+/* ---------------- error404 ---------------- */
 .errorall{
     margin: 100px auto;
     padding: 10px;
@@ -68,4 +68,4 @@
     text-decoration: none;
     font-size: 24px;
 }
-/* error404 */
+/* ---------------- error404 ---------------- */

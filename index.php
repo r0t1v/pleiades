@@ -6,7 +6,7 @@ require __DIR__ .'./config.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Pleiades - Principal</title>
+        <title><?= $servername; ?> - Principal</title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -19,9 +19,9 @@ require __DIR__ .'./config.php';
     <body>
         <nav class="mainmenu" align="center">
             <img src="assets/base/index_logo.png" alt="indexlogo"/>
-            <p>Pleiades <cite><?= $releaseversion; ?></cite> <span class="badge rounded-pill text-bg-warning">Beta</span></p>
+            <p><?= $servername.' <cite>'.$releaseversion; ?></cite> <span class="badge rounded-pill text-bg-warning">Beta</span></p>
         </nav>
-        <section class="formlogin" align="center">
+        <aside class="msglogin" align="center">
             <?php
                 if(isset($_SESSION['msglogin'])){
                     echo $_SESSION['msglogin'];
@@ -31,6 +31,8 @@ require __DIR__ .'./config.php';
                     unset($_SESSION['msglogin']);
                 }
             ?>
+        </aside>
+        <section class="formlogin" align="center">
             <form action="scripts/login.php" method="POST">
                 <div class="formmodel" align="left">
                     <label for="loginuser"><i class="bi bi-person-badge"></i> Email</label> 
@@ -43,7 +45,7 @@ require __DIR__ .'./config.php';
         </section>
         <div class="systemsupport" align="center">
             <h6>Se você não possui acesso ao seu login, entre em contato com o administrador do seu servidor!</h6>
-            <p>Pleiades <?= $releaseversion; ?> - <?= date('Y'); ?></p>
+            <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
         </div>
         <footer align="center">
             <div class="mainfoot">

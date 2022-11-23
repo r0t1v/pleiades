@@ -18,17 +18,27 @@ if($e){
         $dados = $g->fetch_assoc();
         $_SESSION['islogged'] = $dados['id'];
 		$_SESSION['nomeuser'] = $dados['nome'];
-		header("Location: ../pages/systemadmin.php");
-		exit;
+		$_SESSION['classeuser'] = $dados['classe'];
+		$lastview = date('Y-m-d');
+		$aa = "UPDATE users SET ultimovisto='$lastview' WHERE email='$a'";
+		$bb = mysqli_query($conn, $aa);
+			if($_SESSION['classeuser']==0){
+				header("Location: ../pages/systemadmin.php");
+				exit;
+			}
+			else{
+				header("Location: ../pages/system.php");
+				exit;
+			}
 		}
 		else{
-		$_SESSION['msglogin']="<div class='alert alert-danger' role='alert'>A senha informada está incorreta!</div>";
+		$_SESSION['msglogin']="<div class='alert alert-danger' role='alert'><i class='bi bi-x-circle-fill'></i> A senha informada está incorreta!</div>";
 		header("Location: ../index.php");
 		exit;
 	}
 }
 else{
-	$_SESSION['msglogin']="<div class='alert alert-warning' role='alert'>O email informado não está em nosso banco de dados.</div>";
+	$_SESSION['msglogin']="<div class='alert alert-warning' role='alert'><i class='bi bi-exclamation-triangle-fill'></i> O email informado não está no banco de dados do servidor!</div>";
 	header("Location: ../index.php");
 	exit;
 }

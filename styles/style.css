@@ -21,6 +21,10 @@
     font-size: 26px;
     color: #747d8c;
 }
+.msglogin{
+    width: 550px;
+    margin: 5px auto;
+}
 .formlogin{
     width: 375px;
     margin: 20px auto;
@@ -69,3 +73,16 @@
     font-size: 24px;
 }
 /* ---------------- error404 ---------------- */
+/* ---------------- systemadmin ---------------- */
+.menusystemuser{
+    background-color: #747d8c;
+    width: 310px;
+    height: 100%;
+    border-bottom-right-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    box-shadow: 7px 0px #2f3542;
+}
+.menusystemuser img{
+    padding: 5px 20px;
+}
+/* ---------------- systemadmin ---------------- */

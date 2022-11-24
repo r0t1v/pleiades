@@ -76,13 +76,58 @@
 /* ---------------- systemadmin ---------------- */
 .menusystemuser{
     background-color: #747d8c;
-    width: 310px;
-    height: 100%;
-    border-bottom-right-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
+    width: 320px;
+    height: 100vh;
     box-shadow: 7px 0px #2f3542;
 }
 .menusystemuser img{
-    padding: 5px 20px;
+    margin-top: 15px;
+}
+.menusystemuser p{
+    margin-top: 15px;
+    font-size: 22px;
+    color: #fff;
+}
+.menusystemuser span{
+    font-size: 12px;
+}
+.menusystemuser hr{
+    width: 90%;
+}
+.menusystemuser ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.menusystemuser .btn i{
+    font-size: 18px;
+}
+.menusystemuser .btn{
+    font-size: 18px;
+    border-radius: 0;
+    background-color: #747d8c;
+}
+.menusystemuser .btn:hover{
+    background-color: #2f3542;
+}
+.menusystemuser a{
+    width: 100%;
+}
+#flush-collapseOne .btn{
+    background-color: #2f3542;
+}
+#flush-collapseOne .btn:hover{
+    background-color: #1F222B;
+}
+#menuaddtickt .btn{
+    background-color: #00a8ff;
+}
+#menuaddtickt .btn:hover{
+    background-color: #0097e6;
+}
+.menuperfil{
+    width: 800px;
+    height: 50px;
+    background-color: #0097e6;
 }
 /* ---------------- systemadmin ---------------- */

@@ -10,6 +10,7 @@ require __DIR__ .'./config.php';
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="assets/base/favicon.png"/>
         <link rel="stylesheet" href="styles/style.css"/>
         <link rel="stylesheet" href="styles/components.css"/>

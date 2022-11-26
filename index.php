@@ -13,7 +13,6 @@ require __DIR__ .'./config.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="assets/base/favicon.png"/>
         <link rel="stylesheet" href="styles/style.css"/>
-        <link rel="stylesheet" href="styles/components.css"/>
         <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.css"/>
         <link rel="stylesheet" href="vendor/twbs/bootstrap-icons/font/bootstrap-icons.css"/>
     </head>
@@ -36,7 +35,7 @@ require __DIR__ .'./config.php';
         <section class="formlogin" align="center">
             <form action="scripts/login.php" method="POST">
                 <div class="formmodel" align="left">
-                    <label for="loginuser"><i class="bi bi-person-badge"></i> Email</label> 
+                    <label for="loginuser"><i class="bi bi-person-square"></i> Email</label> 
                     <input class="form-control" name="loginuser" id="loginuser" type="text" placeholder="Login" required/>
                     <label for="loginpass"><i class="bi bi-key"></i> Senha</label> 
                     <input class="form-control" name="loginpass" id="loginpass" type="password" placeholder="********" required/>

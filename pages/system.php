@@ -1,6 +1,7 @@
 <?php
 session_start();
 require __DIR__.'/../config.php';
+include __DIR__.'/../scripts/verifyauth.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -35,20 +36,29 @@ require __DIR__.'/../config.php';
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-clipboard-data"></i></span> Minha Dashboard
                     </a>
                     <a class="col-sm-2 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-ticket-perforated"></i></span> Meus Tickets
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-ticket-perforated"></i></span> Tickets
                     </a>
-                    <ul class="dropdown-menu" id="ticketdropdown">
+                    <ul class="dropdown-menu" id="normaldropdown">
                         <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle"></i> Abrir Ticket</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> Pendentes</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle"></i> Finalizados</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-ticket-perforated-fill"></i> Meus Tickets</a></li>
                     </ul>
                     <a class="col-sm-2" id="menubuttons" href="/pleiades/pages/system.php" role="button">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-bounding-box"></i></span> Coorporativo
                     </a>
-                    <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><?= $_SESSION['socialuser']?></span><?php if($_SESSION['emailverificadouser']==1){ echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }?>
+                    <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i></span>
                     </a>
-                    <ul class="dropdown-menu" id="accdropdown">
+                    <ul class="dropdown-menu text-center" id="notifydropdown">
+                        <li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> em #111<br><small>Você teve uma resposta</small></a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>
+                    </ul>
+                    <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span><?= $_SESSION['socialuser']?></span><?php if($_SESSION['emailverificadouser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
+                    </a>
+                    <ul class="dropdown-menu" id="normaldropdown">
+                        <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
+                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -59,6 +69,7 @@ require __DIR__.'/../config.php';
         </div>
         <section class="dashboardicons">
             <h2><i class="bi bi-file-bar-graph"></i> Minha Dashboard</h2>
+            <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>
             <div class="container text-center">
                 <div class="row">
                     <a class="col" href="#">
@@ -66,32 +77,37 @@ require __DIR__.'/../config.php';
                         <br>
                         <strong>10</strong>
                         <h5>Tickets Concluídos</h5>
-                        <small>Atualizado ás 20:11</small>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_pending.png" alt="ticketspending"/>
                         <br>
                         <strong>2</strong>
                         <h5>Tickets Concluídos</h5>
-                        <small>Atualizado ás 20:11</small>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
                         <br>
                         <strong>0</strong>
                         <h5>Tickets Rejeitados</h5>
-                        <small>Atualizado ás 20:11</small>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
                         <br>
                         <strong>21</strong>
                         <h5>Tickets Cancelados</h5>
-                        <small>Atualizado ás 20:11</small>
                     </a>
                 </div>
             </div>
         </section>
+        <aside class="buttonsinteract">
+            <h2><i class="bi bi-info-circle-fill"></i> Precisa de ajuda?</h2>
+            <a class="btn btn-info" href="#" role="button">Abrir Ticket</a>
+            <a class="btn btn-outline-primary" href="#" role="button">Procurar Tickets</a>
+        </aside>
+
+        <div class="systemsupport" align="center">
+            <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
+        </div>
         <footer align="center">
             <div class="mainfoot">
                 <a href="https://github.com/r0t1v/pleiades" target="blank"><i class="bi bi-github"></i></a>

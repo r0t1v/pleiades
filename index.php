@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require __DIR__ .'./config.php';
+include __DIR__.'./scripts/verifylogged.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

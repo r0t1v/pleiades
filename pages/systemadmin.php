@@ -15,7 +15,6 @@ include __DIR__.'/../scripts/verifypermission.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="../assets/base/favicon.png"/>
         <link rel="stylesheet" href="../styles/style.css"/>
-        <link rel="stylesheet" href="../styles/components.css"/>
         <link rel="stylesheet" href="../libs/bootstrap.css"/>
         <link rel="stylesheet" href="../libs/icons-1.10.2/font/bootstrap-icons.css"/>
     </head>

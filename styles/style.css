@@ -78,6 +78,7 @@
 }
 /* ---------------- error404 ---------------- */
 /* ---------------- systemuser ---------------- */
+/* ------ menu ----- */
 .menusystemuser{
     background-color: #778ca3;
     width: 100%;
@@ -101,15 +102,23 @@
     padding: 0px;
     margin: 0px;
 }
-#ticketdropdown{
-    width: 220px;
+#normaldropdown{
+    width: 300px;
 }
+#normaldropdown small{
+    font-size: 10px;
+    color: #7f8c8d;
+}
+/* ------ button dashboard ----- */
 .menusystemuser .container .row .col-sm-1:nth-child(2){
     margin-top: 12px;
 }
+/* ------ button dashboard ----- */
+/* ------ button tickets ----- */
 .menusystemuser .container .row .col-sm-1:nth-child(3){
     margin-top: 15px;
 }
+/* ------ button tickets ----- */
 #menubuttons{
     padding-top: 8px;
     text-decoration: none;
@@ -138,9 +147,10 @@
 #verifyicon{
     color: #1DA1F3;
 }
-#accdropdown{
-    width: 220px;
+#notifydropdown{
+    width: 300px;
 }
+/* ------ menu ----- */
 .dashboardicons{
     margin-top: 20px;
 }
@@ -151,6 +161,11 @@
     color: #fff;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
+}
+.dashboardicons small{
+    margin-left: 50px;
+    font-size: 12px;
+    color: #7f8c8d;
 }
 .dashboardicons .container .row .col{
     padding: 20px 5px;
@@ -164,41 +179,50 @@
 .dashboardicons .container .row .col:nth-child(1){
     background-color: #C1F1DA;
     color: #05C46B;
-    box-shadow: 0px 10px #05C46B;
+    box-shadow: 0px 7px #05C46B;
 }
 .dashboardicons .container .row .col:nth-child(1):hover{
     background-color: #82E2B5;
     color: #4b6584;
-    box-shadow: 0px 10px #4b6584;
+    box-shadow: 0px 7px #4b6584;
 }
 .dashboardicons .container .row .col:nth-child(2){
     background-color: #FFEAC0;
     color: #FFA801;
-    box-shadow: 0px 10px #FFA801;
+    box-shadow: 0px 7px #FFA801;
 }
 .dashboardicons .container .row .col:nth-child(2):hover{
     background-color: #FFD480;
     color: #4b6584;
-    box-shadow: 0px 10px #4b6584;
+    box-shadow: 0px 7px #4b6584;
 }
 .dashboardicons .container .row .col:nth-child(3){
     background-color: #FFCFCC;
     color: #FF3F34;
-    box-shadow: 0px 10px #FF3F34;
+    box-shadow: 0px 7px #FF3F34;
 }
 .dashboardicons .container .row .col:nth-child(3):hover{
     background-color: #FF9F99;
     color: #4b6584;
-    box-shadow: 0px 10px #4b6584;
+    box-shadow: 0px 7px #4b6584;
 }
 .dashboardicons .container .row .col:nth-child(4){
     background-color: #E0E3E6;
     color: #808E9B;
-    box-shadow: 0px 10px #808E9B;
+    box-shadow: 0px 7px #808E9B;
 }
 .dashboardicons .container .row .col:nth-child(4):hover{
     background-color: #C0C7CD;
     color: #4b6584;
-    box-shadow: 0px 10px #4b6584;
+    box-shadow: 0px 7px #4b6584;
+}
+.buttoninteract{
+    width: 80%;
+}
+.buttoninteract h2{
+    margin: 30px auto;
+    background-color: #34495e;
+    color: #fff;
+    box-shadow: 0px 10px #2c3e50;
 }
 /* ---------------- systemuser ---------------- */

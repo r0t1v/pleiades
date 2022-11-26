@@ -103,9 +103,18 @@
     margin: 0px;
 }
 #normaldropdown{
-    width: 300px;
+    width: 220px;
 }
-#normaldropdown small{
+#accdropdown{
+    width: 220px;
+}
+#accdropdown li:nth-child(1){
+    padding-left: 15px;
+}
+#accdropdown li:nth-child(1) span{
+    font-size: 16px;
+}
+#accdropdown small{
     font-size: 10px;
     color: #7f8c8d;
 }
@@ -148,9 +157,10 @@
     color: #1DA1F3;
 }
 #notifydropdown{
-    width: 300px;
+    width: 250px;
 }
 /* ------ menu ----- */
+/* ------ dashboard ----- */
 .dashboardicons{
     margin-top: 20px;
 }
@@ -161,6 +171,7 @@
     color: #fff;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
+    box-shadow: 0px 8px #2c3e50;
 }
 .dashboardicons small{
     margin-left: 50px;
@@ -176,6 +187,8 @@
 .dashboardicons .container .row .col strong{
     font-size: 62px;
 }
+/* ------ dashboard ----- */
+/* ------ dashboard icons buttons ----- */
 .dashboardicons .container .row .col:nth-child(1){
     background-color: #C1F1DA;
     color: #05C46B;
@@ -216,13 +229,62 @@
     color: #4b6584;
     box-shadow: 0px 7px #4b6584;
 }
-.buttoninteract{
-    width: 80%;
+/* ------ dashboard icons buttons ----- */
+/* ------ buttons aside ----- */
+.buttonsinteract{
+    width: 50%;
+    margin: 45px auto;
 }
-.buttoninteract h2{
-    margin: 30px auto;
+.buttonsinteract h2{
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    text-align: center;
     background-color: #34495e;
     color: #fff;
+    font-size: 48px;
     box-shadow: 0px 10px #2c3e50;
+    border-radius: 3rem;
 }
+.buttonsinteract a{
+    width: 40%;
+    margin: 30px 20px;
+    font-size: 28px;
+    padding: 20px 10px;
+}
+/* ------ buttons aside ----- */
+/* ------ cracha area ----- */
+.userview{
+    width: 80%;
+    margin: 10px auto;
+}
+.userview h1{
+    width: 40%;
+    margin: 15px auto;
+    color: #000;
+}
+.userview .card{
+    width: 375px;
+    margin: 20px auto;
+    color: #fff;
+    background-color: #273c75;
+}
+.userview .card p{
+    font-size: 32px;
+}
+.userview .card ul{
+    list-style: none;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    padding: 0px 20px;
+}
+.userview .card .card-header{
+    background-color: #192a56;
+}
+
+.userview .card .card-footer{
+    background-color: #192a56;
+}
+/* ------ cracha area ----- */
 /* ---------------- systemuser ---------------- */

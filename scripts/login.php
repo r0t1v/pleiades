@@ -10,7 +10,7 @@ $d = mysqli_query($conn, $c);
 $e= mysqli_num_rows($d);
 
 if($e){
-	$f = "SELECT id,nome,social,classe,tag,email,emailverificado FROM users WHERE email='$a' AND senha='$b'";
+	$f = "SELECT id,nome,social,classe,tag,urlprofile,email,emailverificado,datacriacao FROM users WHERE email='$a' AND senha='$b'";
 	$g = mysqli_query($conn, $f);
 	$h = mysqli_num_rows($g);
 
@@ -21,7 +21,10 @@ if($e){
 		$_SESSION['socialuser'] = $dados['social'];
 		$_SESSION['classeuser'] = $dados['classe'];
 		$_SESSION['taguser'] = $dados['tag'];
+		$_SESSION['urluser'] = $dados['urlprofile'];
+		$_SESSION['emailuser'] = $dados['email'];
 		$_SESSION['emailverificadouser'] = $dados['emailverificado'];
+		$_SESSION['datacriacaouser'] = $dados['datacriacao'];
 		$lastview = date('Y-m-d');
 		$aa = "UPDATE users SET ultimovisto='$lastview' WHERE email='$a'";
 		$bb = mysqli_query($conn, $aa);

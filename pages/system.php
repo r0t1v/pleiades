@@ -33,7 +33,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <span class="badge rounded-pill text-bg-warning"><?= $releaseversion; ?></span>
                     </div>
                     <a class="col-sm-2" id="menubuttons" href="/pleiades/pages/system.php" role="button">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-clipboard-data"></i></span> Minha Dashboard
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-clipboard-data"></i></span> Meu dashboard
                     </a>
                     <a class="col-sm-2 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-ticket-perforated"></i></span> Tickets
@@ -43,20 +43,20 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <li><a class="dropdown-item" href="#"><i class="bi bi-ticket-perforated-fill"></i> Meus Tickets</a></li>
                     </ul>
                     <a class="col-sm-2" id="menubuttons" href="/pleiades/pages/system.php" role="button">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-bounding-box"></i></span> Coorporativo
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i></span>
                     </a>
-                    <ul class="dropdown-menu text-center" id="notifydropdown">
-                        <li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> em #111<br><small>Você teve uma resposta</small></a></li>
+                    <ul class="dropdown-menu" id="notifydropdown">
+                        <li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> Ticket #111<br><small>Você tem uma nova resposta.</small></a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>
+                        <li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span><?= $_SESSION['socialuser']?></span><?php if($_SESSION['emailverificadouser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
                     </a>
-                    <ul class="dropdown-menu" id="normaldropdown">
+                    <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
@@ -68,7 +68,7 @@ include __DIR__.'/../scripts/verifyauth.php';
             </div>        
         </div>
         <section class="dashboardicons">
-            <h2><i class="bi bi-file-bar-graph"></i> Minha Dashboard</h2>
+            <h2><i class="bi bi-file-bar-graph"></i> Meu dashboard</h2>
             <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>
             <div class="container text-center">
                 <div class="row">
@@ -99,12 +99,30 @@ include __DIR__.'/../scripts/verifyauth.php';
                 </div>
             </div>
         </section>
-        <aside class="buttonsinteract">
+        <aside class="buttonsinteract" align="center">
             <h2><i class="bi bi-info-circle-fill"></i> Precisa de ajuda?</h2>
-            <a class="btn btn-info" href="#" role="button">Abrir Ticket</a>
-            <a class="btn btn-outline-primary" href="#" role="button">Procurar Tickets</a>
+            <a class="btn btn-info" href="#" role="button"><i class="bi bi-plus-circle-dotted"></i> Abrir Ticket</a>
+            <a class="btn btn-outline-primary" href="#" role="button"><i class="bi bi-search"></i> Procurar Tickets</a>
         </aside>
-
+        <article class="userview" align="center">
+            <h1><i class="bi bi-person-lines-fill"></i> Informações da Conta</h1>
+            <div class="card">
+                <h5 class="card-header">Conta de Usuário (Padrão)</h5>
+                <div class="card-body">
+                <img src="../assets/cracha_default.png" alt="crachadefault"/>
+                    <ul align="left">
+                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['nomeuser']; ?></li>
+                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['socialuser']; ?></li>
+                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['taguser']; ?></li>
+                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['emailuser']; ?></li>
+                    </ul>
+                </div>
+                <p><a href="<?= 'http://'.$_SESSION['urluser']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
+                <div class="card-footer">
+                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['datacriacaouser']); echo ' '.$dataformatada->format('d/m/Y') ?>
+                </div>
+            </div>
+        </article>
         <div class="systemsupport" align="center">
             <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
         </div>

@@ -46,7 +46,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i></span>
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i>+1</span>
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> Ticket #111<br><small>Você tem uma nova resposta.</small></a></li>
@@ -75,25 +75,25 @@ include __DIR__.'/../scripts/verifyauth.php';
                     <a class="col" href="#">
                         <img src="../assets/tickets_ok.png" alt="ticketsok"/>
                         <br>
-                        <strong>10</strong>
+                        <strong><?= $_SESSION['tconcluidouser']; ?></strong>
                         <h5>Tickets Concluídos</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_pending.png" alt="ticketspending"/>
                         <br>
-                        <strong>2</strong>
+                        <strong><?= $_SESSION['tpendenteuser']; ?></strong>
                         <h5>Tickets Concluídos</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
                         <br>
-                        <strong>0</strong>
+                        <strong><?= $_SESSION['trejeitadouser']; ?></strong>
                         <h5>Tickets Rejeitados</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
                         <br>
-                        <strong>21</strong>
+                        <strong><?= $_SESSION['tcanceladouser']; ?></strong>
                         <h5>Tickets Cancelados</h5>
                     </a>
                 </div>

@@ -157,7 +157,15 @@
     color: #1DA1F3;
 }
 #notifydropdown{
-    width: 250px;
+    width: 265px;
+}
+#notifydropdown small{
+    font-size: 12px;
+    color: #7f8c8d;
+}
+#notifycount{
+    font-size: 12px;
+    padding: 5px 7px;
 }
 /* ------ menu ----- */
 /* ------ dashboard ----- */
@@ -256,12 +264,15 @@
 /* ------ cracha area ----- */
 .userview{
     width: 80%;
-    margin: 10px auto;
+    margin: 5px auto;
 }
 .userview h1{
     width: 40%;
-    margin: 15px auto;
-    color: #000;
+    margin: 10px auto;
+    padding: 10px 5px;
+    color: #fff;
+    background-color: #778ca3;
+    border-radius: 1rem;
 }
 .userview .card{
     width: 375px;

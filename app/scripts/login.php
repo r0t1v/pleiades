@@ -26,8 +26,31 @@ if($e){
 		$_SESSION['emailverificadouser'] = $dados['emailverificado'];
 		$_SESSION['datacriacaouser'] = $dados['datacriacao'];
 		$lastview = date('Y-m-d');
-		$aa = "UPDATE users SET ultimovisto='$lastview' WHERE email='$a'";
+		$aa = "UPDATE users SET ultimovisto='$lastview' WHERE email=''";
 		$bb = mysqli_query($conn, $aa);
+		
+		/* Contagem dos tickets*/
+		$i = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Finalizado'";
+		$j = mysqli_query($conn, $i);
+		$jj = $j->fetch_assoc();
+		$_SESSION['tconcluidouser'] = $jj['cont'];
+
+		$k = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Pendente'";
+		$l = mysqli_query($conn, $k);
+		$ll = $l->fetch_assoc();
+		$_SESSION['tpendenteuser'] = $ll['cont'];
+
+		$m = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Rejeitado'";
+		$n = mysqli_query($conn, $m);
+		$nn = $n->fetch_assoc();
+		$_SESSION['trejeitadouser'] = $nn['cont'];
+
+		$o = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Cancelado'";
+		$p = mysqli_query($conn, $o);
+		$pp = $p->fetch_assoc();
+		$_SESSION['tcanceladouser'] = $pp['cont'];
+		/* Contagem dos tickets*/
+
 			if($_SESSION['classeuser']==0){
 				header("Location: ../pages/systemadmin.php");
 				exit;

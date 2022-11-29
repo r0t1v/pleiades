@@ -7,7 +7,7 @@ include __DIR__.'./scripts/verifylogged.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title><?= $servername; ?> - Principal</title>
+        <title><?= $servername; ?> - Login</title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -37,9 +37,9 @@ include __DIR__.'./scripts/verifylogged.php';
             <form action="scripts/login.php" method="POST">
                 <div class="formmodel" align="left">
                     <label for="loginuser"><i class="bi bi-person-square"></i> Email</label> 
-                    <input class="form-control" name="loginuser" id="loginuser" type="text" placeholder="Login" required/>
+                    <input class="form-control" name="loginuser" id="loginuser" type="text" placeholder="Login" maxlength="100" required/>
                     <label for="loginpass"><i class="bi bi-key"></i> Senha</label> 
-                    <input class="form-control" name="loginpass" id="loginpass" type="password" placeholder="********" required/>
+                    <input class="form-control" name="loginpass" id="loginpass" type="password" placeholder="********" minlength="8" maxlength="32" required/>
                 </div>
                 <button type="submit" class="btn btn-primary">Entrar</button>
             </form>

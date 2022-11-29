@@ -1,12 +1,12 @@
+@font-face {
+    font-family: Varela;
+    src: url('../assets/base/VarelaRound-Regular.ttf') format('truetype');
+}
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: Varela;
-}
-@font-face {
-    font-family: Varela;
-    src: url('../assets/base/VarelaRound-Regular.ttf') format('truetype');
 }
 /* ---------------- index.php ------------------------ */
 .mainmenu{
@@ -299,3 +299,13 @@
 }
 /* ------ cracha area ----- */
 /* ---------------- systemuser ---------------- */
+/* ---------------- change-password ------------- */
+.backdefault{
+    width: 50%;
+    margin: 40px auto;
+}
+.backdefault a{
+    text-decoration: none;
+    font-size: 32px;
+}
+/* ---------------- change-password ------------- */

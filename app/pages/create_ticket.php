@@ -7,7 +7,7 @@ include __DIR__.'/../scripts/verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title><?= $servername; ?> - Sistema</title>
+        <title><?= $servername; ?> - Criar Ticket</title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -22,24 +22,24 @@ include __DIR__.'/../scripts/verifyauth.php';
             <div class="container">
                 <div class="row">
                     <div class="col-sm-1">
-                        <a href="system.php">
+                        <a href="/pleiades/app/pages/system.php">
                             <img src="../assets/base/system_logo.png" width="45px" height="45px" alt="logosystem"/>
                         </a>
                     </div>
                     <div class="col-sm-1">
-                        <strong><?= $servername; ?></strong>
+                       <strong><?= $servername; ?></strong>
                     </div>
                     <div class="col-sm-1">
-                        <span class="badge rounded-pill text-bg-warning"><?= $releaseversion; ?></span>
+                       <span class="badge rounded-pill text-bg-warning"><?= $releaseversion; ?></span>
                     </div>
-                    <a class="col-sm-2" id="menubuttons" href="system.php" role="button">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-clipboard-data"></i></span> Meu dashboard
+                    <a class="col-sm-2" id="menubuttons" href="/pleiades/app/pages/system.php" role="button">
+                       <span class="badge rounded-pill text-bg-light"><i class="bi bi-clipboard-data"></i></span> Meu dashboard
                     </a>
                     <a class="col-sm-2 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-ticket-perforated"></i></span> Tickets
                     </a>
                     <ul class="dropdown-menu" id="normaldropdown">
-                        <li><a class="dropdown-item" href="create_ticket.php"><i class="bi bi-plus-circle"></i> Abrir Ticket</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle"></i> Abrir Ticket</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-ticket-perforated-fill"></i> Meus Tickets</a></li>
                     </ul>
                     <a class="col-sm-2" id="menubuttons" href="/pleiades/pages/system.php" role="button">
@@ -60,69 +60,14 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
-                        <li><a class="dropdown-item" href="change_password.php"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../scripts/logout.php"><i class="bi bi-door-open"></i> Deslogar</a></li>
                     </ul>
                 </div>
             </div>        
         </div>
-        <section class="dashboardicons">
-            <h2><i class="bi bi-file-bar-graph"></i> Meu dashboard</h2>
-            <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>
-            <div class="container text-center">
-                <div class="row">
-                    <a class="col" href="#">
-                        <img src="../assets/tickets_ok.png" alt="ticketsok"/>
-                        <br>
-                        <strong><?= $_SESSION['tconcluidouser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_pending.png" alt="ticketspending"/>
-                        <br>
-                        <strong><?= $_SESSION['tpendenteuser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
-                        <br>
-                        <strong><?= $_SESSION['trejeitadouser']; ?></strong>
-                        <h5>Tickets Rejeitados</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
-                        <br>
-                        <strong><?= $_SESSION['tcanceladouser']; ?></strong>
-                        <h5>Tickets Cancelados</h5>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <aside class="buttonsinteract" align="center">
-            <h2><i class="bi bi-info-circle-fill"></i> Precisa de ajuda?</h2>
-            <a class="btn btn-info" href="create_ticket.php" role="button"><i class="bi bi-plus-circle-dotted"></i> Abrir Ticket</a>
-            <a class="btn btn-outline-primary" href="#" role="button"><i class="bi bi-search"></i> Procurar Tickets</a>
-        </aside>
-        <article class="userview" align="center">
-            <h1><i class="bi bi-person-lines-fill"></i> Informações da Conta</h1>
-            <div class="card">
-                <h5 class="card-header">Conta de Usuário (Padrão)</h5>
-                <div class="card-body">
-                <img src="../assets/cracha_default.png" alt="crachadefault"/>
-                    <ul align="left">
-                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['nomeuser']; ?></li>
-                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['socialuser']; ?></li>
-                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['taguser']; ?></li>
-                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['emailuser']; ?></li>
-                    </ul>
-                </div>
-                <p><a href="<?= 'http://'.$_SESSION['urluser']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
-                <div class="card-footer">
-                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['datacriacaouser']); echo ' '.$dataformatada->format('d/m/Y') ?>
-                </div>
-            </div>
-        </article>
+        
         <div class="systemsupport" align="center">
             <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
         </div>

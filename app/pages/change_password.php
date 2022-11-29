@@ -7,7 +7,7 @@ include __DIR__.'/../scripts/verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title><?= $servername; ?> - Sistema</title>
+        <title><?= $servername; ?> - Trocar Senha</title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -60,69 +60,31 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
-                        <li><a class="dropdown-item" href="change_password.php"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
+                        <li><a class="dropdown-item disabled" href="#"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../scripts/logout.php"><i class="bi bi-door-open"></i> Deslogar</a></li>
                     </ul>
                 </div>
             </div>        
         </div>
-        <section class="dashboardicons">
-            <h2><i class="bi bi-file-bar-graph"></i> Meu dashboard</h2>
-            <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>
-            <div class="container text-center">
-                <div class="row">
-                    <a class="col" href="#">
-                        <img src="../assets/tickets_ok.png" alt="ticketsok"/>
-                        <br>
-                        <strong><?= $_SESSION['tconcluidouser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_pending.png" alt="ticketspending"/>
-                        <br>
-                        <strong><?= $_SESSION['tpendenteuser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
-                        <br>
-                        <strong><?= $_SESSION['trejeitadouser']; ?></strong>
-                        <h5>Tickets Rejeitados</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
-                        <br>
-                        <strong><?= $_SESSION['tcanceladouser']; ?></strong>
-                        <h5>Tickets Cancelados</h5>
-                    </a>
-                </div>
+        <nav class="backdefault">
+            <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
+        </nav>
+        <form action="" methor="POST" class="formpassword">
+            <h2><i class="bi bi-arrow-repeat"></i> Troque sua senha!</i></h2>
+            <h5>Para trocar a senha é simples, entretanto a nova deverá seguir o padrão a seguir:</h5>
+            <div class="alert alert-secondary" role="alert">
+                <ul>
+                    <li><i class="bi bi-caret-up-fill"></i> Deve possuir no mínimo 8 carateres</li>
+                    <li><i class="bi bi-caret-down-fill"></i> Deve possuir no máximo 32 carateres</li>
+                    <li><i class="bi bi-123"></i> Deve conter pelo menos um número</li>
+                    <li><i class="bi bi-at"></i> Deve conter pelo menos um caractere especial</li>
+                </ul>
             </div>
-        </section>
-        <aside class="buttonsinteract" align="center">
-            <h2><i class="bi bi-info-circle-fill"></i> Precisa de ajuda?</h2>
-            <a class="btn btn-info" href="create_ticket.php" role="button"><i class="bi bi-plus-circle-dotted"></i> Abrir Ticket</a>
-            <a class="btn btn-outline-primary" href="#" role="button"><i class="bi bi-search"></i> Procurar Tickets</a>
-        </aside>
-        <article class="userview" align="center">
-            <h1><i class="bi bi-person-lines-fill"></i> Informações da Conta</h1>
-            <div class="card">
-                <h5 class="card-header">Conta de Usuário (Padrão)</h5>
-                <div class="card-body">
-                <img src="../assets/cracha_default.png" alt="crachadefault"/>
-                    <ul align="left">
-                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['nomeuser']; ?></li>
-                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['socialuser']; ?></li>
-                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['taguser']; ?></li>
-                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['emailuser']; ?></li>
-                    </ul>
-                </div>
-                <p><a href="<?= 'http://'.$_SESSION['urluser']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
-                <div class="card-footer">
-                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['datacriacaouser']); echo ' '.$dataformatada->format('d/m/Y') ?>
-                </div>
-            </div>
-        </article>
+            <input class="form-control form-control-lg" type="password" placeholder="Digite sua nova senha" minlength="8" maxlength="32"/>
+            <input class="form-control form-control-lg" type="password" placeholder="Confirme sua nova senha" minlength="8" maxlength="32"/>
+            <button type="submit" class="btn btn-dark">Trocar senha</button>
+        </form>
         <div class="systemsupport" align="center">
             <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
         </div>

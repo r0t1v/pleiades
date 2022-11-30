@@ -70,19 +70,28 @@ include __DIR__.'/../scripts/verifyauth.php';
         <nav class="backdefault">
             <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
         </nav>
-        <form action="" methor="POST" class="formpassword">
-            <h2><i class="bi bi-arrow-repeat"></i> Troque sua senha!</i></h2>
-            <h5>Para trocar a senha é simples, entretanto a nova deverá seguir o padrão a seguir:</h5>
-            <div class="alert alert-secondary" role="alert">
+        <form action="../scripts/changepass.php" method="POST" class="formpassword" align="center">
+            <?php
+                if(isset($_SESSION['msgchangepass'])){
+                    echo $_SESSION['msgchangepass'];
+                    unset($_SESSION['msgchangepass']);
+                }
+                else{
+                    unset($_SESSION['msgchangepass']);
+                }
+            ?>
+            <strong><i class="bi bi-arrow-repeat"></i> Troque sua senha!</i></strong>
+            <h5>Para trocar a senha é simples, entretanto a nova senha deverá seguir o padrão a seguir:</h5>
+            <div class="alert alert-secondary" role="alert" align="left">
                 <ul>
                     <li><i class="bi bi-caret-up-fill"></i> Deve possuir no mínimo 8 carateres</li>
                     <li><i class="bi bi-caret-down-fill"></i> Deve possuir no máximo 32 carateres</li>
                     <li><i class="bi bi-123"></i> Deve conter pelo menos um número</li>
-                    <li><i class="bi bi-at"></i> Deve conter pelo menos um caractere especial</li>
+                    <li><i class="bi bi-at"></i> Deve conter pelo menos um caractere especial !@#$%¨&*()</li>
                 </ul>
             </div>
-            <input class="form-control form-control-lg" type="password" placeholder="Digite sua nova senha" minlength="8" maxlength="32"/>
-            <input class="form-control form-control-lg" type="password" placeholder="Confirme sua nova senha" minlength="8" maxlength="32"/>
+            <input class="form-control form-control-lg" type="password" id="newpass" name="newpass" placeholder="Digite sua nova senha" minlength="8" maxlength="32"/>
+            <input class="form-control form-control-lg" type="password" id="newpassconfirm" name="newpassconfirm" placeholder="Confirme sua nova senha" minlength="8" maxlength="32"/>
             <button type="submit" class="btn btn-dark">Trocar senha</button>
         </form>
         <div class="systemsupport" align="center">

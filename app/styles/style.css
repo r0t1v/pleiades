@@ -308,4 +308,28 @@
     text-decoration: none;
     font-size: 32px;
 }
+.formpassword{
+    width: 60%;
+    margin: 20px auto;
+}
+.formpassword strong{
+    font-size: 46px;
+}
+.formpassword .alert{
+    width: 70%;
+    margin: 10px auto;
+}
+.formpassword ul{
+    margin-bottom: 0px;
+}
+.formpassword .form-control{
+    width: 40%;
+    margin: 15px auto;
+}
+.formpassword button{
+    width: 40%;
+    padding: 15px 5px;
+    font-size: 24px;
+    margin-top: 20px;
+}
 /* ---------------- change-password ------------- */

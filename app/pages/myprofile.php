@@ -7,7 +7,7 @@ include __DIR__.'/../scripts/verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Sistema<?= ' - '.$servername; ?></title>
+        <title>Perfil do <?= $_SESSION['socialuser'].' - '.$servername; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -59,7 +59,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="myprofile.php"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
+                        <li><a class="dropdown-item disabled" href="#"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
                         <li><a class="dropdown-item" href="change_password.php"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../scripts/logout.php"><i class="bi bi-door-open"></i> Deslogar</a></li>
@@ -67,62 +67,24 @@ include __DIR__.'/../scripts/verifyauth.php';
                 </div>
             </div>        
         </div>
-        <section class="dashboardicons">
-            <h2><i class="bi bi-file-bar-graph"></i> Meu dashboard</h2>
-            <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>
-            <div class="container text-center">
-                <div class="row">
-                    <a class="col" href="#">
-                        <img src="../assets/tickets_ok.png" alt="ticketsok"/>
-                        <br>
-                        <strong><?= $_SESSION['tconcluidouser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_pending.png" alt="ticketspending"/>
-                        <br>
-                        <strong><?= $_SESSION['tpendenteuser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
-                        <br>
-                        <strong><?= $_SESSION['trejeitadouser']; ?></strong>
-                        <h5>Tickets Rejeitados</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
-                        <br>
-                        <strong><?= $_SESSION['tcanceladouser']; ?></strong>
-                        <h5>Tickets Cancelados</h5>
-                    </a>
-                </div>
-            </div>
+        <nav class="backdefault">
+            <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
+        </nav>
+        <section class="profileinfo">
+            <h1><i class="bi bi-person-square"></i> Informações do Perfil</h1>
+            <form action="" method="POST" class="formprofile">
+                <label for="" class="form-label">Nome</label>
+                <input class="form-control form-control-lg" type="text" id="" name="" placeholder="" />
+                <label for="" class="form-label">Nome de usuário</label>
+                <input class="form-control form-control-lg" type="text" id="" name="" placeholder="" />
+                <label for="" class="form-label">E-mail</label>
+                <input class="form-control form-control-lg" type="text" id="" name="" placeholder="" />
+                <label for="" class="form-label">Url do seu perfil profissional</label>
+                <input class="form-control form-control-lg" type="text" id="" name="" placeholder="" />
+                <button type="submit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Editar</button>
+            </form>
+            <a href=""><i class="bi bi-check2-circle"></i> Verificar e-mail</a>
         </section>
-        <aside class="buttonsinteract" align="center">
-            <h2><i class="bi bi-info-circle-fill"></i> Precisa de ajuda?</h2>
-            <a class="btn btn-info" href="create_ticket.php" role="button"><i class="bi bi-plus-circle-dotted"></i> Abrir Ticket</a>
-            <a class="btn btn-outline-primary" href="#" role="button"><i class="bi bi-search"></i> Procurar Tickets</a>
-        </aside>
-        <article class="userview" align="center">
-            <h1><i class="bi bi-person-lines-fill"></i> Informações da Conta</h1>
-            <div class="card">
-                <h5 class="card-header">Conta de Usuário (Padrão)</h5>
-                <div class="card-body">
-                <img src="../assets/cracha_default.png" alt="crachadefault"/>
-                    <ul align="left">
-                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['nomeuser']; ?></li>
-                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['socialuser']; ?></li>
-                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['taguser']; ?></li>
-                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['emailuser']; ?></li>
-                    </ul>
-                </div>
-                <p><a href="<?= 'http://'.$_SESSION['urluser']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
-                <div class="card-footer">
-                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['datacriacaouser']); echo ' '.$dataformatada->format('d/m/Y') ?>
-                </div>
-            </div>
-        </article>
         <div class="systemsupport" align="center">
             <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
         </div>

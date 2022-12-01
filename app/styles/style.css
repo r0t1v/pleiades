@@ -200,42 +200,42 @@
 .dashboardicons .container .row .col:nth-child(1){
     background-color: #C1F1DA;
     color: #05C46B;
-    box-shadow: 0px 7px #05C46B;
+    border: solid 4px #05C46B;
 }
 .dashboardicons .container .row .col:nth-child(1):hover{
     background-color: #82E2B5;
     color: #4b6584;
-    box-shadow: 0px 7px #4b6584;
+    border: solid 4px #4b6584;
 }
 .dashboardicons .container .row .col:nth-child(2){
     background-color: #FFEAC0;
     color: #FFA801;
-    box-shadow: 0px 7px #FFA801;
+    border: solid 4px #FFA801;
 }
 .dashboardicons .container .row .col:nth-child(2):hover{
     background-color: #FFD480;
     color: #4b6584;
-    box-shadow: 0px 7px #4b6584;
+    border: solid 4px #4b6584;
 }
 .dashboardicons .container .row .col:nth-child(3){
     background-color: #FFCFCC;
     color: #FF3F34;
-    box-shadow: 0px 7px #FF3F34;
+    border: solid 4px #FF3F34;
 }
 .dashboardicons .container .row .col:nth-child(3):hover{
     background-color: #FF9F99;
     color: #4b6584;
-    box-shadow: 0px 7px #4b6584;
+    border: solid 4px #4b6584;
 }
 .dashboardicons .container .row .col:nth-child(4){
     background-color: #E0E3E6;
     color: #808E9B;
-    box-shadow: 0px 7px #808E9B;
+    border: solid 4px #808E9B;
 }
 .dashboardicons .container .row .col:nth-child(4):hover{
     background-color: #C0C7CD;
     color: #4b6584;
-    box-shadow: 0px 7px #4b6584;
+    border: solid 4px #4b6584;
 }
 /* ------ dashboard icons buttons ----- */
 /* ------ buttons aside ----- */
@@ -322,6 +322,10 @@
 .formpassword ul{
     margin-bottom: 0px;
 }
+.formpassword label{
+    font-size: 24px;
+    font-weight: bold;
+}
 .formpassword .form-control{
     width: 40%;
     margin: 15px auto;
@@ -333,3 +337,16 @@
     margin-top: 20px;
 }
 /* ---------------- change-password ------------- */
+/* ----------------- my-profile -------------- */
+.profileinfo{
+    width: 60%;
+    margin: 10px auto;
+}
+.profileinfo h1{
+    padding: 10px 30px;
+    border-radius: 1rem;
+    background-color: #34495e;
+    box-shadow: 0px 8px #2c3e50;
+    color: #fff;
+}
+/* ----------------- my-profile -------------- */

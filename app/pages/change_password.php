@@ -7,7 +7,7 @@ include __DIR__.'/../scripts/verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title><?= $servername; ?> - Trocar Senha</title>
+        <title>Trocar Senha<?= ' - '.$servername; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -59,7 +59,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
+                        <li><a class="dropdown-item" href="myprofile.php"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
                         <li><a class="dropdown-item disabled" href="#"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../scripts/logout.php"><i class="bi bi-door-open"></i> Deslogar</a></li>
@@ -90,7 +90,9 @@ include __DIR__.'/../scripts/verifyauth.php';
                     <li><i class="bi bi-at"></i> Deve conter pelo menos um caractere especial !@#$%¨&*()</li>
                 </ul>
             </div>
+            <label for="newpass"> Nova senha</label>
             <input class="form-control form-control-lg" type="password" id="newpass" name="newpass" placeholder="Digite sua nova senha" minlength="8" maxlength="32"/>
+            <label for="newpassconfirm"> Confirme a nova senha</label>
             <input class="form-control form-control-lg" type="password" id="newpassconfirm" name="newpassconfirm" placeholder="Confirme sua nova senha" minlength="8" maxlength="32"/>
             <button type="submit" class="btn btn-dark">Trocar senha</button>
         </form>

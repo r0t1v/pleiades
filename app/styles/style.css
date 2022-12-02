@@ -344,9 +344,28 @@
 }
 .profileinfo h1{
     padding: 10px 30px;
+    margin-bottom: 20px;
     border-radius: 1rem;
     background-color: #34495e;
     box-shadow: 0px 8px #2c3e50;
     color: #fff;
+}
+.profileinfo .formprofile{
+    width: 60%;
+    margin: 20px auto;
+}
+.profileinfo .formprofile label{
+    font-size: 28px;
+    font-weight: bold;
+    color: #34495e;
+}
+.profileinfo .formprofile input{
+    margin-bottom: 20px;
+}
+.profileinfo .formprofile button{
+    font-size: 24px;
+}
+.emailcheck{
+    font-size: 18px;
 }
 /* ----------------- my-profile -------------- */

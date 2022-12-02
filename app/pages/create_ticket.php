@@ -42,7 +42,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <li><a class="dropdown-item" href="#"><i class="bi bi-plus-circle"></i> Abrir Ticket</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-ticket-perforated-fill"></i> Meus Tickets</a></li>
                     </ul>
-                    <a class="col-sm-2" id="menubuttons" href="/pleiades/pages/system.php" role="button">
+                    <a class="col-sm-2" id="menubuttons" href="corporate_page.php" role="button">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

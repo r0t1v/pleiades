@@ -42,7 +42,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <li><a class="dropdown-item" href="create_ticket.php"><i class="bi bi-plus-circle"></i> Abrir Ticket</a></li>
                         <li><a class="dropdown-item" href="#"><i class="bi bi-ticket-perforated-fill"></i> Meus Tickets</a></li>
                     </ul>
-                    <a class="col-sm-2" id="menubuttons" href="/pleiades/pages/system.php" role="button">
+                    <a class="col-sm-2" id="menubuttons" href="corporate_page.php" role="button">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,20 +71,40 @@ include __DIR__.'/../scripts/verifyauth.php';
             <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
         </nav>
         <section class="profileinfo">
+            <?php
+                if(isset($_SESSION['msgupdateprofile'])){
+                    echo $_SESSION['msgupdateprofile'];
+                    unset($_SESSION['msgupdateprofile']);
+                }
+                else{
+                    unset($_SESSION['msgupdateprofile']);
+                }
+            ?>
             <h1><i class="bi bi-person-square"></i> Informações do Perfil</h1>
-            <form action="" method="POST" class="formprofile">
-                <label for="" class="form-label">Nome</label>
-                <input class="form-control form-control-lg" type="text" id="" name="" placeholder="" />
-                <label for="" class="form-label">Nome de usuário</label>
-                <input class="form-control form-control-lg" type="text" id="" name="" placeholder="" />
-                <label for="" class="form-label">E-mail</label>
-                <input class="form-control form-control-lg" type="text" id="" name="" placeholder="" />
-                <label for="" class="form-label">Url do seu perfil profissional</label>
-                <input class="form-control form-control-lg" type="text" id="" name="" placeholder="" />
+            <form action="../scripts/updateprofile.php" method="POST" class="formprofile">
+                <label for="profileusername" class="form-label">Nome</label>
+                <input class="form-control form-control-lg" type="text" id="profileusername" name="profileusername" placeholder="Nome" minlength="3" maxlength="100" value="<?= $_SESSION['nomeuser']; ?>" required />
+                <label for="profileusersocial" class="form-label">Nome de usuário</label>
+                <input class="form-control form-control-lg" type="text" id="profileusersocial" name="profileusersocial" placeholder="Nome de usuário" minlength="4" maxlength="50" value="<?= $_SESSION['socialuser']; ?>" required />
+                <label for="form-control" class="form-label">Tag</label>
+                <input class="form-control form-control-lg" type="text" placeholder="Tag" id="form-control" name="form-control" value="<?= $_SESSION['taguser']; ?>" disabled />
+                <label for="profileuseremail" class="form-label">E-mail</label>
+                <input class="form-control form-control-lg" type="text" id="profileuseremail" name="profileuseremail" placeholder="E-mail" minlength="5" maxlength="100" value="<?= $_SESSION['emailuser']; ?>" required />
+                <label for="profileuserurl" class="form-label">Url do seu perfil profissional</label>
+                <input class="form-control form-control-lg" type="text" id="profileuserurl" name="profileuserurl" placeholder="Url" minlength="5" maxlength="100" value="<?= $_SESSION['urluser']; ?>" required />              
                 <button type="submit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Editar</button>
             </form>
-            <a href=""><i class="bi bi-check2-circle"></i> Verificar e-mail</a>
         </section>
+        <aside class="emailcheck" align="center">
+            <?php
+            if($_SESSION['emailverificadouser']==0){
+                echo'<a href="" style="color: #e67e22;"><i class="bi bi-shield-x"></i> Verificar e-mail</a>';
+            }
+            else{
+                echo'<p style="color: #2ecc71;"><i class="bi bi-check2-circle"></i> Seu e-mail já foi verificado!</p>';
+            }
+            ?>
+        </aside>
         <div class="systemsupport" align="center">
             <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
         </div>

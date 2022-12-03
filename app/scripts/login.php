@@ -51,6 +51,12 @@ if($e){
 		$_SESSION['tcanceladouser'] = $pp['cont'];
 		/* Contagem dos tickets*/
 
+		/* Notifications*/
+		$q="SELECT descricao,tipo_notification,data_notification FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['islogged']." ORDER BY data_notification DESC LIMIT 3";
+		$p = mysqli_query($conn, $q);
+
+		/* Notifications*/
+
 			if($_SESSION['classeuser']==0){
 				header("Location: ../pages/systemadmin.php");
 				exit;

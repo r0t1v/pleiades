@@ -46,12 +46,27 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i>+1</span>
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $contnotify=0;?></span>
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
-                        <li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> Ticket #111<br><small>Você tem uma nova resposta.</small></a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>
+                        <?php 
+                            if(isset($_SESSION['notificationtop1'])){
+                                echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop1'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
+                                if(isset($_SESSION['notificationtop2'])){
+                                    echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop2'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
+                                    if(isset($_SESSION['notificationtop3'])){
+                                        echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop3'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
+                                    }
+                                }
+                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleannotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>';
+                                echo '<li><hr class="dropdown-divider"></li>';
+                                echo '<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
+                            }
+                            else{
+                                $contnotify='0';
+                                echo '<p class="text-center">Você não tem notificações!</p>';
+                            }
+                        ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span><?= $_SESSION['socialuser']?></span><?php if($_SESSION['emailverificadouser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
@@ -59,7 +74,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
+                        <li><a class="dropdown-item" href="myprofile.php"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
                         <li><a class="dropdown-item" href="change_password.php"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../scripts/logout.php"><i class="bi bi-door-open"></i> Deslogar</a></li>

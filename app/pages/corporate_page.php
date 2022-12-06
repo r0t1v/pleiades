@@ -46,7 +46,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $contnotify=0;?></span>
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['contnotify']; ?></span>
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
@@ -63,7 +63,6 @@ include __DIR__.'/../scripts/verifyauth.php';
                                 echo '<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                             }
                             else{
-                                $contnotify='0';
                                 echo '<p class="text-center">Você não tem notificações!</p>';
                             }
                         ?>

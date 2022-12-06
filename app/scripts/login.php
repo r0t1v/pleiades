@@ -52,9 +52,10 @@ if($e){
 		/* Contagem dos tickets*/
 
 		/* Notifications*/
-		$q="SELECT descricao,tipo_notification,data_notification FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['islogged']." ORDER BY data_notification DESC LIMIT 3";
-		$p = mysqli_query($conn, $q);
-
+		$q="SELECT COUNT(id_notification)cont FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['islogged']." ORDER BY data_notification DESC LIMIT 3";
+		$r = mysqli_query($conn, $q);
+		$s= $r->fetch_assoc();
+		$_SESSION['contnotify'] = $s['cont'];
 		/* Notifications*/
 
 			if($_SESSION['classeuser']==0){

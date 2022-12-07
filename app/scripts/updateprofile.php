@@ -3,28 +3,27 @@ session_start();
 require __DIR__.'/../config.php';
 include __DIR__.'/../scripts/verifyauth.php';
 
-$a = filter_var($_POST['profileusername'], FILTER_SANITIZE_STRING);
-$b = filter_var($_POST['profileusersocial'], FILTER_SANITIZE_STRING);
-$c = filter_var($_POST['profileuseremail'], FILTER_SANITIZE_STRING);
-$d = filter_var($_POST['profileuserurl'], FILTER_SANITIZE_STRING);
+$ChangeProfileUsername = filter_var($_POST['profileusername'], FILTER_SANITIZE_STRING);
+$ChangeProfileSocial = filter_var($_POST['profileusersocial'], FILTER_SANITIZE_STRING);
+$ChangeProfileEmail = filter_var($_POST['profileuseremail'], FILTER_SANITIZE_STRING);
+$ChangeProfileUrl = filter_var($_POST['profileuserurl'], FILTER_SANITIZE_STRING);
 
-if(strlen($a)>=3 and strlen($a)<100 and strlen($b)>=4 and strlen($b)<50 and strlen($c)>=5 and strlen($c)<100 and strlen($d)>=5 and strlen($d)<100){
-    $conta = $_SESSION['islogged'];
-    $e = "SELECT social FROM users WHERE social='$b'";
-    $f = mysqli_query($conn, $e);
-    $g = mysqli_num_rows($f);
+if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and strlen($ChangeProfileSocial)>=4 and strlen($ChangeProfileSocial)<50 and strlen($ChangeProfileEmail)>=5 and strlen($ChangeProfileEmail)<100 and strlen($ChangeProfileUrl)>=5 and strlen($ChangeProfileUrl)<100){
+    $QuerySocialExists = "SELECT social FROM users WHERE social='$b'";
+    $QuerySocialExistsExec = mysqli_query($conn, $QuerySocialExists);
+    $QuerySocialExistsResult = mysqli_num_rows($QuerySocialExistsExec);
 
-    if($g==0){
+    if($QuerySocialExistsResult==0 || $ChangeProfileSocial==$_SESSION['socialuser']){
         if($_SESSION['profileuseremail']==$_SESSION['emailuser']){
-            $h = "UPDATE users SET nome='$a',social='$b',email='$c',urlprofile='$d' WHERE id='$conta'";
-            $i = mysqli_query($conn, $h);
+            $QueryUpdateProfile = "UPDATE users SET nome='$ChangeProfileUsername',social='$ChangeProfileSocial',email='$ChangeProfileEmail',urlprofile='$ChangeProfileUrl' WHERE id='".$_SESSION['islogged']."'";
+            $QueryUpdateProfileExec = mysqli_query($conn, $QueryUpdateProfile);
             $_SESSION['msgupdateprofile']='<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas  no banco de dados!</div>';
             header("Location: ../pages/myprofile.php");
             exit;
         }
         else{
-            $j = "UPDATE users SET nome='$a',social='$b',email='$c',urlprofile='$d',emailverificado='0' WHERE id='$conta'";
-            $k = mysqli_query($conn, $j);
+            $QueryUpdateProfile = "UPDATE users SET nome='$ChangeProfileUsername',social='$ChangeProfileSocial',email='$ChangeProfileEmail',urlprofile='$ChangeProfileUrl',emailverificado='0' WHERE id='".$_SESSION['islogged']."'";
+            $QueryUpdateProfileExec = mysqli_query($conn, $QueryUpdateProfile);
             $_SESSION['msgupdateprofile']='<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas com sucesso no banco de dados!</div>';
             header("Location: ../pages/myprofile.php");
             exit;

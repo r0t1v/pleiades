@@ -2,20 +2,20 @@
 session_start();
 require __DIR__.'/../config.php';
 
-$a = filter_var($_POST['loginuser'], FILTER_SANITIZE_EMAIL);
-$b = md5(filter_var($_POST['loginpass'], FILTER_SANITIZE_STRING));
+$UserData = filter_var($_POST['loginuser'], FILTER_SANITIZE_EMAIL);
+$PassData = md5(filter_var($_POST['loginpass'], FILTER_SANITIZE_STRING));
 
-$c = "SELECT email FROM users WHERE email='$a'";
-$d = mysqli_query($conn, $c);
-$e= mysqli_num_rows($d);
+$QueryEmailExists = "SELECT email FROM users WHERE email='$UserData'";
+$QueryEmailExistsExec = mysqli_query($conn, $QueryEmailExists);
+$QueryEmailExistsResult = mysqli_num_rows($QueryEmailExistsExec);
 
-if($e){
-	$f = "SELECT id,nome,social,classe,tag,urlprofile,email,emailverificado,datacriacao FROM users WHERE email='$a' AND senha='$b'";
-	$g = mysqli_query($conn, $f);
-	$h = mysqli_num_rows($g);
+if($QueryEmailExistsResult){
+	$QueryAccountData = "SELECT id,nome,social,classe,tag,urlprofile,email,emailverificado,datacriacao FROM users WHERE email='$UserData' AND senha='$PassData'";
+	$QueryAccountDataExec = mysqli_query($conn, $QueryAccountData);
+	$QueryAccountDataResult = mysqli_num_rows($QueryAccountDataExec);
 
-	if ($h) {
-        $dados = $g->fetch_assoc();
+	if ($QueryAccountDataResult) {
+        $dados = $QueryAccountDataExec->fetch_assoc();
         $_SESSION['islogged'] = $dados['id'];
 		$_SESSION['nomeuser'] = $dados['nome'];
 		$_SESSION['socialuser'] = $dados['social'];
@@ -25,37 +25,37 @@ if($e){
 		$_SESSION['emailuser'] = $dados['email'];
 		$_SESSION['emailverificadouser'] = $dados['emailverificado'];
 		$_SESSION['datacriacaouser'] = $dados['datacriacao'];
-		$lastview = date('Y-m-d');
-		$aa = "UPDATE users SET ultimovisto='$lastview' WHERE email=''";
-		$bb = mysqli_query($conn, $aa);
+
+		$QueryUpdateLastView = "UPDATE users SET ultimovisto='".date('Y-m-d')."' WHERE email='$UserData'";
+		$QueryUpdateLastViewExec = mysqli_query($conn, $QueryUpdateLastView);
 		
 		/* Contagem dos tickets*/
-		$i = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Finalizado'";
-		$j = mysqli_query($conn, $i);
-		$jj = $j->fetch_assoc();
-		$_SESSION['tconcluidouser'] = $jj['cont'];
+		$QueryCountTicketClosed = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Finalizado'";
+		$QueryCountTicketClosedExec = mysqli_query($conn, $QueryCountTicketClosed);
+		$QueryCountTicketClosedResult = $QueryCountTicketClosedExec->fetch_assoc();
+		$_SESSION['tconcluidouser'] = $QueryCountTicketClosedResult['cont'];
 
-		$k = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Pendente'";
-		$l = mysqli_query($conn, $k);
-		$ll = $l->fetch_assoc();
-		$_SESSION['tpendenteuser'] = $ll['cont'];
+		$QueryCountTicketPending = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Pendente'";
+		$QueryCountTicketPendingExec = mysqli_query($conn, $QueryCountTicketPending);
+		$QueryCountTicketPendingResult = $QueryCountTicketPendingExec->fetch_assoc();
+		$_SESSION['tpendenteuser'] = $QueryCountTicketPendingResult['cont'];
 
-		$m = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Rejeitado'";
-		$n = mysqli_query($conn, $m);
-		$nn = $n->fetch_assoc();
-		$_SESSION['trejeitadouser'] = $nn['cont'];
+		$QueryCountTicketRejected = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Rejeitado'";
+		$QueryCountTicketRejectedExec = mysqli_query($conn, $QueryCountTicketRejected);
+		$QueryCountTicketRejectedResult = $QueryCountTicketRejectedExec->fetch_assoc();
+		$_SESSION['trejeitadouser'] = $QueryCountTicketRejectedResult['cont'];
 
-		$o = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Cancelado'";
-		$p = mysqli_query($conn, $o);
-		$pp = $p->fetch_assoc();
-		$_SESSION['tcanceladouser'] = $pp['cont'];
+		$QueryCountTicketCanceled = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['islogged']."' AND ticket_status='Cancelado'";
+		$QueryCountTicketCanceledExec = mysqli_query($conn, $QueryCountTicketCanceled);
+		$QueryCountTicketCanceledResult = $QueryCountTicketCanceledExec->fetch_assoc();
+		$_SESSION['tcanceladouser'] = $QueryCountTicketCanceledResult['cont'];
 		/* Contagem dos tickets*/
 
 		/* Notifications*/
-		$q="SELECT COUNT(id_notification)cont FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['islogged']." ORDER BY data_notification DESC LIMIT 3";
-		$r = mysqli_query($conn, $q);
-		$s= $r->fetch_assoc();
-		$_SESSION['contnotify'] = $s['cont'];
+		$QueryCountNotifications = "SELECT COUNT(id_notification)cont FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['islogged']." ORDER BY data_notification DESC LIMIT 3";
+		$QueryCountNotificationsExec = mysqli_query($conn, $QueryCountNotifications);
+		$QueryCountNotificationsResult = $QueryCountNotificationsExec->fetch_assoc();
+		$_SESSION['contnotify'] = $QueryCountNotificationsResult['cont'];
 		/* Notifications*/
 
 			if($_SESSION['classeuser']==0){
@@ -68,13 +68,13 @@ if($e){
 			}
 		}
 		else{
-		$_SESSION['msglogin']="<div class='alert alert-danger' role='alert'><i class='bi bi-x-circle-fill'></i> A senha informada está incorreta!</div>";
+		$_SESSION['msglogin']='<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> A senha informada está incorreta!</div>';
 		header("Location: ../index.php");
 		exit;
 	}
 }
 else{
-	$_SESSION['msglogin']="<div class='alert alert-warning' role='alert'><i class='bi bi-exclamation-triangle-fill'></i> O email informado não está no banco de dados do servidor!</div>";
+	$_SESSION['msglogin']='<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O email informado não está no banco de dados do servidor!</div>';
 	header("Location: ../index.php");
 	exit;
 }

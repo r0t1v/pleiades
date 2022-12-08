@@ -7,7 +7,7 @@ include __DIR__.'/../scripts/verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Corporativo do <?= $_SESSION['socialuser'].' - '.$servername; ?></title>
+        <title>Corporativo do <?= $_SESSION['SocialUser'].' - '.$servername; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -46,7 +46,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['contnotify']; ?></span>
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['ContNotify']; ?></span>
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
@@ -68,7 +68,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><?= $_SESSION['socialuser']?></span><?php if($_SESSION['emailverificadouser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
+                        <span><?= $_SESSION['SocialUser']?></span><?php if($_SESSION['EmailVerificadoUser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
                     </a>
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>

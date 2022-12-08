@@ -54,7 +54,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><?= $_SESSION['socialuser']?></span><?php if($_SESSION['emailverificadouser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
+                        <span><?= $_SESSION['SocialUser']?></span><?php if($_SESSION['EmailVerificadoUser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
                     </a>
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
@@ -72,12 +72,12 @@ include __DIR__.'/../scripts/verifyauth.php';
         </nav>
         <form action="../scripts/changepass.php" method="POST" class="formpassword" align="center">
             <?php
-                if(isset($_SESSION['msgchangepass'])){
-                    echo $_SESSION['msgchangepass'];
-                    unset($_SESSION['msgchangepass']);
+                if(isset($_SESSION['MsgChangePass'])){
+                    echo $_SESSION['MsgChangePass'];
+                    unset($_SESSION['MsgChangePass']);
                 }
                 else{
-                    unset($_SESSION['msgchangepass']);
+                    unset($_SESSION['MsgChangePass']);
                 }
             ?>
             <strong><i class="bi bi-arrow-repeat"></i> Troque sua senha!</i></strong>

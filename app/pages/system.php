@@ -54,7 +54,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><?= $_SESSION['socialuser']?></span><?php if($_SESSION['emailverificadouser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
+                        <span><?= $_SESSION['SocialUser']?></span><?php if($_SESSION['EmailVerificadoUser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
                     </a>
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
@@ -75,25 +75,25 @@ include __DIR__.'/../scripts/verifyauth.php';
                     <a class="col" href="#">
                         <img src="../assets/tickets_ok.png" alt="ticketsok"/>
                         <br>
-                        <strong><?= $_SESSION['tconcluidouser']; ?></strong>
+                        <strong><?= $_SESSION['TktConcluidoUser']; ?></strong>
                         <h5>Tickets Concluídos</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_pending.png" alt="ticketspending"/>
                         <br>
-                        <strong><?= $_SESSION['tpendenteuser']; ?></strong>
+                        <strong><?= $_SESSION['TktPendenteUser']; ?></strong>
                         <h5>Tickets Concluídos</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
                         <br>
-                        <strong><?= $_SESSION['trejeitadouser']; ?></strong>
+                        <strong><?= $_SESSION['TktRejeitadoUser']; ?></strong>
                         <h5>Tickets Rejeitados</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
                         <br>
-                        <strong><?= $_SESSION['tcanceladouser']; ?></strong>
+                        <strong><?= $_SESSION['TktCanceladoUser']; ?></strong>
                         <h5>Tickets Cancelados</h5>
                     </a>
                 </div>
@@ -111,15 +111,15 @@ include __DIR__.'/../scripts/verifyauth.php';
                 <div class="card-body">
                 <img src="../assets/cracha_default.png" alt="crachadefault"/>
                     <ul align="left">
-                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['nomeuser']; ?></li>
-                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['socialuser']; ?></li>
-                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['taguser']; ?></li>
-                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['emailuser']; ?></li>
+                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['NomeUser']; ?></li>
+                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['SocialUser']; ?></li>
+                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['TagUser']; ?></li>
+                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['EmailUser']; ?></li>
                     </ul>
                 </div>
-                <p><a href="<?= 'http://'.$_SESSION['urluser']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
+                <p><a href="<?= 'http://'.$_SESSION['UrlUser']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
                 <div class="card-footer">
-                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['datacriacaouser']); echo ' '.$dataformatada->format('d/m/Y') ?>
+                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['DataCriacaoUser']); echo ' '.$dataformatada->format('d/m/Y') ?>
                 </div>
             </div>
         </article>

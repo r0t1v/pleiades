@@ -50,11 +50,11 @@ include __DIR__.'/../scripts/verifyauth.php';
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
-                            if(isset($_SESSION['notificationtop1'])){
+                            if(isset($_SESSION['NotificationTop1'])){
                                 echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop1'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
-                                if(isset($_SESSION['notificationtop2'])){
+                                if(isset($_SESSION['NotificationTop2'])){
                                     echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop2'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
-                                    if(isset($_SESSION['notificationtop3'])){
+                                    if(isset($_SESSION['NotificationTop3'])){
                                         echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop3'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
                                     }
                                 }

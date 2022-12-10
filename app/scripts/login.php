@@ -57,7 +57,7 @@ if($QueryEmailExistsResult){
 		$QueryCountNotificationsResult = $QueryCountNotificationsExec->fetch_assoc();
 		$_SESSION['ContNotify'] = $QueryCountNotificationsResult['cont'];
 
-		$QueryNotifications = "SELECT descricao, tipo_notification, data_notification FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['IsLogged']." ORDER BY data_notification DESC LIMIT 3";
+		$QueryNotifications = "SELECT descricao, tipo_notification FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['IsLogged']." ORDER BY data_notification DESC LIMIT 3";
 		$QueryNotificationsExec = mysqli_query($conn, $QueryNotifications);
 		$QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
 

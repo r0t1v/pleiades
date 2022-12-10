@@ -2,6 +2,24 @@
 session_start();
 require __DIR__.'/../config.php';
 include __DIR__.'/../scripts/verifyauth.php';
+
+$QueryNotifications = "SELECT descricao, tipo_notification FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['IsLogged']." ORDER BY data_notification DESC LIMIT 3";
+$QueryNotificationsExec = mysqli_query($conn, $QueryNotifications);
+$QueryNotificationsRows = mysqli_num_rows($QueryNotificationsExec);
+
+for($i=0; $i<$QueryNotificationsRows; $i++){
+    $QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
+    
+    if($QueryNotificationsResult['tipo_notification']==0){
+        $SaveNotificationArray[$i]= $QueryNotificationsResult['descricao'];
+    }
+    else{
+        $SaveNotificationArray[$i]= $QueryNotificationsResult['descricao'];
+    }
+}
+$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
+$_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
+echo $QueryNotificationsRows;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -50,7 +68,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
-                            if(isset($_SESSION['NotificationTop1'])){
+                           /* if(isset($_SESSION['NotificationTop1'])){
                                 echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop1'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
                                 if(isset($_SESSION['NotificationTop2'])){
                                     echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop2'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
@@ -62,9 +80,9 @@ include __DIR__.'/../scripts/verifyauth.php';
                                 echo '<li><hr class="dropdown-divider"></li>';
                                 echo '<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                             }
-                            else{
+                            */
                                 echo '<p class="text-center">Você não tem notificações!</p>';
-                            }
+
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -84,7 +102,8 @@ include __DIR__.'/../scripts/verifyauth.php';
         <nav class="backdefault">
             <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
         </nav>
-
+       <?= $_SESSION['NotificationTop1'].'<br>'.$_SESSION['NotificationTop2'].'<br>'.$_SESSION['NotificationTop3'];
+       ?>
         <div class="systemsupport" align="center">
             <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
         </div>

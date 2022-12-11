@@ -7,18 +7,41 @@ $QueryNotifications = "SELECT descricao, tipo_notification FROM notifications WH
 $QueryNotificationsExec = mysqli_query($conn, $QueryNotifications);
 $QueryNotificationsRows = mysqli_num_rows($QueryNotificationsExec);
 
-for($i=0; $i<$QueryNotificationsRows; $i++){
-    $QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
+if($QueryNotificationsRows>=1){
+
+    for($i=0; $i<$QueryNotificationsRows; $i++){
+        $QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
+        
+        if($QueryNotificationsResult['tipo_notification']==0){
+            $SaveNotificationArray[$i]= $QueryNotificationsResult['descricao'];
+        }
+        else{
+            $SaveNotificationArray[$i]= $QueryNotificationsResult['descricao'];
+        }
+    }
     
-    if($QueryNotificationsResult['tipo_notification']==0){
-        $SaveNotificationArray[$i]= $QueryNotificationsResult['descricao'];
+    if(!is_null($SaveNotificationArray[2])){
+        $_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
+        $_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
+        $_SESSION['NotificationTop3'] = $SaveNotificationArray[2];
+    }
+    elseif(!is_null($SaveNotificationArray[1])){
+        $_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
+        $_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
+        $_SESSION['NotificationTop3'] = null;
     }
     else{
-        $SaveNotificationArray[$i]= $QueryNotificationsResult['descricao'];
+        $_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
+        $_SESSION['NotificationTop2'] = null;
+        $_SESSION['NotificationTop3'] = null;
     }
+
 }
-$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
-$_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
+else{
+    $_SESSION['MsgNotifications']='<p class="text-center">Você não tem notificações!</p>';
+}
+
+
 echo $QueryNotificationsRows;
 ?>
 <!DOCTYPE html>
@@ -81,7 +104,7 @@ echo $QueryNotificationsRows;
                                 echo '<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                             }
                             */
-                                echo '<p class="text-center">Você não tem notificações!</p>';
+                                echo $_SESSION['MsgNotifications'];
 
                         ?>
                     </ul>

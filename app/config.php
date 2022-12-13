@@ -3,14 +3,15 @@
 # Pleiades
 # ------------------------------------------------------------------------------
 date_default_timezone_set('America/Belem');
-$servername = 'Pleiades';
-$releaseversion ='v0.1.1';
+$SERVER_NAME = 'Pleiades';
+$SYSTEM_VERSION ='v0.1.1';
 # ------------------------------------------------------------------------------
 # Database config
 # ------------------------------------------------------------------------------
-$dbserver = "127.0.0.1:3306";
-$username = "root";
-$password = "";
-$db= "pleiades";
+$DB_SERVER = "127.0.0.1:3306";
+$DB_USERNAME = "root";
+$DB_PASSWORD = "";
+$DB = "pleiades";
 
-$conn = mysqli_connect($dbserver, $username, $password, $db);
+$CONNECTION_DB = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB);
+# ------------------------------------------------------------------------------

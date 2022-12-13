@@ -12,10 +12,10 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
    
     if($ChangeProfileSocial==$_SESSION['SocialUser'] and $ChangeProfileEmail==$_SESSION['EmailUser']){
         $QueryUpdateProfile = "UPDATE users SET nome='$ChangeProfileUsername',urlprofile='$ChangeProfileUrl' WHERE id='".$_SESSION['IsLogged']."'";
-        $QueryUpdateProfileExec = mysqli_query($conn, $QueryUpdateProfile);
+        $QueryUpdateProfileExec = mysqli_query($CONNECTION_DB, $QueryUpdateProfile);
 
         $QueryAccountDataRefresh = "SELECT nome,urlprofile FROM users WHERE id='".$_SESSION['IsLogged']."'";
-	    $QueryAccountDataRefreshExec = mysqli_query($conn, $QueryAccountDataRefresh);
+	    $QueryAccountDataRefreshExec = mysqli_query($CONNECTION_DB, $QueryAccountDataRefresh);
         $data = $QueryAccountDataRefreshExec->fetch_assoc();
 		$_SESSION['NomeUser'] = $data['nome'];
 		$_SESSION['UrlUser'] = $data['urlprofile'];
@@ -26,10 +26,10 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
     }
     elseif($ChangeProfileSocial==$_SESSION['SocialUser'] and $ChangeProfileEmail!=$_SESSION['EmailUser']){
         $QueryUpdateProfile = "UPDATE users SET nome='$ChangeProfileUsername',email='$ChangeProfileEmail',urlprofile='$ChangeProfileUrl',emailverificado='0' WHERE id='".$_SESSION['IsLogged']."'";
-        $QueryUpdateProfileExec = mysqli_query($conn, $QueryUpdateProfile);
+        $QueryUpdateProfileExec = mysqli_query($CONNECTION_DB, $QueryUpdateProfile);
 
         $QueryAccountDataRefresh = "SELECT nome,urlprofile,email,emailverificado FROM users WHERE id='".$_SESSION['IsLogged']."'";
-	    $QueryAccountDataRefreshExec = mysqli_query($conn, $QueryAccountDataRefresh);
+	    $QueryAccountDataRefreshExec = mysqli_query($CONNECTION_DB, $QueryAccountDataRefresh);
         $data = $QueryAccountDataRefreshExec->fetch_assoc();
 		$_SESSION['NomeUser'] = $data['nome'];
 		$_SESSION['UrlUser'] = $data['urlprofile'];
@@ -43,15 +43,15 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
     }
     elseif($ChangeProfileSocial!=$_SESSION['SocialUser'] and $ChangeProfileEmail==$_SESSION['EmailUser']){
         $QuerySocialExists = "SELECT social FROM users WHERE social='$ChangeProfileSocial'";
-        $QuerySocialExistsExec = mysqli_query($conn, $QuerySocialExists);
+        $QuerySocialExistsExec = mysqli_query($CONNECTION_DB, $QuerySocialExists);
         $QuerySocialExistsResult = mysqli_num_rows($QuerySocialExistsExec);
 
         if($QuerySocialExistsResult==0){
                 $QueryUpdateProfile = "UPDATE users SET nome='$ChangeProfileUsername',social='$ChangeProfileSocial',urlprofile='$ChangeProfileUrl' WHERE id='".$_SESSION['IsLogged']."'";
-                $QueryUpdateProfileExec = mysqli_query($conn, $QueryUpdateProfile);
+                $QueryUpdateProfileExec = mysqli_query($CONNECTION_DB, $QueryUpdateProfile);
 
                 $QueryAccountDataRefresh = "SELECT nome,social,urlprofile FROM users WHERE id='".$_SESSION['IsLogged']."'";
-	            $QueryAccountDataRefreshExec = mysqli_query($conn, $QueryAccountDataRefresh);
+	            $QueryAccountDataRefreshExec = mysqli_query($CONNECTION_DB, $QueryAccountDataRefresh);
                 $data = $QueryAccountDataRefreshExec->fetch_assoc();
 		        $_SESSION['NomeUser'] = $data['nome'];
 		        $_SESSION['SocialUser'] = $data['social'];
@@ -70,19 +70,19 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
     }
     else{
         $QuerySocialExists = "SELECT social FROM users WHERE social='$ChangeProfileSocial'";
-        $QuerySocialExistsExec = mysqli_query($conn, $QuerySocialExists);
+        $QuerySocialExistsExec = mysqli_query($CONNECTION_DB, $QuerySocialExists);
         $QuerySocialExistsResult = mysqli_num_rows($QuerySocialExistsExec);
 
         $QueryEmailExists = "SELECT email FROM users WHERE email='$ChangeProfileEmail'";
-        $QueryEmailExistsExec = mysqli_query($conn, $QueryEmailExists);
+        $QueryEmailExistsExec = mysqli_query($CONNECTION_DB, $QueryEmailExists);
         $QueryEmailExistsResult = mysqli_num_rows($QueryEmailExistsExec);
 
         if($QuerySocialExists==0 and $QueryEmailExists==0){
             $QueryUpdateProfile = "UPDATE users SET nome='$ChangeProfileUsername',social='$ChangeProfileSocial',email='$ChangeProfileEmail',urlprofile='$ChangeProfileUrl',emailverificado='0' WHERE id='".$_SESSION['IsLogged']."'";
-            $QueryUpdateProfileExec = mysqli_query($conn, $QueryUpdateProfile);
+            $QueryUpdateProfileExec = mysqli_query($CONNECTION_DB, $QueryUpdateProfile);
 
             $QueryAccountDataRefresh = "SELECT nome,social,urlprofile,email,emailverificado FROM users WHERE id='".$_SESSION['IsLogged']."'";
-	        $QueryAccountDataRefreshExec = mysqli_query($conn, $QueryAccountDataRefresh);
+	        $QueryAccountDataRefreshExec = mysqli_query($CONNECTION_DB, $QueryAccountDataRefresh);
             $data = $QueryAccountDataRefreshExec->fetch_assoc();
 		    $_SESSION['NomeUser'] = $data['nome'];
 		    $_SESSION['SocialUser'] = $data['social'];
@@ -107,4 +107,4 @@ else{
 	exit;
 }
 
-mysqli_close($conn);
+mysqli_close($CONNECTION_DB);

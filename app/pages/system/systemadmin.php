@@ -8,7 +8,7 @@ include __DIR__.'/../scripts/verifypermission.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title><?= $servername; ?> - Administrador</title>
+        <title>Administrador - <?= $SERVER_NAME; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -21,7 +21,7 @@ include __DIR__.'/../scripts/verifypermission.php';
     <body>
 
         <a href="../scripts/logout.php">Sair</a>
-        <?= $_SESSION['nomeuser'].' Logou!'; ?>
+        <?= $_SESSION['NomeUser'].' Logou!'; ?>
         <footer align="center">
             <div class="mainfoot">
                 <a href="https://github.com/r0t1v/pleiades" target="blank"><i class="bi bi-github"></i></a>

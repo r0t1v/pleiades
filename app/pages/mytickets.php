@@ -7,7 +7,7 @@ include __DIR__.'/../scripts/verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Trocar Senha<?= ' - '.$SERVER_NAME; ?></title>
+        <title>Sistema<?= ' - '.$SERVER_NAME; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -60,42 +60,46 @@ include __DIR__.'/../scripts/verifyauth.php';
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="myprofile.php"><i class="bi bi-person-fill"></i> Meu Perfil</a></li>
-                        <li><a class="dropdown-item disabled" href="#"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
+                        <li><a class="dropdown-item" href="change_password.php"><i class="bi bi-key-fill"></i> Alterar senha</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="../scripts/logout.php"><i class="bi bi-door-open"></i> Deslogar</a></li>
                     </ul>
                 </div>
             </div>        
         </div>
-        <nav class="backdefault">
-            <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
-        </nav>
-        <form action="../scripts/changepass.php" method="POST" class="formpassword" align="center">
-            <?php
-                if(isset($_SESSION['MsgChangePass'])){
-                    echo $_SESSION['MsgChangePass'];
-                    unset($_SESSION['MsgChangePass']);
-                }
-                else{
-                    unset($_SESSION['MsgChangePass']);
-                }
-            ?>
-            <strong><i class="bi bi-arrow-repeat"></i> Troque sua senha!</i></strong>
-            <h5>Para trocar a senha é simples, entretanto a nova senha deverá seguir o padrão a seguir:</h5>
-            <div class="alert alert-secondary" role="alert" align="left">
-                <ul>
-                    <li><i class="bi bi-caret-up-fill"></i> Deve possuir no mínimo 8 carateres</li>
-                    <li><i class="bi bi-caret-down-fill"></i> Deve possuir no máximo 32 carateres</li>
-                    <li><i class="bi bi-123"></i> Deve conter pelo menos um número</li>
-                    <li><i class="bi bi-at"></i> Deve conter pelo menos um caractere especial !@#$%¨&*()</li>
-                </ul>
+        <section class="dashboardicons">
+            <h2><i class="bi bi-file-bar-graph"></i> Meu dashboard</h2>
+            <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>
+            <div class="container text-center">
+                <div class="row">
+                    <a class="col" href="#">
+                        <img src="../assets/tickets_ok.png" alt="ticketsok"/>
+                        <br>
+                        <strong><?= $_SESSION['TktConcluidoUser']; ?></strong>
+                        <h5>Tickets Concluídos</h5>
+                    </a>
+                    <a class="col" href="#">
+                    <img src="../assets/tickets_pending.png" alt="ticketspending"/>
+                        <br>
+                        <strong><?= $_SESSION['TktPendenteUser']; ?></strong>
+                        <h5>Tickets Concluídos</h5>
+                    </a>
+                    <a class="col" href="#">
+                    <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
+                        <br>
+                        <strong><?= $_SESSION['TktRejeitadoUser']; ?></strong>
+                        <h5>Tickets Rejeitados</h5>
+                    </a>
+                    <a class="col" href="#">
+                    <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
+                        <br>
+                        <strong><?= $_SESSION['TktCanceladoUser']; ?></strong>
+                        <h5>Tickets Cancelados</h5>
+                    </a>
+                </div>
             </div>
-            <label for="newpass"> Nova senha</label>
-            <input class="form-control form-control-lg" type="password" id="newpass" name="newpass" placeholder="Digite sua nova senha" minlength="8" maxlength="32"/>
-            <label for="newpassconfirm"> Confirme a nova senha</label>
-            <input class="form-control form-control-lg" type="password" id="newpassconfirm" name="newpassconfirm" placeholder="Confirme sua nova senha" minlength="8" maxlength="32"/>
-            <button type="submit" class="btn btn-dark">Trocar senha</button>
-        </form>
+        </section>
+        
         <div class="systemsupport" align="center">
             <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>
         </div>

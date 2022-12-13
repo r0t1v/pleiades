@@ -7,7 +7,7 @@ include __DIR__.'./scripts/verifylogged.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title><?= $servername; ?> - Login</title>
+        <title><?= $SERVER_NAME; ?> - Login</title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -20,7 +20,7 @@ include __DIR__.'./scripts/verifylogged.php';
     <body>
         <nav class="mainmenu" align="center">
             <img src="assets/base/index_logo.png" alt="indexlogo"/>
-            <p><?= $servername.' <cite>'.$releaseversion; ?></cite> <span class="badge rounded-pill text-bg-warning">Beta</span></p>
+            <p><?= $SERVER_NAME.' <cite>'.$SYSTEM_VERSION; ?></cite> <span class="badge rounded-pill text-bg-warning">Beta</span></p>
         </nav>
         <aside class="msglogin" align="center">
             <?php
@@ -46,7 +46,7 @@ include __DIR__.'./scripts/verifylogged.php';
         </section>
         <div class="systemsupport" align="center">
             <h6>Se você não possui acesso ao seu login, entre em contato com o administrador do seu servidor!</h6>
-            <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
+            <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>
         </div>
         <footer align="center">
             <div class="mainfoot">

@@ -7,7 +7,7 @@ include __DIR__.'/../scripts/verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Perfil do <?= $_SESSION['SocialUser'].' - '.$servername; ?></title>
+        <title>Perfil do <?= $_SESSION['SocialUser'].' - '.$SERVER_NAME; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -27,10 +27,10 @@ include __DIR__.'/../scripts/verifyauth.php';
                         </a>
                     </div>
                     <div class="col-sm-1">
-                        <strong><?= $servername; ?></strong>
+                        <strong><?= $SERVER_NAME; ?></strong>
                     </div>
                     <div class="col-sm-1">
-                        <span class="badge rounded-pill text-bg-warning"><?= $releaseversion; ?></span>
+                        <span class="badge rounded-pill text-bg-warning"><?= $SYSTEM_VERSION; ?></span>
                     </div>
                     <a class="col-sm-2" id="menubuttons" href="system.php" role="button">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-clipboard-data"></i></span> Meu dashboard
@@ -106,7 +106,7 @@ include __DIR__.'/../scripts/verifyauth.php';
             ?>
         </aside>
         <div class="systemsupport" align="center">
-            <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
+            <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>
         </div>
         <footer align="center">
             <div class="mainfoot">

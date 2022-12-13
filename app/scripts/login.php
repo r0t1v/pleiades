@@ -6,12 +6,12 @@ $UserData = filter_var($_POST['loginuser'], FILTER_SANITIZE_EMAIL);
 $PassData = md5(filter_var($_POST['loginpass'], FILTER_SANITIZE_STRING));
 
 $QueryEmailExists = "SELECT email FROM users WHERE email='$UserData'";
-$QueryEmailExistsExec = mysqli_query($conn, $QueryEmailExists);
+$QueryEmailExistsExec = mysqli_query($CONNECTION_DB, $QueryEmailExists);
 $QueryEmailExistsResult = mysqli_num_rows($QueryEmailExistsExec);
 
 if($QueryEmailExistsResult){
 	$QueryAccountData = "SELECT id,nome,social,classe,tag,urlprofile,email,emailverificado,datacriacao FROM users WHERE email='$UserData' AND senha='$PassData'";
-	$QueryAccountDataExec = mysqli_query($conn, $QueryAccountData);
+	$QueryAccountDataExec = mysqli_query($CONNECTION_DB, $QueryAccountData);
 	$QueryAccountDataResult = mysqli_num_rows($QueryAccountDataExec);
 
 	if ($QueryAccountDataResult) {
@@ -27,38 +27,38 @@ if($QueryEmailExistsResult){
 		$_SESSION['DataCriacaoUser'] = $dados['datacriacao'];
 
 		$QueryUpdateLastView = "UPDATE users SET ultimovisto='".date('Y-m-d')."' WHERE email='$UserData'";
-		$QueryUpdateLastViewExec = mysqli_query($conn, $QueryUpdateLastView);
+		$QueryUpdateLastViewExec = mysqli_query($CONNECTION_DB, $QueryUpdateLastView);
 		
 		/* Contagem dos tickets*/
 		$QueryCountTicketClosed = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticket_status='Finalizado'";
-		$QueryCountTicketClosedExec = mysqli_query($conn, $QueryCountTicketClosed);
+		$QueryCountTicketClosedExec = mysqli_query($CONNECTION_DB, $QueryCountTicketClosed);
 		$QueryCountTicketClosedResult = $QueryCountTicketClosedExec->fetch_assoc();
 		$_SESSION['TktConcluidoUser'] = $QueryCountTicketClosedResult['cont'];
 
 		$QueryCountTicketPending = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticket_status='Pendente'";
-		$QueryCountTicketPendingExec = mysqli_query($conn, $QueryCountTicketPending);
+		$QueryCountTicketPendingExec = mysqli_query($CONNECTION_DB, $QueryCountTicketPending);
 		$QueryCountTicketPendingResult = $QueryCountTicketPendingExec->fetch_assoc();
 		$_SESSION['TktPendenteUser'] = $QueryCountTicketPendingResult['cont'];
 
 		$QueryCountTicketRejected = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticket_status='Rejeitado'";
-		$QueryCountTicketRejectedExec = mysqli_query($conn, $QueryCountTicketRejected);
+		$QueryCountTicketRejectedExec = mysqli_query($CONNECTION_DB, $QueryCountTicketRejected);
 		$QueryCountTicketRejectedResult = $QueryCountTicketRejectedExec->fetch_assoc();
 		$_SESSION['TktRejeitadoUser'] = $QueryCountTicketRejectedResult['cont'];
 
 		$QueryCountTicketCanceled = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticket_status='Cancelado'";
-		$QueryCountTicketCanceledExec = mysqli_query($conn, $QueryCountTicketCanceled);
+		$QueryCountTicketCanceledExec = mysqli_query($CONNECTION_DB, $QueryCountTicketCanceled);
 		$QueryCountTicketCanceledResult = $QueryCountTicketCanceledExec->fetch_assoc();
 		$_SESSION['TktCanceladoUser'] = $QueryCountTicketCanceledResult['cont'];
 		/* Contagem dos tickets*/
 
 		/* Notifications*/
 		$QueryCountNotifications = "SELECT COUNT(id_notification)cont FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['IsLogged']." ORDER BY data_notification DESC LIMIT 3";
-		$QueryCountNotificationsExec = mysqli_query($conn, $QueryCountNotifications);
+		$QueryCountNotificationsExec = mysqli_query($CONNECTION_DB, $QueryCountNotifications);
 		$QueryCountNotificationsResult = $QueryCountNotificationsExec->fetch_assoc();
 		$_SESSION['ContNotify'] = $QueryCountNotificationsResult['cont'];
 
 		$QueryNotifications = "SELECT descricao, tipo_notification FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['IsLogged']." ORDER BY data_notification DESC LIMIT 3";
-		$QueryNotificationsExec = mysqli_query($conn, $QueryNotifications);
+		$QueryNotificationsExec = mysqli_query($CONNECTION_DB, $QueryNotifications);
 		$QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
 
 		$_SESSION['NotificationTop1'];
@@ -85,4 +85,4 @@ else{
 	exit;
 }
 
-mysqli_close($conn);
+mysqli_close($CONNECTION_DB);

@@ -4,28 +4,32 @@ require __DIR__.'/../config.php';
 include __DIR__.'/../scripts/verifyauth.php';
 
 $QueryNotifications = "SELECT descricao, tipo_notification FROM notifications WHERE visualizado='0' AND id_conta=".$_SESSION['IsLogged']." ORDER BY data_notification DESC LIMIT 3";
-$QueryNotificationsExec = mysqli_query($conn, $QueryNotifications);
+$QueryNotificationsExec = mysqli_query($CONNECTION_DB, $QueryNotifications);
 $QueryNotificationsRows = mysqli_num_rows($QueryNotificationsExec);
+$_SESSION['ContNotify'] = $QueryNotificationsRows;
 
 if($QueryNotificationsRows>=1){
 
     for($i=0; $i<$QueryNotificationsRows; $i++){
         $QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
         
-        if($QueryNotificationsResult['tipo_notification']==0){
-            $SaveNotificationArray[$i]= $QueryNotificationsResult['descricao'];
+        if($QueryNotificationsResult['tipo_notification']==1){
+            $SaveNotificationArray[$i]= '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
+        }
+        elseif($QueryNotificationsResult['tipo_notification']==2){
+            $SaveNotificationArray[$i]= '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
         }
         else{
-            $SaveNotificationArray[$i]= $QueryNotificationsResult['descricao'];
+            $SaveNotificationArray[$i]= '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
         }
     }
     
-    if(!is_null($SaveNotificationArray[2])){
+    if(count($SaveNotificationArray)==3){
         $_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
         $_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
         $_SESSION['NotificationTop3'] = $SaveNotificationArray[2];
     }
-    elseif(!is_null($SaveNotificationArray[1])){
+    elseif(count($SaveNotificationArray)==2){
         $_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
         $_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
         $_SESSION['NotificationTop3'] = null;
@@ -40,15 +44,12 @@ if($QueryNotificationsRows>=1){
 else{
     $_SESSION['MsgNotifications']='<p class="text-center">Você não tem notificações!</p>';
 }
-
-
-echo $QueryNotificationsRows;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Corporativo do <?= $_SESSION['SocialUser'].' - '.$servername; ?></title>
+        <title>Corporativo do <?= $_SESSION['SocialUser'].' - '.$SERVER_NAME; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -68,10 +69,10 @@ echo $QueryNotificationsRows;
                         </a>
                     </div>
                     <div class="col-sm-1">
-                        <strong><?= $servername; ?></strong>
+                        <strong><?= $SERVER_NAME; ?></strong>
                     </div>
                     <div class="col-sm-1">
-                        <span class="badge rounded-pill text-bg-warning"><?= $releaseversion; ?></span>
+                        <span class="badge rounded-pill text-bg-warning"><?= $SYSTEM_VERSION; ?></span>
                     </div>
                     <a class="col-sm-2" id="menubuttons" href="system.php" role="button">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-clipboard-data"></i></span> Meu dashboard
@@ -91,21 +92,19 @@ echo $QueryNotificationsRows;
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
-                           /* if(isset($_SESSION['NotificationTop1'])){
-                                echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop1'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
+                            if(isset($_SESSION['NotificationTop1'])){
+                                echo $_SESSION['NotificationTop1'];
                                 if(isset($_SESSION['NotificationTop2'])){
-                                    echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop2'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
+                                    echo $_SESSION['NotificationTop2'];                                    
                                     if(isset($_SESSION['NotificationTop3'])){
-                                        echo '<li><a class="dropdown-item"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['notificationtop3'].'<br><small>Você tem uma nova Notificação!</small></a></li>';
+                                        echo $_SESSION['NotificationTop3'];
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleannotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>';
-                                echo '<li><hr class="dropdown-divider"></li>';
-                                echo '<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
+                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleannotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>','<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                             }
-                            */
+                            else{
                                 echo $_SESSION['MsgNotifications'];
-
+                            }
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -125,10 +124,8 @@ echo $QueryNotificationsRows;
         <nav class="backdefault">
             <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
         </nav>
-       <?= $_SESSION['NotificationTop1'].'<br>'.$_SESSION['NotificationTop2'].'<br>'.$_SESSION['NotificationTop3'];
-       ?>
         <div class="systemsupport" align="center">
-            <p><?= $servername.' '.$releaseversion.' - '.date('Y'); ?></p>
+            <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>
         </div>
         <footer align="center">
             <div class="mainfoot">

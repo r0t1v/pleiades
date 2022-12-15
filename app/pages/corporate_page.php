@@ -58,7 +58,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                                         echo $_SESSION['NotificationTop3'];
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleannotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>','<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
+                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>','<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                             }
                             else{
                                 echo $_SESSION['MsgNotifications'];

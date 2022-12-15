@@ -7,7 +7,7 @@ include __DIR__.'/../scripts/verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Sistema<?= ' - '.$SERVER_NAME; ?></title>
+        <title>Notificações de <?= $_SESSION['SocialUser'].' - '.$SERVER_NAME; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -58,7 +58,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                                         echo $_SESSION['NotificationTop3'];
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>','<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
+                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleannotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>','<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                             }
                             else{
                                 echo $_SESSION['MsgNotifications'];
@@ -79,62 +79,9 @@ include __DIR__.'/../scripts/verifyauth.php';
                 </div>
             </div>        
         </div>
-        <section class="dashboardicons">
-            <h2><i class="bi bi-file-bar-graph"></i> Meu dashboard</h2>
-            <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>
-            <div class="container text-center">
-                <div class="row">
-                    <a class="col" href="#">
-                        <img src="../assets/tickets_ok.png" alt="ticketsok"/>
-                        <br>
-                        <strong><?= $_SESSION['TktConcluidoUser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_pending.png" alt="ticketspending"/>
-                        <br>
-                        <strong><?= $_SESSION['TktPendenteUser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
-                        <br>
-                        <strong><?= $_SESSION['TktRejeitadoUser']; ?></strong>
-                        <h5>Tickets Rejeitados</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
-                        <br>
-                        <strong><?= $_SESSION['TktCanceladoUser']; ?></strong>
-                        <h5>Tickets Cancelados</h5>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <aside class="buttonsinteract" align="center">
-            <h2><i class="bi bi-info-circle-fill"></i> Precisa de ajuda?</h2>
-            <a class="btn btn-info" href="create_ticket.php" role="button"><i class="bi bi-plus-circle-dotted"></i> Abrir Ticket</a>
-            <a class="btn btn-outline-primary" href="#" role="button"><i class="bi bi-search"></i> Procurar Tickets</a>
-        </aside>
-        <article class="userview" align="center">
-            <h1><i class="bi bi-person-lines-fill"></i> Informações da Conta</h1>
-            <div class="card">
-                <h5 class="card-header">Conta de Usuário (Padrão)</h5>
-                <div class="card-body">
-                <img src="../assets/cracha_default.png" alt="crachadefault"/>
-                    <ul align="left">
-                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['NomeUser']; ?></li>
-                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['SocialUser']; ?></li>
-                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['TagUser']; ?></li>
-                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['EmailUser']; ?></li>
-                    </ul>
-                </div>
-                <p><a href="<?= 'http://'.$_SESSION['UrlUser']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
-                <div class="card-footer">
-                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['DataCriacaoUser']); echo ' '.$dataformatada->format('d/m/Y') ?>
-                </div>
-            </div>
-        </article>
+        <nav class="backdefault">
+            <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
+        </nav>
         <div class="systemsupport" align="center">
             <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>
         </div>

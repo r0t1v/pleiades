@@ -59,7 +59,6 @@ if($QueryEmailExistsResult){
 
 		$QueryNotifications = "SELECT descricao,tipo_notification FROM notifications WHERE visualizado='0' AND id_conta='".$_SESSION['IsLogged']."' ORDER BY data_notification DESC LIMIT 3";
 		$QueryNotificationsExec = mysqli_query($CONNECTION_DB, $QueryNotifications);
-		$QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
 		$QueryNotificationsRows = mysqli_num_rows($QueryNotificationsExec);
 
 		if($QueryNotificationsRows>=1){
@@ -78,7 +77,7 @@ if($QueryEmailExistsResult){
 					$SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
 				}
 			}
-			
+
 			if(count($SaveNotificationArray)==3){
 				$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
 				$_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
@@ -97,7 +96,7 @@ if($QueryEmailExistsResult){
 			$_SESSION['MsgNotifications']='<p class="text-center">Você não tem notificações!</p>';
 		}
 		/* Notifications*/
-		/*
+	
 			if($_SESSION['ClasseUser']==0){
 				header("Location: ../pages/systemadmin.php");
 				exit;
@@ -105,9 +104,9 @@ if($QueryEmailExistsResult){
 			else{
 				header("Location: ../pages/system.php");
 				exit;
-			}*/
-		}
-		else{
+			}
+	}
+	else{
 		$_SESSION['MsgLogin']='<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> A senha informada está incorreta!</div>';
 		header("Location: ../index.php");
 		exit;

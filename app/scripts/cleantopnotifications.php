@@ -6,6 +6,15 @@ include __DIR__.'/../scripts/verifyauth.php';
 if($_SESSION['ContNotify']>=1){
     $QueryCleanTopNotifications = "UPDATE notifications SET visualizado='1' WHERE id_conta='".$_SESSION['IsLogged']."' ORDER BY data_notification DESC LIMIT 3";
     $QueryCleanTopNotificationsExec = mysqli_query($CONNECTION_DB, $QueryCleanTopNotifications);
+	$_SESSION['ContNotify'] = 0;
+	$_SESSION['NotificationTop1'] = null;
+	$_SESSION['NotificationTop2'] = null;
+	$_SESSION['NotificationTop3'] = null;
+
+	$QueryCountNotifications = "SELECT COUNT(id_notification)cont FROM notifications WHERE visualizado='0' AND id_conta='".$_SESSION['IsLogged']."'";
+	$QueryCountNotificationsExec = mysqli_query($CONNECTION_DB, $QueryCountNotifications);
+	$QueryCountNotificationsResult = $QueryCountNotificationsExec->fetch_assoc();
+	$_SESSION['ContNotify'] = $QueryCountNotificationsResult['cont'];
 
     $QueryNotifications = "SELECT descricao,tipo_notification FROM notifications WHERE visualizado='0' AND id_conta='".$_SESSION['IsLogged']."' ORDER BY data_notification DESC LIMIT 3";
 	$QueryNotificationsExec = mysqli_query($CONNECTION_DB, $QueryNotifications);
@@ -45,14 +54,13 @@ if($_SESSION['ContNotify']>=1){
 		else{
 			$_SESSION['MsgNotifications']='<p class="text-center">Você não tem notificações!</p>';
 		}
-
-    $fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/system.php';
-    header("Location: {$fallback}");
+    $Fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/system.php';
+    header("Location: {$Fallback}");
     exit;
 }
 else{
-    $fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/system.php';
-    header("Location: {$fallback}");
+    $Fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/system.php';
+    header("Location: {$Fallback}");
     exit;
 }
 mysqli_close($CONNECTION_DB);

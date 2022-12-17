@@ -1,6 +1,6 @@
 <?php
 session_start();
-require __DIR__.'/../config.php';
+require __DIR__.'\..\config.php';
 
 $UserData = filter_var($_POST['loginuser'], FILTER_SANITIZE_EMAIL);
 $PassData = md5(filter_var($_POST['loginpass'], FILTER_SANITIZE_STRING));
@@ -10,7 +10,7 @@ $QueryEmailExistsExec = mysqli_query($CONNECTION_DB, $QueryEmailExists);
 $QueryEmailExistsResult = mysqli_num_rows($QueryEmailExistsExec);
 
 if($QueryEmailExistsResult){
-	$QueryAccountData = "SELECT id,nome,social,classe,tag,urlprofile,email,emailverificado,datacriacao FROM users WHERE email='$UserData' AND senha='$PassData'";
+	$QueryAccountData = "SELECT id,nome,social,classe,tag,urlprofile,email,senha,emailverificado,datacriacao FROM users WHERE email='$UserData' AND senha='$PassData'";
 	$QueryAccountDataExec = mysqli_query($CONNECTION_DB, $QueryAccountData);
 	$QueryAccountDataResult = mysqli_num_rows($QueryAccountDataExec);
 
@@ -23,10 +23,11 @@ if($QueryEmailExistsResult){
 		$_SESSION['TagUser'] = $dados['tag'];
 		$_SESSION['UrlUser'] = $dados['urlprofile'];
 		$_SESSION['EmailUser'] = $dados['email'];
+		$_SESSION['SenhaUser'] = $dados['senha'];
 		$_SESSION['EmailVerificadoUser'] = $dados['emailverificado'];
 		$_SESSION['DataCriacaoUser'] = $dados['datacriacao'];
 
-		$QueryUpdateLastView = "UPDATE users SET ultimovisto='".date('Y-m-d')."' WHERE email='$UserData'";
+		$QueryUpdateLastView = "UPDATE users SET ultimovisto='".date('Y-m-d H:i:s')."' WHERE email='$UserData'";
 		$QueryUpdateLastViewExec = mysqli_query($CONNECTION_DB, $QueryUpdateLastView);
 		
 		/* Contagem dos tickets*/
@@ -93,7 +94,9 @@ if($QueryEmailExistsResult){
 
 		}
 		else{
-			$_SESSION['MsgNotifications']='<p class="text-center">Você não tem notificações!</p>';
+			$_SESSION['NotificationTop1'] = null;
+			$_SESSION['NotificationTop2'] = null;
+			$_SESSION['NotificationTop3'] = null;
 		}
 		/* Notifications*/
 	
@@ -107,14 +110,14 @@ if($QueryEmailExistsResult){
 			}
 	}
 	else{
-		$_SESSION['MsgLogin']='<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> A senha informada está incorreta!</div>';
-		header("Location: ../index.php");
+		$_SESSION['MsgLogin'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> A senha informada está incorreta!</div>';
+		header("Location: ..\index.php");
 		exit;
 	}
 }
 else{
-	$_SESSION['MsgLogin']='<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O email informado não está no banco de dados do servidor!</div>';
-	header("Location: ../index.php");
+	$_SESSION['MsgLogin'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O email informado não está no banco de dados do servidor!</div>';
+	header("Location: ..\index.php");
 	exit;
 }
 

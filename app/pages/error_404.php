@@ -5,8 +5,8 @@
     <title>!Ops - Pleiades</title>
     <link rel="shortcut icon" type="image/png" href="../assets/base/favicon.png"/>
     <link rel="stylesheet" href="../styles/style.css"/>
-    <link rel="stylesheet" href="../libs/bootstrap.css"/>
-    <link rel="stylesheet" href="../libs/icons-1.10.2/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../vendor/twbs/bootstrap-icons/font/bootstrap-icons.css"/>
 </head>
 <body>
     <div class="errorall" align="center">
@@ -17,6 +17,7 @@
         <p>
             Desculpe! Não consegui identificar o que você estava procurando!
         </p>
+        
         <a href="../index.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
     </div>
 </body>

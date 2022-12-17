@@ -1,7 +1,7 @@
 <?php
 session_start();
-require __DIR__.'/../config.php';
-include __DIR__.'/../scripts/verifyauth.php';
+require __DIR__.'\..\config.php';
+include __DIR__.'\..\scripts/verifyauth.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -40,7 +40,7 @@ include __DIR__.'/../scripts/verifyauth.php';
                     </a>
                     <ul class="dropdown-menu" id="normaldropdown">
                         <li><a class="dropdown-item" href="create_ticket.php"><i class="bi bi-plus-circle"></i> Abrir Ticket</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-ticket-perforated-fill"></i> Meus Tickets</a></li>
+                        <li><a class="dropdown-item" href="mytickets.php"><i class="bi bi-ticket-perforated-fill"></i> Meus Tickets</a></li>
                     </ul>
                     <a class="col-sm-2" id="menubuttons" href="corporate_page.php" role="button">
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
@@ -58,11 +58,12 @@ include __DIR__.'/../scripts/verifyauth.php';
                                         echo $_SESSION['NotificationTop3'];
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>','<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
+                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>';
                             }
                             else{
-                                echo $_SESSION['MsgNotifications'];
+                                echo '<p class="text-center">Você não tem notificações!</p>';
                             }
+                            echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="mynotifications.php"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

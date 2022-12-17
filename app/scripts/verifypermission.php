@@ -2,10 +2,10 @@
 session_start();
 if($_SESSION['ClasseUser']==0)
 {
-    header("Location: ../pages/systemadmin.php");
+    header("Location: ..\system\systemadmin.php");
     exit;
 }
 else{
-    header("Location: ../pages/system.php");
+    header("Location: ..\system.php");
     exit;
 }

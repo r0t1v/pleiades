@@ -1,7 +1,7 @@
 <?php
 session_start();
-require __DIR__.'/../config.php';
-include __DIR__.'/../scripts/verifyauth.php';
+require __DIR__.'\..\config.php';
+include __DIR__.'\..\scripts\verifyauth.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -58,11 +58,12 @@ include __DIR__.'/../scripts/verifyauth.php';
                                         echo $_SESSION['NotificationTop3'];
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleannotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>','<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
+                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>';
                             }
                             else{
-                                echo $_SESSION['MsgNotifications'];
+                                echo '<p class="text-center">Você não tem notificações!</p>';
                             }
+                            echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -79,38 +80,9 @@ include __DIR__.'/../scripts/verifyauth.php';
                 </div>
             </div>        
         </div>
-        <section class="dashboardicons">
-            <h2><i class="bi bi-file-bar-graph"></i> Meu dashboard</h2>
-            <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>
-            <div class="container text-center">
-                <div class="row">
-                    <a class="col" href="#">
-                        <img src="../assets/tickets_ok.png" alt="ticketsok"/>
-                        <br>
-                        <strong><?= $_SESSION['TktConcluidoUser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_pending.png" alt="ticketspending"/>
-                        <br>
-                        <strong><?= $_SESSION['TktPendenteUser']; ?></strong>
-                        <h5>Tickets Concluídos</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
-                        <br>
-                        <strong><?= $_SESSION['TktRejeitadoUser']; ?></strong>
-                        <h5>Tickets Rejeitados</h5>
-                    </a>
-                    <a class="col" href="#">
-                    <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
-                        <br>
-                        <strong><?= $_SESSION['TktCanceladoUser']; ?></strong>
-                        <h5>Tickets Cancelados</h5>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <nav class="backdefault">
+            <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
+        </nav>
         
         <div class="systemsupport" align="center">
             <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>

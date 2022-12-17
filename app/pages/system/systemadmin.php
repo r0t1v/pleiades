@@ -1,8 +1,8 @@
 <?php
 session_start();
-require __DIR__.'/../config.php';
-include __DIR__.'/../scripts/verifyauth.php';
-include __DIR__.'/../scripts/verifypermission.php';
+require __DIR__.'..\..\..\config.php';
+include __DIR__.'..\..\..\scripts\verifyauth.php';
+include __DIR__.'..\..\..\scripts\verifypermission.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,8 +15,8 @@ include __DIR__.'/../scripts/verifypermission.php';
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/png" href="../assets/base/favicon.png"/>
         <link rel="stylesheet" href="../styles/style.css"/>
-        <link rel="stylesheet" href="../libs/bootstrap.css"/>
-        <link rel="stylesheet" href="../libs/icons-1.10.2/font/bootstrap-icons.css"/>
+        <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="../vendor/twbs/bootstrap-icons/font/bootstrap-icons.css"/>
     </head>
     <body>
 

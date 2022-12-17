@@ -1,7 +1,7 @@
 <?php
 session_start();
-require __DIR__.'/../config.php';
-include __DIR__.'/../scripts/verifyauth.php';
+require __DIR__.'\..\config.php';
+include __DIR__.'\..\scripts\verifyauth.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -58,15 +58,16 @@ include __DIR__.'/../scripts/verifyauth.php';
                                         echo $_SESSION['NotificationTop3'];
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>','<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="#"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
+                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>';
                             }
                             else{
-                                echo $_SESSION['MsgNotifications'];
+                                echo '<p class="text-center">Você não tem notificações!</p>';
                             }
+                            echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="mynotifications.php"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><?= $_SESSION['SocialUser']?></span><?php if($_SESSION['EmailVerificadoUser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
+                        <span><?= $_SESSION['SocialUser']; ?></span><?php if($_SESSION['EmailVerificadoUser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
                     </a>
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
@@ -82,6 +83,23 @@ include __DIR__.'/../scripts/verifyauth.php';
         <nav class="backdefault">
             <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
         </nav>
+        <section class="cardstool">
+            <h1><i class="bi bi-tools"></i> Minhas ferramentas</h1>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Client Anydesk</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['SocialUser']; ?></h6>
+
+                        <label for="useranydeskid" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                        <label for="useranydeskpass" class="form-label">Senha</label>
+                        <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+
+                    <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                    <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                </div>
+            </div>
+        </section>
         <div class="systemsupport" align="center">
             <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>
         </div>

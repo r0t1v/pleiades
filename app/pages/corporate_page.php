@@ -85,20 +85,112 @@ include __DIR__.'\..\scripts\verifyauth.php';
         </nav>
         <section class="cardstool">
             <h1><i class="bi bi-tools"></i> Minhas ferramentas</h1>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Client Anydesk</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['SocialUser']; ?></h6>
-
-                        <label for="useranydeskid" class="form-label">ID</label>
-                        <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
-                        <label for="useranydeskpass" class="form-label">Senha</label>
-                        <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
-
-                    <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                    <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                    <?php
+                    if(isset($_SESSION['UserAnyDeskID'])){
+                        echo'<div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Client Anydesk</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                            <form class="form-cards">
+                                <label for="useranydeskid" class="form-label">ID</label>
+                                <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                <label for="useranydeskpass" class="form-label">Senha</label>
+                                <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+                                <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                                <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                </form>
+                            </div>
+                        </div>';
+                    }
+                    else{
+                        echo'<div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Client Anydesk</h5>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalanydesk">
+                                <i class="bi bi-folder-plus"></i> Registrar
+                            </button>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modalanydesk" tabindex="-1" aria-labelledby="modalanydesk" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title fs-5">Registar AnyDesk</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="form-cards">
+                                        <label for="useranydeskid" class="form-label">ID</label>
+                                        <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                        <label for="useranydeskpass" class="form-label">Senha</label>
+                                        <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <a href="#" class="card-link btn btn-primary">Salvar</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>';
+                    }
+                    ?>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                                <div class="card-body">
+                                <h5 class="card-title">Client Team Viewer</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['SocialUser']; ?></h6>
+                                <form class="form-cards">
+                                    <label for="useranydeskid" class="form-label">ID</label>
+                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                    <label for="useranydeskpass" class="form-label">Senha</label>
+                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+                                    <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                                    <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Client RealVNC</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['SocialUser']; ?></h6>
+                                <form class="form-cards">
+                                    <label for="useranydeskid" class="form-label">ID</label>
+                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                    <label for="useranydeskpass" class="form-label">Senha</label>
+                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+                                    <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                                    <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Network settings</h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['SocialUser']; ?></h6>
+                                <form class="form-cards">
+                                    <label for="useranydeskid" class="form-label">Nome da máquina</label>
+                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                    <label for="useranydeskpass" class="form-label">Endereço IP</label>
+                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+                                    <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                                    <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
         </section>
         <div class="systemsupport" align="center">
             <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>

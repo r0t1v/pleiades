@@ -88,106 +88,221 @@ include __DIR__.'\..\scripts\verifyauth.php';
             <div class="container">
                 <div class="row">
                     <div class="col">
-                    <?php
-                    if(isset($_SESSION['UserAnyDeskID'])){
-                        echo'<div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Client Anydesk</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
-                            <form class="form-cards">
-                                <label for="useranydeskid" class="form-label">ID</label>
-                                <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
-                                <label for="useranydeskpass" class="form-label">Senha</label>
-                                <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
-                                <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                                <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
-                                </form>
-                            </div>
-                        </div>';
-                    }
-                    else{
-                        echo'<div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Client Anydesk</h5>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalanydesk">
-                                <i class="bi bi-folder-plus"></i> Registrar
-                            </button>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="modalanydesk" tabindex="-1" aria-labelledby="modalanydesk" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title fs-5">Registar AnyDesk</h2>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-cards">
-                                        <label for="useranydeskid" class="form-label">ID</label>
-                                        <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
-                                        <label for="useranydeskpass" class="form-label">Senha</label>
-                                        <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <a href="#" class="card-link btn btn-primary">Salvar</a>
-                                </div>
-                                </div>
-                            </div>
-                        </div>';
-                    }
-                    ?>
+                        <?php
+                        if(isset($_SESSION['UserAnyDeskId'])){
+                            echo'<div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Client Anydesk</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                                        <form class="form-cards">
+                                            <label for="useranydeskid" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                            <label for="useranydeskpass" class="form-label">Senha</label>
+                                            <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+                                            <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                                            <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                        </form>
+                                    </div>
+                                </div>';
+                        }
+                        else{
+                            echo'<div class="card" align="center">
+                                    <div class="card-body">
+                                        <img src="../assets/anydesk_user.png" alt="anydesklogo"/>
+                                        <h5 class="card-title">Client Anydesk</h5>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalanydesk">
+                                            <i class="bi bi-folder-plus"></i> Registrar
+                                        </button>
+                                        </div>
+                                    </div>
+                                <div class="modal fade" id="modalanydesk" tabindex="-1" aria-labelledby="modalanydesk" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title fs-5">Registar AnyDesk</h2>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-cards">
+                                                    <label for="useranydeskid" class="form-label">ID</label>
+                                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                                    <label for="useranydeskpass" class="form-label">Senha</label>
+                                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a href="#" class="card-link btn btn-primary">Salvar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                        }
+                        ?>
                     </div>
                     <div class="col">
-                        <div class="card">
-                                <div class="card-body">
-                                <h5 class="card-title">Client Team Viewer</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['SocialUser']; ?></h6>
-                                <form class="form-cards">
-                                    <label for="useranydeskid" class="form-label">ID</label>
-                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
-                                    <label for="useranydeskpass" class="form-label">Senha</label>
-                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
-                                    <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                                    <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
-                                </form>
-                            </div>
-                        </div>
+                        <?php
+                        if(isset($_SESSION['UserTeamWId'])){
+                            echo'<div class="card">
+                                    <div class="card-body">
+                                        <img src="../assets/teamw_user.png" alt="teamviewerlogo"/>
+                                        <h5 class="card-title">Client Team Viewer</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                                        <form class="form-cards">
+                                            <label for="userteamwid" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="userteamwid" name="userteamwid" placeholder="800 800 800">
+                                            <label for="userteamwpass" class="form-label">Senha</label>
+                                            <input type="text" class="form-control" id="userteamwpass" name="userteamwpass" placeholder="dasKyal">
+                                            <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                                            <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                        </form>
+                                     </div>
+                                </div>';
+                        }
+                        else{
+                            echo'<div class="card" align="center">
+                                    <div class="card-body">
+                                        <img src="../assets/teamw_user.png" alt="teamviewerlogo"/>
+                                        <h5 class="card-title">Client Team Viewer</h5>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalteamviewer">
+                                            <i class="bi bi-folder-plus"></i> Registrar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="modalteamviewer" tabindex="-1" aria-labelledby="modalteamviewer" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title fs-5">Registar Team Viewer</h2>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-cards">
+                                                    <label for="userteamwid" class="form-label">ID</label>
+                                                    <input type="text" class="form-control" id="userteamwid" name="userteamwid" placeholder="800 800 800">
+                                                    <label for="userteamwpass" class="form-label">Senha</label>
+                                                    <input type="text" class="form-control" id="userteamwpass" name="userteamwpass" placeholder="dasKyal">
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a href="#" class="card-link btn btn-primary">Salvar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                        }
+                        ?>
                     </div>
                     <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Client RealVNC</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['SocialUser']; ?></h6>
-                                <form class="form-cards">
-                                    <label for="useranydeskid" class="form-label">ID</label>
-                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
-                                    <label for="useranydeskpass" class="form-label">Senha</label>
-                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
-                                    <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                                    <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
-                                </form>
-                            </div>
-                        </div>
+                        <?php
+                        if(isset($_SESSION['UserRealVId'])){
+                            echo'<div class="card">
+                                    <div class="card-body">
+                                        <img src="../assets/realvnc_user.png" alt="realvnclogo"/>
+                                        <h5 class="card-title">Client RealVNC</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                                        <form class="form-cards">
+                                            <label for="userrealvid" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="userrealvid" name="userrealvid" placeholder="800 800 800">
+                                            <label for="userrealvpass" class="form-label">Senha</label>
+                                            <input type="text" class="form-control" id="userrealvpass" name="userrealvpass" placeholder="dasKyal">
+                                            <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                                            <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                        </form>
+                                    </div>
+                                </div>';
+                        }
+                        else{
+                            echo'<div class="card" align="center">
+                                    <div class="card-body">
+                                        <img src="../assets/realvnc_user.png" alt="realvnclogo"/>
+                                        <h5 class="card-title">Client RealVNC</h5>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalrealvnc">
+                                            <i class="bi bi-folder-plus"></i> Registrar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="modalrealvnc" tabindex="-1" aria-labelledby="modalrealvnc" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title fs-5">Registar RealVNC</h2>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-cards">
+                                                    <label for="userrealvid" class="form-label">ID</label>
+                                                    <input type="text" class="form-control" id="userrealvid" name="userrealvid" placeholder="800 800 800">
+                                                    <label for="userrealvpass" class="form-label">Senha</label>
+                                                    <input type="text" class="form-control" id="userrealvpass" name="userrealvpass" placeholder="dasKyal">
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a href="#" class="card-link btn btn-primary">Salvar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                        }
+                        ?>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" align="center">
                     <div class="col">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Network settings</h5>
-                                <h6 class="card-subtitle mb-2 text-muted"><?= $_SESSION['SocialUser']; ?></h6>
-                                <form class="form-cards">
-                                    <label for="useranydeskid" class="form-label">Nome da máquina</label>
-                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
-                                    <label for="useranydeskpass" class="form-label">Endereço IP</label>
-                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
-                                    <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                                    <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
-                                </form>
-                            </div>
-                        </div>
+                        <?php
+                        if(isset($_SESSION['UserNetworkConfig'])){
+                            echo'<div class="card">
+                                    <div class="card-body" align="left">
+                                        <img src="../assets/network_user.png" alt="networklogo"/>
+                                        <h5 class="card-title">Configurações de rede</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                                        <form class="form-cards">
+                                            <label for="userpcname" class="form-label">Nome da máquina</label>
+                                            <input type="text" class="form-control" id="userpcname" name="userpcname" placeholder="800 800 800">
+                                            <label for="userpcip" class="form-label">Endereço IP</label>
+                                            <input type="text" class="form-control" id="userpcip" name="userpcip" placeholder="dasKyal">
+                                            <a href="#" class="card-link btn btn-primary">Atualizar</a>
+                                            <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                        </form>
+                                    </div>
+                                </div>';
+                        }
+                        else{
+                            echo'<div class="card" align="center">
+                                    <div class="card-body">
+                                        <img src="../assets/network_user.png" alt="networklogo"/>
+                                        <h5 class="card-title">Configurações de rede</h5>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalnetworkuser">
+                                            <i class="bi bi-folder-plus"></i> Registrar
+                                        </button>
+                                        </div>
+                                    </div>
+                                <div class="modal fade" id="modalnetworkuser" tabindex="-1" aria-labelledby="modalnetworkuser" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title fs-5">Registrar configurações de rede</h2>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" align="left">
+                                                <form class="form-cards">
+                                                    <label for="userpcname" class="form-label">Nome da máquina</label>
+                                                    <input type="text" class="form-control" id="userpcname" name="userpcname" placeholder="800 800 800">
+                                                    <label for="userpcip" class="form-label">Endereço IP</label>
+                                                    <input type="text" class="form-control" id="userpcip" name="userpcip" placeholder="dasKyal">
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a href="#" class="card-link btn btn-primary">Salvar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>          

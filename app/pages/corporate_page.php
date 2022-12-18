@@ -86,7 +86,7 @@ include __DIR__.'\..\scripts\verifyauth.php';
         <section class="cardstool">
             <h1><i class="bi bi-tools"></i> Minhas ferramentas</h1>
             <div class="container">
-                <div class="row">
+                <div class="row" align="center">
                     <div class="col">
                         <?php
                         if(isset($_SESSION['UserAnyDeskId'])){
@@ -117,22 +117,22 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                     </div>
                                 <div class="modal fade" id="modalanydesk" tabindex="-1" aria-labelledby="modalanydesk" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="modal-content" align="left">
                                             <div class="modal-header">
                                                 <h2 class="modal-title fs-5">Registar AnyDesk</h2>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="form-cards">
+                                                <form action="../scripts/mytoolsquerys/uploadanydesk.php" method="POST" class="form-cards">
                                                     <label for="useranydeskid" class="form-label">ID</label>
-                                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                                    <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="Id Anydesk" minlength="9" maxlength="12" required/>
                                                     <label for="useranydeskpass" class="form-label">Senha</label>
-                                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
+                                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="Senha" minlength="8" maxlength="32" required>
+                                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
                                                 </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a href="#" class="card-link btn btn-primary">Salvar</a>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                 </div>
                                 <div class="modal fade" id="modalteamviewer" tabindex="-1" aria-labelledby="modalteamviewer" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="modal-content" align="left">
                                             <div class="modal-header">
                                                 <h2 class="modal-title fs-5">Registar Team Viewer</h2>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -225,7 +225,7 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                 </div>
                                 <div class="modal fade" id="modalrealvnc" tabindex="-1" aria-labelledby="modalrealvnc" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="modal-content" align="left">
                                             <div class="modal-header">
                                                 <h2 class="modal-title fs-5">Registar RealVNC</h2>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -281,12 +281,12 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                     </div>
                                 <div class="modal fade" id="modalnetworkuser" tabindex="-1" aria-labelledby="modalnetworkuser" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="modal-content" align="left">
                                             <div class="modal-header">
                                                 <h2 class="modal-title fs-5">Registrar configurações de rede</h2>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body" align="left">
+                                            <div class="modal-body">
                                                 <form class="form-cards">
                                                     <label for="userpcname" class="form-label">Nome da máquina</label>
                                                     <input type="text" class="form-control" id="userpcname" name="userpcname" placeholder="800 800 800">

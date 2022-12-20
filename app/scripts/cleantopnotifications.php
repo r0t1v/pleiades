@@ -26,32 +26,34 @@ if($_SESSION['ContNotify']>=1){
 				
 				$QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
 				
-				if($QueryNotificationsResult['tipo_notification']==1){
-					$SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
-				}
-				elseif($QueryNotificationsResult['tipo_notification']==2){
-					$SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
-				}
-				else{
-					$SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
-				}
+				switch ($QueryNotificationsResult['tipo_notification']) {
+                    case 1:
+                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
+                        break;
+                    case 2:
+                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
+                        break;
+                    case 3:
+                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                        break;
+                    case 4:
+                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="corporate_page.php"><span class="badge rounded-pill text-bg-success"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                        break;
+                }
 			}
 
 			if(count($SaveNotificationArray)==3){
 				$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
 				$_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
 				$_SESSION['NotificationTop3'] = $SaveNotificationArray[2];
-			}
-			elseif(count($SaveNotificationArray)==2){
+			}elseif(count($SaveNotificationArray)==2){
 				$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
 				$_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
-			}
-			else{
+			}else{
 				$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
 			}
 
-		}
-		else{
+		}else{
 			$_SESSION['NotificationTop1'] = null;
 			$_SESSION['NotificationTop2'] = null;
 			$_SESSION['NotificationTop3'] = null;
@@ -60,8 +62,7 @@ if($_SESSION['ContNotify']>=1){
     $Fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/system.php';
     header("Location: {$Fallback}");
     exit;
-}
-else{
+}else{
     $Fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/system.php';
     header("Location: {$Fallback}");
     exit;

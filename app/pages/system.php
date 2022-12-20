@@ -59,8 +59,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                                     }
                                 }
                                 echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>';
-                            }
-                            else{
+                            }else{
                                 echo '<p class="text-center">Você não tem notificações!</p>';
                             }
                             echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="mynotifications.php"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
@@ -80,7 +79,6 @@ include __DIR__.'\..\scripts/verifyauth.php';
                 </div>
             </div>        
         </div>
-        <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800" minlength="5" maxlength="9" required/>
         <section class="dashboardicons">
             <h2><i class="bi bi-file-bar-graph"></i> Meu dashboard</h2>
             <small>Atualizado ás<?= ' '.date('H:i:s'); ?></small>

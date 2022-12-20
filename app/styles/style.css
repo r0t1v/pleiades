@@ -388,7 +388,16 @@
 .cardstool .container .row .col .card{
     width: 18rem;
 }
-.cardstool .card .card-body .form-cards input{
+#modalanydesk .modal-dialog .modal-content .modal-body .form-cards input{
+    margin-bottom: 15px;
+}
+#modalteamviewer .modal-dialog .modal-content .modal-body .form-cards input{
+    margin-bottom: 15px;
+}
+#modalrealvnc .modal-dialog .modal-content .modal-body .form-cards input{
+    margin-bottom: 15px;
+}
+#modalnetworkuser .modal-dialog .modal-content .modal-body .form-cards input{
     margin-bottom: 15px;
 }
 /* ----------------- coporate-page -------------- */

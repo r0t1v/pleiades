@@ -68,54 +68,67 @@ if($QueryEmailExistsResult){
 				
 				$QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
 				
-				if($QueryNotificationsResult['tipo_notification']==1){
-					$SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
-				}
-				elseif($QueryNotificationsResult['tipo_notification']==2){
-					$SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
-				}
-				else{
-					$SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
-				}
+				switch ($QueryNotificationsResult['tipo_notification']) {
+                    case 1:
+                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
+                        break;
+                    case 2:
+                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
+                        break;
+                    case 3:
+                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                        break;
+                    case 4:
+                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="corporate_page.php"><span class="badge rounded-pill text-bg-success"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                        break;
+                }
 			}
 
 			if(count($SaveNotificationArray)==3){
 				$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
 				$_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
 				$_SESSION['NotificationTop3'] = $SaveNotificationArray[2];
-			}
-			elseif(count($SaveNotificationArray)==2){
+			}elseif(count($SaveNotificationArray)==2){
 				$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
 				$_SESSION['NotificationTop2'] = $SaveNotificationArray[1];
-			}
-			else{
+			}else{
 				$_SESSION['NotificationTop1'] = $SaveNotificationArray[0];
 			}
 
-		}
-		else{
+		}else{
 			$_SESSION['NotificationTop1'] = null;
 			$_SESSION['NotificationTop2'] = null;
 			$_SESSION['NotificationTop3'] = null;
 		}
 		/* Notifications*/
+		/* Tools*/
+		$QueryAnydeskUser = "SELECT login,pass FROM usertools WHERE tipotool=1 AND id_conta='".$_SESSION['IsLogged']."'";
+		$QueryAnydeskUserExec = mysqli_query($CONNECTION_DB, $QueryAnydeskUser);
+		$QueryAnydeskUserRow = mysqli_num_rows($QueryAnydeskUserExec);
+		
+		if($QueryAnydeskUserRow){
+			$QueryAnydeskUserResult = $QueryAnydeskUserExec->fetch_assoc();
+			$_SESSION['UserAnyDeskId'] = $QueryAnydeskUserResult['login'];
+			$_SESSION['UserAnyDeskPass'] = $QueryAnydeskUserResult['pass'];
+		}else{
+			$_SESSION['UserAnyDeskId'] = null;
+			$_SESSION['UserAnyDeskPass'] = null;
+		}
+		/* Tools*/
 	
 			if($_SESSION['ClasseUser']==0){
 				header("Location: ../pages/systemadmin.php");
 				exit;
-			}
-			else{
+			}else{
 				header("Location: ../pages/system.php");
 				exit;
 			}
-	}
-	else{
+	}else{
 		$_SESSION['MsgLogin'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> A senha informada está incorreta!</div>';
 		header("Location: ..\index.php");
 		exit;
 	}
-}
-else{
+}else{
 	$_SESSION['MsgLogin'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O email informado não está no banco de dados do servidor!</div>';
 	header("Location: ..\index.php");
 	exit;

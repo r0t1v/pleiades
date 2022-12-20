@@ -15,7 +15,7 @@ if($ChangeNewPass==$ChangeNewPassConfirm and strlen($ChangeNewPass)>=8 and strle
             $QueryUpdatePass = "UPDATE users SET senha='$SenhaEncrypt' WHERE email='".$_SESSION['EmailUser']."'";
             $QueryUpdatePassExec = mysqli_query($CONNECTION_DB, $QueryUpdatePass);
 
-            $QueryInsertNotification = "INSERT INTO notifications (id_conta,descricao,tipo_notification,data_notification,visualizado) VALUES ('".$_SESSION['IsLogged']."','Senha trocada','1','".date('Y-m-d H:i:s')."','0')";
+            $QueryInsertNotification = "INSERT INTO notifications(id_conta,descricao,tipo_notification,data_notification,visualizado) VALUES ('".$_SESSION['IsLogged']."','Senha trocada','1','".date('Y-m-d H:i:s')."','0')";
             $QueryInsertNotificationExec = mysqli_query($CONNECTION_DB, $QueryInsertNotification);
             $_SESSION['ContNotify'] = 0;
             $_SESSION['NotificationTop1'] = null;
@@ -37,14 +37,19 @@ if($ChangeNewPass==$ChangeNewPassConfirm and strlen($ChangeNewPass)>=8 and strle
                         
                     $QueryNotificationsResult = $QueryNotificationsExec->fetch_assoc();
                         
-                    if($QueryNotificationsResult['tipo_notification']==1){
-                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
-                    }
-                    elseif($QueryNotificationsResult['tipo_notification']==2){
-                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
-                    }
-                    else{
-                        $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                    switch ($QueryNotificationsResult['tipo_notification']) {
+                        case 1:
+                            $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
+                            break;
+                        case 2:
+                            $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
+                            break;
+                        case 3:
+                            $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                            break;
+                        case 4:
+                            $SaveNotificationArray[$i] = '<li><a class="dropdown-item" href="corporate_page.php"><span class="badge rounded-pill text-bg-success"><i class="bi bi-bell-fill"></i> Novo</span> '.$QueryNotificationsResult['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                            break;
                     }
                 }
 

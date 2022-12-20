@@ -84,6 +84,15 @@ include __DIR__.'\..\scripts\verifyauth.php';
             <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
         </nav>
         <section class="cardstool">
+            <?php
+                if(isset($_SESSION['MsgCorpPage'])){
+                    echo $_SESSION['MsgCorpPage'];
+                    unset($_SESSION['MsgCorpPage']);
+                }
+                else{
+                    unset($_SESSION['MsgCorpPage']);
+                }
+            ?>
             <h1><i class="bi bi-tools"></i> Minhas ferramentas</h1>
             <div class="container">
                 <div class="row" align="center">
@@ -92,15 +101,16 @@ include __DIR__.'\..\scripts\verifyauth.php';
                         if(isset($_SESSION['UserAnyDeskId'])){
                             echo'<div class="card">
                                     <div class="card-body">
+                                        <img src="../assets/anydesk_user.png" alt="anydesklogo"/>
                                         <h5 class="card-title">Client Anydesk</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
-                                        <form class="form-cards">
+                                        <form action="../scripts/mytoolsquerys/uploadanydesk.php" method="POST" class="form-cards">
                                             <label for="useranydeskid" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="800 800 800">
+                                            <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" minlength="9" maxlength="12" value='.$_SESSION['UserAnyDeskId'].' required/>
                                             <label for="useranydeskpass" class="form-label">Senha</label>
-                                            <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="dasKyal">
-                                            <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                                            <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                            <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass"minlength="8" maxlength="32" value='.$_SESSION['UserAnyDeskPass'].' required/>
+                                            <button type="submit" class="card-link btn btn-primary">Atualizar</button>
+                                            <a href="../scripts/mytoolsquerys/cleananydesk.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>
                                     </div>
                                 </div>';
@@ -127,7 +137,7 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                                     <label for="useranydeskid" class="form-label">ID</label>
                                                     <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" placeholder="Id Anydesk" minlength="9" maxlength="12" required/>
                                                     <label for="useranydeskpass" class="form-label">Senha</label>
-                                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="Senha" minlength="8" maxlength="32" required>
+                                                    <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" placeholder="Senha" minlength="8" maxlength="32" required/>
                                                     <div class="d-grid gap-2 col-6 mx-auto">
                                                         <button type="submit" class="btn btn-primary">Salvar</button>
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

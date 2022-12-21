@@ -108,7 +108,7 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                             <label for="useranydeskid" class="form-label">ID</label>
                                             <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" minlength="9" maxlength="12" value='.$_SESSION['UserAnyDeskId'].' required/>
                                             <label for="useranydeskpass" class="form-label">Senha</label>
-                                            <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass"minlength="8" maxlength="32" value='.$_SESSION['UserAnyDeskPass'].' required/>
+                                            <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" minlength="8" maxlength="32" value='.$_SESSION['UserAnyDeskPass'].' required/>
                                             <button type="submit" class="card-link btn btn-primary">Atualizar</button>
                                             <a href="../scripts/mytoolsquerys/cleananydesk.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>
@@ -152,19 +152,19 @@ include __DIR__.'\..\scripts\verifyauth.php';
                     </div>
                     <div class="col">
                         <?php
-                        if(isset($_SESSION['UserTeamWId'])){
+                        if(isset($_SESSION['UserTeamwId'])){
                             echo'<div class="card">
                                     <div class="card-body">
                                         <img src="../assets/teamw_user.png" alt="teamviewerlogo"/>
                                         <h5 class="card-title">Client Team Viewer</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
-                                        <form class="form-cards">
+                                        <form action="../scripts/mytoolsquerys/uploadteamw.php" method="POST" class="form-cards">
                                             <label for="userteamwid" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="userteamwid" name="userteamwid" placeholder="800 800 800">
+                                            <input type="text" class="form-control" id="userteamwid" name="userteamwid" minlength="9" maxlength="12" value='.$_SESSION['UserTeamwId'].' required/>
                                             <label for="userteamwpass" class="form-label">Senha</label>
-                                            <input type="text" class="form-control" id="userteamwpass" name="userteamwpass" placeholder="dasKyal">
-                                            <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                                            <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                            <input type="text" class="form-control" id="userteamwpass" name="userteamwpass" minlength="8" maxlength="32" value='.$_SESSION['UserTeamwPass'].' required/>
+                                            <button type="submit" class="card-link btn btn-primary">Atualizar</button>
+                                            <a href="../scripts/mytoolsquerys/cleanteamw.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>
                                      </div>
                                 </div>';
@@ -187,16 +187,16 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="form-cards">
+                                                <form action="../scripts/mytoolsquerys/uploadteamw.php" method="POST" class="form-cards">
                                                     <label for="userteamwid" class="form-label">ID</label>
-                                                    <input type="text" class="form-control" id="userteamwid" name="userteamwid" placeholder="800 800 800">
+                                                    <input type="text" class="form-control" id="userteamwid" name="userteamwid" placeholder="Id Team Viewer">
                                                     <label for="userteamwpass" class="form-label">Senha</label>
-                                                    <input type="text" class="form-control" id="userteamwpass" name="userteamwpass" placeholder="dasKyal">
+                                                    <input type="text" class="form-control" id="userteamwpass" name="userteamwpass" placeholder="Senha">
+                                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
                                                 </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a href="#" class="card-link btn btn-primary">Salvar</a>
                                             </div>
                                         </div>
                                     </div>
@@ -206,19 +206,19 @@ include __DIR__.'\..\scripts\verifyauth.php';
                     </div>
                     <div class="col">
                         <?php
-                        if(isset($_SESSION['UserRealVId'])){
+                        if(isset($_SESSION['UserRealVNCId'])){
                             echo'<div class="card">
                                     <div class="card-body">
                                         <img src="../assets/realvnc_user.png" alt="realvnclogo"/>
                                         <h5 class="card-title">Client RealVNC</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
-                                        <form class="form-cards">
-                                            <label for="userrealvid" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="userrealvid" name="userrealvid" placeholder="800 800 800">
-                                            <label for="userrealvpass" class="form-label">Senha</label>
-                                            <input type="text" class="form-control" id="userrealvpass" name="userrealvpass" placeholder="dasKyal">
-                                            <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                                            <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                        <form action="../scripts/mytoolsquerys/uploadrealvnc.php" method="POST" class="form-cards">
+                                            <label for="userrealvncid" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="userrealvncid" name="userrealvncid" minlength="9" maxlength="12" value='.$_SESSION['UserRealVNCId'].' required/>
+                                            <label for="userrealvncpass" class="form-label">Senha</label>
+                                            <input type="text" class="form-control" id="userrealvncpass" name="userrealvncpass" minlength="8" maxlength="32" value='.$_SESSION['UserRealVNCPass'].' required/>
+                                            <button type="submit" class="card-link btn btn-primary">Atualizar</button>
+                                            <a href="../scripts/mytoolsquerys/cleanrealvnc.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>
                                     </div>
                                 </div>';
@@ -241,16 +241,16 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="form-cards">
-                                                    <label for="userrealvid" class="form-label">ID</label>
-                                                    <input type="text" class="form-control" id="userrealvid" name="userrealvid" placeholder="800 800 800">
-                                                    <label for="userrealvpass" class="form-label">Senha</label>
-                                                    <input type="text" class="form-control" id="userrealvpass" name="userrealvpass" placeholder="dasKyal">
+                                                <form action="../scripts/mytoolsquerys/uploadrealvnc.php" method="POST" class="form-cards">
+                                                <label for="userrealvncid" class="form-label">ID</label>
+                                                <input type="text" class="form-control" id="userrealvncid" name="userrealvncid" placeholder="Id do RealVNC">
+                                                <label for="userrealvncpass" class="form-label">Senha</label>
+                                                <input type="text" class="form-control" id="userrealvncpass" name="userrealvncpass" placeholder="Senha">
+                                                <div class="d-grid gap-2 col-6 mx-auto">
+                                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
                                                 </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a href="#" class="card-link btn btn-primary">Salvar</a>
                                             </div>
                                         </div>
                                     </div>
@@ -262,19 +262,19 @@ include __DIR__.'\..\scripts\verifyauth.php';
                 <div class="row" align="center">
                     <div class="col">
                         <?php
-                        if(isset($_SESSION['UserNetworkConfig'])){
+                        if(isset($_SESSION['UserNetCfgIp'])){
                             echo'<div class="card">
-                                    <div class="card-body" align="left">
+                                    <div class="card-body" align="center">
                                         <img src="../assets/network_user.png" alt="networklogo"/>
                                         <h5 class="card-title">Configurações de rede</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
-                                        <form class="form-cards">
-                                            <label for="userpcname" class="form-label">Nome da máquina</label>
-                                            <input type="text" class="form-control" id="userpcname" name="userpcname" placeholder="800 800 800">
-                                            <label for="userpcip" class="form-label">Endereço IP</label>
-                                            <input type="text" class="form-control" id="userpcip" name="userpcip" placeholder="dasKyal">
-                                            <a href="#" class="card-link btn btn-primary">Atualizar</a>
-                                            <a href="#" class="card-link btn btn-outline-danger">Limpar</a>
+                                        <form action="../scripts/mytoolsquerys/uploadnetcfg.php" method="POST" class="form-cards">
+                                            <label for="userpcname" class="form-label">ID</label>
+                                            <input type="text" class="form-control" id="userpcname" name="userpcname" minlength="9" maxlength="12" value='.$_SESSION['UserNetCfgName'].' required/>
+                                            <label for="userpcip" class="form-label">Senha</label>
+                                            <input type="text" class="form-control" id="userpcip" name="userpcip" minlength="8" maxlength="32" value='.$_SESSION['UserNetCfgIp'].' required/>
+                                            <button type="submit" class="card-link btn btn-primary">Atualizar</button>
+                                            <a href="../scripts/mytoolsquerys/cleannetcfg.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>
                                     </div>
                                 </div>';
@@ -297,16 +297,16 @@ include __DIR__.'\..\scripts\verifyauth.php';
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="form-cards">
+                                                <form action="../scripts/mytoolsquerys/uploadnetcfg.php" method="POST" class="form-cards">
                                                     <label for="userpcname" class="form-label">Nome da máquina</label>
-                                                    <input type="text" class="form-control" id="userpcname" name="userpcname" placeholder="800 800 800">
+                                                    <input type="text" class="form-control" id="userpcname" name="userpcname" placeholder="Nome do computador">
                                                     <label for="userpcip" class="form-label">Endereço IP</label>
-                                                    <input type="text" class="form-control" id="userpcip" name="userpcip" placeholder="dasKyal">
+                                                    <input type="text" class="form-control" id="userpcip" name="userpcip" placeholder="Ipv4">
+                                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
                                                 </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a href="#" class="card-link btn btn-primary">Salvar</a>
                                             </div>
                                         </div>
                                     </div>

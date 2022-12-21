@@ -114,6 +114,45 @@ if($QueryEmailExistsResult){
 			$_SESSION['UserAnyDeskId'] = null;
 			$_SESSION['UserAnyDeskPass'] = null;
 		}
+		
+		$QueryTeamwUser = "SELECT login,pass FROM usertools WHERE tipotool=2 AND id_conta='".$_SESSION['IsLogged']."'";
+		$QueryTeamwUserExec = mysqli_query($CONNECTION_DB, $QueryTeamwUser);
+		$QueryTeamwUserRow = mysqli_num_rows($QueryTeamwUserExec);
+		
+		if($QueryTeamwUserRow){
+			$QueryTeamwUserResult = $QueryTeamwUserExec->fetch_assoc();
+			$_SESSION['UserTeamwId'] = $QueryTeamwUserResult['login'];
+			$_SESSION['UserTeamwPass'] = $QueryTeamwUserResult['pass'];
+		}else{
+			$_SESSION['UserTeamwId'] = null;
+			$_SESSION['UserTeamwPass'] = null;
+		}
+
+		$QueryRealVNCUser = "SELECT login,pass FROM usertools WHERE tipotool=3 AND id_conta='".$_SESSION['IsLogged']."'";
+        $QueryRealVNCUserExec = mysqli_query($CONNECTION_DB, $QueryRealVNCUser);
+        $QueryRealVNCUserRow = mysqli_num_rows($QueryRealVNCUserExec);
+                
+        if($QueryRealVNCUserRow){
+            $QueryRealVNCUserResult = $QueryRealVNCUserExec->fetch_assoc();
+            $_SESSION['UserRealVNCId'] = $QueryRealVNCUserResult['login'];
+			$_SESSION['UserRealVNCPass'] = $QueryRealVNCUserResult['pass'];
+        }else{
+            $_SESSION['UserRealVNCId'] = null;
+            $_SESSION['UserRealVNCPass'] = null;
+        }
+
+		$QueryNetCfgUser = "SELECT login,pass FROM usertools WHERE tipotool=4 AND id_conta='".$_SESSION['IsLogged']."'";
+        $QueryNetCfgUserExec = mysqli_query($CONNECTION_DB, $QueryNetCfgUser);
+        $QueryNetCfgUserRow = mysqli_num_rows($QueryNetCfgUserExec);
+                
+        if($QueryNetCfgUserRow){
+            $QueryNetCfgUserResult = $QueryNetCfgUserExec->fetch_assoc();
+            $_SESSION['UserNetCfgName'] = $QueryNetCfgUserResult['login'];
+            $_SESSION['UserNetCfgIp'] = $QueryNetCfgUserResult['pass'];
+        }else{
+            $_SESSION['UserNetCfgName'] = null;
+            $_SESSION['UserNetCfgIp'] = null;
+        }
 		/* Tools*/
 	
 			if($_SESSION['ClasseUser']==0){

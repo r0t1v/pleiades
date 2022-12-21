@@ -10,9 +10,9 @@ $_SESSION['ContNotify'] = 0;
 $_SESSION['NotificationTop1'] = null;
 $_SESSION['NotificationTop2'] = null;
 $_SESSION['NotificationTop3'] = null;
-$_SESSION['UserAnyDeskId'] = null;
+$_SESSION['UserRealVNCId'] = null;
 
-$QueryDeleteExists = "DELETE FROM usertools WHERE tipotool=1 AND id_conta='".$_SESSION['IsLogged']."'";
+$QueryDeleteExists = "DELETE FROM usertools WHERE tipotool=3 AND id_conta='".$_SESSION['IsLogged']."'";
 $QueryDeleteExistsExec = mysqli_query($CONNECTION_DB, $QueryDeleteExists);
 
 /* Notifications*/

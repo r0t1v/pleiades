@@ -3,22 +3,22 @@ session_start();
 require __DIR__.'\..\..\config.php';
 include __DIR__.'\..\..\scripts\verifyauth.php';
 
-$IdAnyDeskCreate = filter_var($_POST['useranydeskid'], FILTER_SANITIZE_STRING);
-$PassAnyDeskCreate = filter_var($_POST['useranydeskpass'], FILTER_SANITIZE_STRING);
+$IdRealVNCCreate = filter_var($_POST['userrealvncid'], FILTER_SANITIZE_STRING);
+$PassRealVNCCreate = filter_var($_POST['userrealvncpass'], FILTER_SANITIZE_STRING);
 
-if(strlen($IdAnyDeskCreate)>=9 and strlen($IdAnyDeskCreate)<=12 and strlen($PassAnyDeskCreate)>=8 and strlen($PassAnyDeskCreate)<=32){
+if(strlen($IdRealVNCCreate)>=9 and strlen($IdRealVNCCreate)<=12 and strlen($PassRealVNCCreate)>=8 and strlen($PassRealVNCCreate)<=32){
 
-    if($IdAnyDeskCreate!=$_SESSION['UserAnyDeskId'] || $PassAnyDeskCreate!=$_SESSION['UserAnyDeskPass']){
+    if($IdRealVNCCreate!=$_SESSION['UserRealVNCId'] || $PassRealVNCCreate!=$_SESSION['UserRealVNCPass']){
 
-        $QueryIfExists = "SELECT login,pass FROM usertools WHERE tipotool=1 AND id_conta='".$_SESSION['IsLogged']."'";
+        $QueryIfExists = "SELECT login,pass FROM usertools WHERE tipotool=3 AND id_conta='".$_SESSION['IsLogged']."'";
         $QueryIfExistsExec = mysqli_query($CONNECTION_DB, $QueryIfExists);
         $QueryIfExistsRow = mysqli_num_rows($QueryIfExistsExec);
 
         if($QueryIfExistsRow==0){
-            $QueryRegisterAnydesk = "INSERT INTO usertools(id,id_conta,tipotool,login,pass) VALUES ('','".$_SESSION['IsLogged']."','1','$IdAnyDeskCreate','$PassAnyDeskCreate')";
-            $QueryRegisterAnydeskExec = mysqli_query($CONNECTION_DB, $QueryRegisterAnydesk);
+            $QueryRegisterRealVNC = "INSERT INTO usertools(id,id_conta,tipotool,login,pass) VALUES ('','".$_SESSION['IsLogged']."','3','$IdRealVNCCreate','$PassRealVNCCreate')";
+            $QueryRegisterRealVNCExec = mysqli_query($CONNECTION_DB, $QueryRegisterRealVNC);
 
-            $QueryInsertNotification = "INSERT INTO notifications(id_conta,descricao,tipo_notification,data_notification,visualizado) VALUES ('".$_SESSION['IsLogged']."','Mudança em ferramentas','4','".date('Y-m-d H:i:s')."','0')";
+            $QueryInsertNotification = "INSERT INTO notifications(id_conta,descricao,tipo_notification,data_notification,visualizado) VALUES ('".$_SESSION['IsLogged']."','Cadastro em ferramentas','4','".date('Y-m-d H:i:s')."','0')";
             $QueryInsertNotificationExec = mysqli_query($CONNECTION_DB, $QueryInsertNotification);
             $_SESSION['ContNotify'] = 0;
             $_SESSION['NotificationTop1'] = null;
@@ -75,17 +75,17 @@ if(strlen($IdAnyDeskCreate)>=9 and strlen($IdAnyDeskCreate)<=12 and strlen($Pass
                 }
                 /* Notifications*/
                 /* Tools*/
-                $QueryAnydeskUser = "SELECT login,pass FROM usertools WHERE tipotool=1 AND id_conta='".$_SESSION['IsLogged']."'";
-                $QueryAnydeskUserExec = mysqli_query($CONNECTION_DB, $QueryAnydeskUser);
-                $QueryAnydeskUserRow = mysqli_num_rows($QueryAnydeskUserExec);
+                $QueryRealVNCUser = "SELECT login,pass FROM usertools WHERE tipotool=3 AND id_conta='".$_SESSION['IsLogged']."'";
+                $QueryRealVNCUserExec = mysqli_query($CONNECTION_DB, $QueryRealVNCUser);
+                $QueryRealVNCUserRow = mysqli_num_rows($QueryRealVNCUserExec);
                 
-                if($QueryAnydeskUserRow){
-                    $QueryAnydeskUserResult = $QueryAnydeskUserExec->fetch_assoc();
-                    $_SESSION['UserAnyDeskId'] = $QueryAnydeskUserResult['login'];
-                    $_SESSION['UserAnyDeskPass'] = $QueryAnydeskUserResult['pass'];
+                if($QueryRealVNCUserRow){
+                    $QueryRealVNCUserResult = $QueryRealVNCUserExec->fetch_assoc();
+                    $_SESSION['UserRealVNCId'] = $QueryRealVNCUserResult['login'];
+                    $_SESSION['UserRealVNCPass'] = $QueryRealVNCUserResult['pass'];
                 }else{
-                    $_SESSION['UserAnyDeskId'] = null;
-                    $_SESSION['UserAnyDeskPass'] = null;
+                    $_SESSION['UserRealVNCId'] = null;
+                    $_SESSION['UserRealVNCPass'] = null;
                 }
                 /* Tools*/
             $_SESSION['MsgCorpPage'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
@@ -93,8 +93,8 @@ if(strlen($IdAnyDeskCreate)>=9 and strlen($IdAnyDeskCreate)<=12 and strlen($Pass
             exit;
 
         }else{
-            $QueryRegisterAnydesk = "UPDATE usertools SET login='$IdAnyDeskCreate',pass='$PassAnyDeskCreate' WHERE tipotool=1 AND id_conta='".$_SESSION['IsLogged']."'";
-            $QueryRegisterAnydeskExec = mysqli_query($CONNECTION_DB, $QueryRegisterAnydesk);
+            $QueryRegisterRealVNC = "UPDATE usertools SET login='$IdRealVNCCreate',pass='$PassRealVNCCreate' WHERE tipotool=3 AND id_conta='".$_SESSION['IsLogged']."'";
+            $QueryRegisterRealVNCExec = mysqli_query($CONNECTION_DB, $QueryRegisterRealVNC);
 
             $QueryInsertNotification = "INSERT INTO notifications (id_conta,descricao,tipo_notification,data_notification,visualizado) VALUES ('".$_SESSION['IsLogged']."','Mudança em ferramentas','4','".date('Y-m-d H:i:s')."','0')";
             $QueryInsertNotificationExec = mysqli_query($CONNECTION_DB, $QueryInsertNotification);
@@ -153,17 +153,17 @@ if(strlen($IdAnyDeskCreate)>=9 and strlen($IdAnyDeskCreate)<=12 and strlen($Pass
                 }
                 /* Notifications*/
                 /* Tools*/
-                $QueryAnydeskUser = "SELECT login,pass FROM usertools WHERE tipotool=1 AND id_conta='".$_SESSION['IsLogged']."'";
-                $QueryAnydeskUserExec = mysqli_query($CONNECTION_DB, $QueryAnydeskUser);
-                $QueryAnydeskUserRow = mysqli_num_rows($QueryAnydeskUserExec);
+                $QueryRealVNCUser = "SELECT login,pass FROM usertools WHERE tipotool=3 AND id_conta='".$_SESSION['IsLogged']."'";
+                $QueryRealVNCUserExec = mysqli_query($CONNECTION_DB, $QueryRealVNCUser);
+                $QueryRealVNCUserRow = mysqli_num_rows($QueryRealVNCUserExec);
                 
-                if($QueryAnydeskUserRow){
-                    $QueryAnydeskUserResult = $QueryAnydeskUserExec->fetch_assoc();
-                    $_SESSION['UserAnyDeskId'] = $QueryAnydeskUserResult['login'];
-                    $_SESSION['UserAnyDeskPass'] = $QueryAnydeskUserResult['pass'];
+                if($QueryRealVNCUserRow){
+                    $QueryRealVNCUserResult = $QueryRealVNCUserExec->fetch_assoc();
+                    $_SESSION['UserRealVNCId'] = $QueryRealVNCUserResult['login'];
+                    $_SESSION['UserRealVNCPass'] = $QueryRealVNCUserResult['pass'];
                 }else{
-                    $_SESSION['UserAnyDeskId'] = null;
-                    $_SESSION['UserAnyDeskPass'] = null;
+                    $_SESSION['UserRealVNCId'] = null;
+                    $_SESSION['UserRealVNCPass'] = null;
                 }
                 /* Tools*/
             $_SESSION['MsgCorpPage'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';

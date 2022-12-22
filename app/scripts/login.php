@@ -31,22 +31,22 @@ if($QueryEmailExistsResult){
 		$QueryUpdateLastViewExec = mysqli_query($CONNECTION_DB, $QueryUpdateLastView);
 		
 		/* Contagem dos tickets*/
-		$QueryCountTicketClosed = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticket_status='Finalizado'";
+		$QueryCountTicketClosed = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticketstatus='Finalizado'";
 		$QueryCountTicketClosedExec = mysqli_query($CONNECTION_DB, $QueryCountTicketClosed);
 		$QueryCountTicketClosedResult = $QueryCountTicketClosedExec->fetch_assoc();
 		$_SESSION['TktConcluidoUser'] = $QueryCountTicketClosedResult['cont'];
 
-		$QueryCountTicketPending = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticket_status='Pendente'";
+		$QueryCountTicketPending = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticketstatus='Pendente'";
 		$QueryCountTicketPendingExec = mysqli_query($CONNECTION_DB, $QueryCountTicketPending);
 		$QueryCountTicketPendingResult = $QueryCountTicketPendingExec->fetch_assoc();
 		$_SESSION['TktPendenteUser'] = $QueryCountTicketPendingResult['cont'];
 
-		$QueryCountTicketRejected = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticket_status='Rejeitado'";
+		$QueryCountTicketRejected = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticketstatus='Rejeitado'";
 		$QueryCountTicketRejectedExec = mysqli_query($CONNECTION_DB, $QueryCountTicketRejected);
 		$QueryCountTicketRejectedResult = $QueryCountTicketRejectedExec->fetch_assoc();
 		$_SESSION['TktRejeitadoUser'] = $QueryCountTicketRejectedResult['cont'];
 
-		$QueryCountTicketCanceled = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticket_status='Cancelado'";
+		$QueryCountTicketCanceled = "SELECT COUNT(protocolo)cont FROM tickets WHERE solicitante='".$_SESSION['IsLogged']."' AND ticketstatus='Cancelado'";
 		$QueryCountTicketCanceledExec = mysqli_query($CONNECTION_DB, $QueryCountTicketCanceled);
 		$QueryCountTicketCanceledResult = $QueryCountTicketCanceledExec->fetch_assoc();
 		$_SESSION['TktCanceladoUser'] = $QueryCountTicketCanceledResult['cont'];

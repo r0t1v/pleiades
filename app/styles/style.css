@@ -388,7 +388,7 @@
 .cardstool .container .row .col .card{
     width: 18rem;
 }
-.cardstool .container .row .col .card .card-body .form-cards button,a{
+.cardstool .container .row .col .card .card-body .form-cards .card-link{
     margin-top: 15px;
 }
 #modalanydesk .modal-dialog .modal-content .modal-body .form-cards input{

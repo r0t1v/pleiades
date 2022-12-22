@@ -58,11 +58,11 @@ include __DIR__.'\..\scripts/verifyauth.php';
                                         echo $_SESSION['NotificationTop3'];
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>';
+                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações do topo</a></li>';
                             }else{
                                 echo '<p class="text-center">Você não tem notificações!</p>';
                             }
-                            echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="mynotifications.php"><i class="bi bi-plus-square"></i> Ver todas</a></li>';
+                            echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a></li>';
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

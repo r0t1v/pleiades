@@ -82,7 +82,73 @@ include __DIR__.'\..\scripts/verifyauth.php';
         <nav class="backdefault">
             <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
         </nav>
-      
+        <section class="createticketheader">
+            <h1><i class="bi bi-ticket-perforated-fill"></i> Criação de ticket</h1>
+            <form class="formticket">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-ticket"></i> Ticket Nº</span>
+                                <input type="text" class="form-control" value="2022.2048031" aria-describedby="basic-addon1" disabled readonly/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-hash"></i> Ticket hash</span>
+                                <input type="text" class="form-control" value="#20222048031" aria-describedby="basic-addon1" disabled readonly/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-text"></i> Assunto do ticket</span>
+                                <input type="text" class="form-control" value="Assunto do ticket" aria-describedby="basic-addon1"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label"><i class="bi bi-chat-square-text"></i> Mensagem do ticket</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="ticketdesignacao" class="form-label"><i class="bi bi-cursor"></i> Setor de interesse</label>
+                                <select class="form-select" id="ticketdesignacao" aria-label="Default select example" required>
+                                    <option selected value="1">Tecnologia da informação</option>
+                                    <option value="2">Desenvolvimento</option>
+                                    <option value="3">DevOps</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="ticketdesignacao" class="form-label"><i class="bi bi-stopwatch-fill"></i> SLA</label>
+                                <select class="form-select" id="ticketdesignacao" aria-label="Default select example" required>
+                                    <option selected value="1">8hrs</option>
+                                    <option value="2">12hrs</option>
+                                    <option value="3">24hrs</option>
+                                    <option value="4">48hrs</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" align="center">
+                        <div class="col">
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                            <button class="btn btn-primary" type="submit"><i class="bi bi-plus-circle-dotted"></i> Criar Ticket</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
         <div class="systemsupport" align="center">
             <p><?= $SERVER_NAME.' '.$SYSTEM_VERSION.' - '.date('Y'); ?></p>
         </div>

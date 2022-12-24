@@ -31,63 +31,9 @@ if($QueryEmailExistsResult){
 		/* Notifications*/
 		$QueryNotifications = "SELECT descricao,tipo_notification FROM notifications WHERE visualizado='0' AND id_conta='".$_SESSION['DataAccount']['id']."' ORDER BY data_notification";
 		$QueryNotificationsExec = mysqli_query($CONNECTION_DB, $QueryNotifications);
-		$_SESSION['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
 		$_SESSION['DataNotifications'] = $QueryNotificationsExec->fetch_assoc();
+		$_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
 		/* Notifications*/
-		
-		/* Tools*/
-		$QueryAnydeskUser = "SELECT login,pass FROM usertools WHERE tipotool=1 AND id_conta='".$_SESSION['DataAccount']['id']."'";
-		$QueryAnydeskUserExec = mysqli_query($CONNECTION_DB, $QueryAnydeskUser);
-		$QueryAnydeskUserRow = mysqli_num_rows($QueryAnydeskUserExec);
-		
-		if($QueryAnydeskUserRow){
-			$QueryAnydeskUserResult = $QueryAnydeskUserExec->fetch_assoc();
-			$_SESSION['UserAnyDeskId'] = $QueryAnydeskUserResult['login'];
-			$_SESSION['UserAnyDeskPass'] = $QueryAnydeskUserResult['pass'];
-		}else{
-			$_SESSION['UserAnyDeskId'] = null;
-			$_SESSION['UserAnyDeskPass'] = null;
-		}
-		
-		$QueryTeamwUser = "SELECT login,pass FROM usertools WHERE tipotool=2 AND id_conta='".$_SESSION['DataAccount']['id']."'";
-		$QueryTeamwUserExec = mysqli_query($CONNECTION_DB, $QueryTeamwUser);
-		$QueryTeamwUserRow = mysqli_num_rows($QueryTeamwUserExec);
-		
-		if($QueryTeamwUserRow){
-			$QueryTeamwUserResult = $QueryTeamwUserExec->fetch_assoc();
-			$_SESSION['UserTeamwId'] = $QueryTeamwUserResult['login'];
-			$_SESSION['UserTeamwPass'] = $QueryTeamwUserResult['pass'];
-		}else{
-			$_SESSION['UserTeamwId'] = null;
-			$_SESSION['UserTeamwPass'] = null;
-		}
-
-		$QueryRealVNCUser = "SELECT login,pass FROM usertools WHERE tipotool=3 AND id_conta='".$_SESSION['DataAccount']['id']."'";
-        $QueryRealVNCUserExec = mysqli_query($CONNECTION_DB, $QueryRealVNCUser);
-        $QueryRealVNCUserRow = mysqli_num_rows($QueryRealVNCUserExec);
-                
-        if($QueryRealVNCUserRow){
-            $QueryRealVNCUserResult = $QueryRealVNCUserExec->fetch_assoc();
-            $_SESSION['UserRealVNCId'] = $QueryRealVNCUserResult['login'];
-			$_SESSION['UserRealVNCPass'] = $QueryRealVNCUserResult['pass'];
-        }else{
-            $_SESSION['UserRealVNCId'] = null;
-            $_SESSION['UserRealVNCPass'] = null;
-        }
-
-		$QueryNetCfgUser = "SELECT login,pass FROM usertools WHERE tipotool=4 AND id_conta='".$_SESSION['DataAccount']['id']."'";
-        $QueryNetCfgUserExec = mysqli_query($CONNECTION_DB, $QueryNetCfgUser);
-        $QueryNetCfgUserRow = mysqli_num_rows($QueryNetCfgUserExec);
-                
-        if($QueryNetCfgUserRow){
-            $QueryNetCfgUserResult = $QueryNetCfgUserExec->fetch_assoc();
-            $_SESSION['UserNetCfgName'] = $QueryNetCfgUserResult['login'];
-            $_SESSION['UserNetCfgIp'] = $QueryNetCfgUserResult['pass'];
-        }else{
-            $_SESSION['UserNetCfgName'] = null;
-            $_SESSION['UserNetCfgIp'] = null;
-        }
-		/* Tools*/
 	
 			if($_SESSION['DataAccount']['classe']==0){
 				header("Location: ../pages/systemadmin.php");

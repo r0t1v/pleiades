@@ -2,6 +2,85 @@
 session_start();
 require __DIR__.'\..\config.php';
 include __DIR__.'\..\scripts/verifyauth.php';
+/* Tools*/
+$QueryAnydeskUser = "SELECT login,pass,tipotool FROM usertools WHERE id_conta='".$_SESSION['DataAccount']['id']."'";
+$QueryAnydeskUserExec = mysqli_query($CONNECTION_DB, $QueryAnydeskUser);
+$_SESSION['UserTools'] = $QueryAnydeskUserExec->fetch_assoc();
+$_SESSION['UserTools']['CountTools'] = mysqli_num_rows($QueryAnydeskUserExec);
+var_dump($_SESSION['UserTools']);
+
+echo '<br>'.mysqli_num_rows($QueryAnydeskUserExec);
+
+echo '<br>'.count($_SESSION['UserTools']);
+
+var_dump($_SESSION['UserTools']['tipotool']);
+echo $_SESSION['UserTools']['tipotool'];
+for($i=0; $i<$_SESSION['UserTools']['CountTools']; $i++){
+
+    switch ($_SESSION['UserTools']['tipotool']) {
+        case 1:
+            echo '<p style="color:red">'.$_SESSION['UserTools']['login'].' / '.$_SESSION['UserTools']['pass'].'</p>';
+            break;
+        case 2:
+            echo '<p style="color:blue">'.$_SESSION['UserTools']['login'].' / '.$_SESSION['UserTools']['pass'].'</p>';
+            break;
+        case 3:
+            echo '<p style="color:yellow">'.$_SESSION['UserTools']['login'].' / '.$_SESSION['UserTools']['pass'].'</p>';
+            break;
+        case 4:
+            echo '<p style="color:black">'.$_SESSION['UserTools']['login'].' / '.$_SESSION['UserTools']['pass'].'</p>';
+            break;
+    }
+}
+/*
+if($QueryAnydeskUserRow){
+    $QueryAnydeskUserResult = $QueryAnydeskUserExec->fetch_assoc();
+    $_SESSION['UserAnyDeskId'] = $QueryAnydeskUserResult['login'];
+    $_SESSION['UserAnyDeskPass'] = $QueryAnydeskUserResult['pass'];
+}else{
+    $_SESSION['UserAnyDeskId'] = null;
+    $_SESSION['UserAnyDeskPass'] = null;
+}
+
+$QueryTeamwUser = "SELECT login,pass FROM usertools WHERE tipotool=2 AND id_conta='".$_SESSION['DataAccount']['id']."'";
+$QueryTeamwUserExec = mysqli_query($CONNECTION_DB, $QueryTeamwUser);
+$QueryTeamwUserRow = mysqli_num_rows($QueryTeamwUserExec);
+
+if($QueryTeamwUserRow){
+    $QueryTeamwUserResult = $QueryTeamwUserExec->fetch_assoc();
+    $_SESSION['UserTeamwId'] = $QueryTeamwUserResult['login'];
+    $_SESSION['UserTeamwPass'] = $QueryTeamwUserResult['pass'];
+}else{
+    $_SESSION['UserTeamwId'] = null;
+    $_SESSION['UserTeamwPass'] = null;
+}
+
+$QueryRealVNCUser = "SELECT login,pass FROM usertools WHERE tipotool=3 AND id_conta='".$_SESSION['DataAccount']['id']."'";
+$QueryRealVNCUserExec = mysqli_query($CONNECTION_DB, $QueryRealVNCUser);
+$QueryRealVNCUserRow = mysqli_num_rows($QueryRealVNCUserExec);
+        
+if($QueryRealVNCUserRow){
+    $QueryRealVNCUserResult = $QueryRealVNCUserExec->fetch_assoc();
+    $_SESSION['UserRealVNCId'] = $QueryRealVNCUserResult['login'];
+    $_SESSION['UserRealVNCPass'] = $QueryRealVNCUserResult['pass'];
+}else{
+    $_SESSION['UserRealVNCId'] = null;
+    $_SESSION['UserRealVNCPass'] = null;
+}
+
+$QueryNetCfgUser = "SELECT login,pass FROM usertools WHERE tipotool=4 AND id_conta='".$_SESSION['DataAccount']['id']."'";
+$QueryNetCfgUserExec = mysqli_query($CONNECTION_DB, $QueryNetCfgUser);
+$QueryNetCfgUserRow = mysqli_num_rows($QueryNetCfgUserExec);
+        
+if($QueryNetCfgUserRow){
+    $QueryNetCfgUserResult = $QueryNetCfgUserExec->fetch_assoc();
+    $_SESSION['UserNetCfgName'] = $QueryNetCfgUserResult['login'];
+    $_SESSION['UserNetCfgIp'] = $QueryNetCfgUserResult['pass'];
+}else{
+    $_SESSION['UserNetCfgName'] = null;
+    $_SESSION['UserNetCfgIp'] = null;
+}*/
+/* Tools*/
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -46,13 +125,13 @@ include __DIR__.'\..\scripts/verifyauth.php';
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['CountNotifications']; ?></span>
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['DataNotifications']['CountNotifications']; ?></span>
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
-                            if($_SESSION['CountNotifications']>=1){
+                            if($_SESSION['DataNotifications']['CountNotifications']>=1){
 
-                                for($i=0; $i<$_SESSION['CountNotifications']; $i++){
+                                for($i=0; $i<$_SESSION['DataNotifications']['CountNotifications']; $i++){
                                     
                                     switch ($_SESSION['DataNotifications']['tipo_notification']) {
                                         case 1:

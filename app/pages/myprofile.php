@@ -7,7 +7,7 @@ include __DIR__.'\..\scripts\verifyauth.php';
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Perfil do <?= $_SESSION['SocialUser'].' - '.$SERVER_NAME; ?></title>
+        <title>Perfil do <?= $_SESSION['DataAccount']['social'].' - '.$SERVER_NAME; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -67,7 +67,7 @@ include __DIR__.'\..\scripts\verifyauth.php';
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><?= $_SESSION['SocialUser']?></span><?php if($_SESSION['EmailVerificadoUser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
+                        <span><?= $_SESSION['DataAccount']['social']?></span><?php if($_SESSION['DataAccount']['emailverificado']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
                     </a>
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
@@ -96,21 +96,21 @@ include __DIR__.'\..\scripts\verifyauth.php';
             <h1><i class="bi bi-person-square"></i> Informações do Perfil</h1>
             <form action="../scripts/updateprofile.php" method="POST" class="formprofile">
                 <label for="profileusername" class="form-label">Nome</label>
-                <input class="form-control form-control-lg" type="text" id="profileusername" name="profileusername" placeholder="Nome" minlength="3" maxlength="100" value="<?= $_SESSION['NomeUser']; ?>" required />
+                <input class="form-control form-control-lg" type="text" id="profileusername" name="profileusername" placeholder="Nome" minlength="3" maxlength="100" value="<?= $_SESSION['DataAccount']['nome']; ?>" required />
                 <label for="profileusersocial" class="form-label">Nome de usuário</label>
-                <input class="form-control form-control-lg" type="text" id="profileusersocial" name="profileusersocial" placeholder="Nome de usuário" minlength="4" maxlength="50" value="<?= $_SESSION['SocialUser']; ?>" required />
+                <input class="form-control form-control-lg" type="text" id="profileusersocial" name="profileusersocial" placeholder="Nome de usuário" minlength="4" maxlength="50" value="<?= $_SESSION['DataAccount']['social']; ?>" required />
                 <label for="form-control" class="form-label">Tag</label>
-                <input class="form-control form-control-lg" type="text" placeholder="Tag" id="form-control" name="form-control" value="<?= $_SESSION['TagUser']; ?>" disabled />
+                <input class="form-control form-control-lg" type="text" placeholder="Tag" id="form-control" name="form-control" value="<?= $_SESSION['DataAccount']['tag']; ?>" disabled />
                 <label for="profileuseremail" class="form-label">E-mail</label>
-                <input class="form-control form-control-lg" type="text" id="profileuseremail" name="profileuseremail" placeholder="E-mail" minlength="5" maxlength="100" value="<?= $_SESSION['EmailUser']; ?>" required />
+                <input class="form-control form-control-lg" type="text" id="profileuseremail" name="profileuseremail" placeholder="E-mail" minlength="5" maxlength="100" value="<?= $_SESSION['DataAccount']['email']; ?>" required />
                 <label for="profileuserurl" class="form-label">Url do seu perfil profissional</label>
-                <input class="form-control form-control-lg" type="text" id="profileuserurl" name="profileuserurl" placeholder="Url" minlength="5" maxlength="100" value="<?= $_SESSION['UrlUser']; ?>" required />              
+                <input class="form-control form-control-lg" type="text" id="profileuserurl" name="profileuserurl" placeholder="Url" minlength="5" maxlength="100" value="<?= $_SESSION['DataAccount']['urlprofile']; ?>" required />              
                 <button type="submit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Editar</button>
             </form>
         </section>
         <aside class="emailcheck" align="center">
             <?php
-            if($_SESSION['EmailVerificadoUser']==0){
+            if($_SESSION['DataAccount']['emailverificado']==0){
                 echo'<a href="" style="color: #e67e22;"><i class="bi bi-shield-x"></i> Verificar e-mail</a>';
             }
             else{

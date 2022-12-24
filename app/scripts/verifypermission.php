@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if($_SESSION['ClasseUser']==0)
+if($_SESSION['DataAccount']['classe']==0)
 {
     header("Location: ..\system\systemadmin.php");
     exit;

@@ -46,27 +46,37 @@ include __DIR__.'\..\scripts/verifyauth.php';
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['ContNotify']; ?></span>
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['CountNotifications']; ?></span>
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
-                            if(isset($_SESSION['NotificationTop1'])){
-                                echo $_SESSION['NotificationTop1'];
-                                if(isset($_SESSION['NotificationTop2'])){
-                                    echo $_SESSION['NotificationTop2'];                                    
-                                    if(isset($_SESSION['NotificationTop3'])){
-                                        echo $_SESSION['NotificationTop3'];
+                            if($_SESSION['CountNotifications']>=1){
+
+                                for($i=0; $i<$_SESSION['CountNotifications']; $i++){
+                                    
+                                    switch ($_SESSION['DataNotifications']['tipo_notification']) {
+                                        case 1:
+                                            echo '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications']['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
+                                            break;
+                                        case 2:
+                                            echo '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications']['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
+                                            break;
+                                        case 3:
+                                            echo '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications']['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                                            break;
+                                        case 4:
+                                            echo '<li><a class="dropdown-item" href="corporate_page.php"><span class="badge rounded-pill text-bg-success"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications']['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                                            break;
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações do topo</a></li>';
+                                echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a></li>';
                             }else{
                                 echo '<p class="text-center">Você não tem notificações!</p>';
                             }
-                            echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a></li>';
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><?= $_SESSION['SocialUser']?></span><?php if($_SESSION['EmailVerificadoUser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
+                        <span><?= $_SESSION['DataAccount']['social']?></span><?php if($_SESSION['DataAccount']['emailverificado']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
                     </a>
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
@@ -87,25 +97,25 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <a class="col" href="#">
                         <img src="../assets/tickets_ok.png" alt="ticketsok"/>
                         <br>
-                        <strong><?= $_SESSION['TktConcluidoUser']; ?></strong>
+                        <strong><?= '0'; ?></strong>
                         <h5>Tickets Concluídos</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_pending.png" alt="ticketspending"/>
                         <br>
-                        <strong><?= $_SESSION['TktPendenteUser']; ?></strong>
+                        <strong><?= '0'; ?></strong>
                         <h5>Tickets Concluídos</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>
                         <br>
-                        <strong><?= $_SESSION['TktRejeitadoUser']; ?></strong>
+                        <strong><?= '0'; ?></strong>
                         <h5>Tickets Rejeitados</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_exited.png" alt="tickets_exited"/>
                         <br>
-                        <strong><?= $_SESSION['TktCanceladoUser']; ?></strong>
+                        <strong><?= '0'; ?></strong>
                         <h5>Tickets Cancelados</h5>
                     </a>
                 </div>
@@ -123,15 +133,15 @@ include __DIR__.'\..\scripts/verifyauth.php';
                 <div class="card-body">
                 <img src="../assets/cracha_default.png" alt="crachadefault"/>
                     <ul align="left">
-                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['NomeUser']; ?></li>
-                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['SocialUser']; ?></li>
-                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['TagUser']; ?></li>
-                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['EmailUser']; ?></li>
+                        <li><i class="bi bi-person"></i> Nome:<?= ' '.$_SESSION['DataAccount']['nome']; ?></li>
+                        <li><i class="bi bi-person-bounding-box"></i> Usuário:<?= ' '.$_SESSION['DataAccount']['social']; ?></li>
+                        <li><i class="bi bi-tag-fill"></i> Tag:<?= ' '.$_SESSION['DataAccount']['tag']; ?></li>
+                        <li><i class="bi bi-mailbox"></i> Email:<?= ' '.$_SESSION['DataAccount']['email']; ?></li>
                     </ul>
                 </div>
-                <p><a href="<?= 'http://'.$_SESSION['UrlUser']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
+                <p><a href="<?= 'http://'.$_SESSION['DataAccount']['urlprofile']; ?>" target="blank"><i class="bi bi-linkedin"></i></a></p>
                 <div class="card-footer">
-                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['DataCriacaoUser']); echo ' '.$dataformatada->format('d/m/Y') ?>
+                    <i class="bi bi-calendar2-check"></i> Conta criada em<?php $dataformatada = new DateTime($_SESSION['DataAccount']['datacriacao']); echo ' '.$dataformatada->format('d/m/Y') ?>
                 </div>
             </div>
         </article>

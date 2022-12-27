@@ -5,30 +5,40 @@ include __DIR__.'\..\scripts/verifyauth.php';
 /* Tools*/
 $QueryAnydeskUser = "SELECT login,pass,tipotool FROM usertools WHERE id_conta='".$_SESSION['DataAccount']['id']."'";
 $QueryAnydeskUserExec = mysqli_query($CONNECTION_DB, $QueryAnydeskUser);
-$_SESSION['UserTools'] = $QueryAnydeskUserExec->fetch_assoc();
+
+$_SESSION['UserTools']=null;
+
+for($k=0; $k<mysqli_num_rows($QueryAnydeskUserExec); $k++){
+    $DataTools = mysqli_fetch_assoc($QueryAnydeskUserExec);
+    echo $DataTools['login'].'<br>';
+    echo $DataTools['pass'].'<br>';
+    echo $DataTools['tipotool'].'<br>';
+    $_SESSION['UserTools'][$k][] = $DataTools['login'];
+    $_SESSION['UserTools'][$k][] = $DataTools['pass'];
+    $_SESSION['UserTools'][$k][] = $DataTools['tipotool'];
+}
+
 $_SESSION['UserTools']['CountTools'] = mysqli_num_rows($QueryAnydeskUserExec);
+
+
 var_dump($_SESSION['UserTools']);
 
-echo '<br>'.mysqli_num_rows($QueryAnydeskUserExec);
+echo $_SESSION['UserTools'][1][2];
 
-echo '<br>'.count($_SESSION['UserTools']);
-
-var_dump($_SESSION['UserTools']['tipotool']);
-echo $_SESSION['UserTools']['tipotool'];
 for($i=0; $i<$_SESSION['UserTools']['CountTools']; $i++){
 
-    switch ($_SESSION['UserTools']['tipotool']) {
+    switch ($_SESSION['UserTools'][$i][2]) {
         case 1:
-            echo '<p style="color:red">'.$_SESSION['UserTools']['login'].' / '.$_SESSION['UserTools']['pass'].'</p>';
+            echo '<p style="color:red">'.$_SESSION['UserTools'][$i][0].' / '.$_SESSION['UserTools'][$i][1].'</p>';
             break;
         case 2:
-            echo '<p style="color:blue">'.$_SESSION['UserTools']['login'].' / '.$_SESSION['UserTools']['pass'].'</p>';
+            echo '<p style="color:blue">'.$_SESSION['UserTools'][$i][0].' / '.$_SESSION['UserTools'][$i][1].'</p>';
             break;
         case 3:
-            echo '<p style="color:yellow">'.$_SESSION['UserTools']['login'].' / '.$_SESSION['UserTools']['pass'].'</p>';
+            echo '<p style="color:yellow">'.$_SESSION['UserTools'][$i][0].' / '.$_SESSION['UserTools'][$i][1].'</p>';
             break;
         case 4:
-            echo '<p style="color:black">'.$_SESSION['UserTools']['login'].' / '.$_SESSION['UserTools']['pass'].'</p>';
+            echo '<p style="color:black">'.$_SESSION['UserTools'][$i][0].' / '.$_SESSION['UserTools'][$i][1].'</p>';
             break;
     }
 }

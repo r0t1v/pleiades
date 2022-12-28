@@ -2,95 +2,6 @@
 session_start();
 require __DIR__.'\..\config.php';
 include __DIR__.'\..\scripts/verifyauth.php';
-/* Tools*/
-$QueryAnydeskUser = "SELECT login,pass,tipotool FROM usertools WHERE id_conta='".$_SESSION['DataAccount']['id']."'";
-$QueryAnydeskUserExec = mysqli_query($CONNECTION_DB, $QueryAnydeskUser);
-
-$_SESSION['UserTools']=null;
-
-for($k=0; $k<mysqli_num_rows($QueryAnydeskUserExec); $k++){
-    $DataTools = mysqli_fetch_assoc($QueryAnydeskUserExec);
-    echo $DataTools['login'].'<br>';
-    echo $DataTools['pass'].'<br>';
-    echo $DataTools['tipotool'].'<br>';
-    $_SESSION['UserTools'][$k][] = $DataTools['login'];
-    $_SESSION['UserTools'][$k][] = $DataTools['pass'];
-    $_SESSION['UserTools'][$k][] = $DataTools['tipotool'];
-}
-
-$_SESSION['UserTools']['CountTools'] = mysqli_num_rows($QueryAnydeskUserExec);
-
-
-var_dump($_SESSION['UserTools']);
-
-echo $_SESSION['UserTools'][1][2];
-
-for($i=0; $i<$_SESSION['UserTools']['CountTools']; $i++){
-
-    switch ($_SESSION['UserTools'][$i][2]) {
-        case 1:
-            echo '<p style="color:red">'.$_SESSION['UserTools'][$i][0].' / '.$_SESSION['UserTools'][$i][1].'</p>';
-            break;
-        case 2:
-            echo '<p style="color:blue">'.$_SESSION['UserTools'][$i][0].' / '.$_SESSION['UserTools'][$i][1].'</p>';
-            break;
-        case 3:
-            echo '<p style="color:yellow">'.$_SESSION['UserTools'][$i][0].' / '.$_SESSION['UserTools'][$i][1].'</p>';
-            break;
-        case 4:
-            echo '<p style="color:black">'.$_SESSION['UserTools'][$i][0].' / '.$_SESSION['UserTools'][$i][1].'</p>';
-            break;
-    }
-}
-/*
-if($QueryAnydeskUserRow){
-    $QueryAnydeskUserResult = $QueryAnydeskUserExec->fetch_assoc();
-    $_SESSION['UserAnyDeskId'] = $QueryAnydeskUserResult['login'];
-    $_SESSION['UserAnyDeskPass'] = $QueryAnydeskUserResult['pass'];
-}else{
-    $_SESSION['UserAnyDeskId'] = null;
-    $_SESSION['UserAnyDeskPass'] = null;
-}
-
-$QueryTeamwUser = "SELECT login,pass FROM usertools WHERE tipotool=2 AND id_conta='".$_SESSION['DataAccount']['id']."'";
-$QueryTeamwUserExec = mysqli_query($CONNECTION_DB, $QueryTeamwUser);
-$QueryTeamwUserRow = mysqli_num_rows($QueryTeamwUserExec);
-
-if($QueryTeamwUserRow){
-    $QueryTeamwUserResult = $QueryTeamwUserExec->fetch_assoc();
-    $_SESSION['UserTeamwId'] = $QueryTeamwUserResult['login'];
-    $_SESSION['UserTeamwPass'] = $QueryTeamwUserResult['pass'];
-}else{
-    $_SESSION['UserTeamwId'] = null;
-    $_SESSION['UserTeamwPass'] = null;
-}
-
-$QueryRealVNCUser = "SELECT login,pass FROM usertools WHERE tipotool=3 AND id_conta='".$_SESSION['DataAccount']['id']."'";
-$QueryRealVNCUserExec = mysqli_query($CONNECTION_DB, $QueryRealVNCUser);
-$QueryRealVNCUserRow = mysqli_num_rows($QueryRealVNCUserExec);
-        
-if($QueryRealVNCUserRow){
-    $QueryRealVNCUserResult = $QueryRealVNCUserExec->fetch_assoc();
-    $_SESSION['UserRealVNCId'] = $QueryRealVNCUserResult['login'];
-    $_SESSION['UserRealVNCPass'] = $QueryRealVNCUserResult['pass'];
-}else{
-    $_SESSION['UserRealVNCId'] = null;
-    $_SESSION['UserRealVNCPass'] = null;
-}
-
-$QueryNetCfgUser = "SELECT login,pass FROM usertools WHERE tipotool=4 AND id_conta='".$_SESSION['DataAccount']['id']."'";
-$QueryNetCfgUserExec = mysqli_query($CONNECTION_DB, $QueryNetCfgUser);
-$QueryNetCfgUserRow = mysqli_num_rows($QueryNetCfgUserExec);
-        
-if($QueryNetCfgUserRow){
-    $QueryNetCfgUserResult = $QueryNetCfgUserExec->fetch_assoc();
-    $_SESSION['UserNetCfgName'] = $QueryNetCfgUserResult['login'];
-    $_SESSION['UserNetCfgIp'] = $QueryNetCfgUserResult['pass'];
-}else{
-    $_SESSION['UserNetCfgName'] = null;
-    $_SESSION['UserNetCfgIp'] = null;
-}*/
-/* Tools*/
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -140,21 +51,20 @@ if($QueryNetCfgUserRow){
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
                             if($_SESSION['DataNotifications']['CountNotifications']>=1){
-
                                 for($i=0; $i<$_SESSION['DataNotifications']['CountNotifications']; $i++){
-                                    
-                                    switch ($_SESSION['DataNotifications']['tipo_notification']) {
+
+                                    switch ($_SESSION['DataNotifications'][$i][1]) {
                                         case 1:
-                                            echo '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications']['descricao'].'<br><small>Você tem um alerta do sistema!</small></a></li>';
+                                            echo '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications'][$i][0].'<br><small>Você tem um alerta do sistema!</small></a></li>';
                                             break;
                                         case 2:
-                                            echo '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications']['descricao'].'<br><small>Você tem uma nova notificação!</small></a></li>';
+                                            echo '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications'][$i][0].'<br><small>Você tem uma nova notificação!</small></a></li>';
                                             break;
                                         case 3:
-                                            echo '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications']['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                                            echo '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications'][$i][0].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
                                             break;
                                         case 4:
-                                            echo '<li><a class="dropdown-item" href="corporate_page.php"><span class="badge rounded-pill text-bg-success"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications']['descricao'].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                                            echo '<li><a class="dropdown-item" href="corporate_page.php"><span class="badge rounded-pill text-bg-success"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications'][$i][0].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
                                             break;
                                     }
                                 }

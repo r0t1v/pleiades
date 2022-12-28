@@ -2,12 +2,37 @@
 session_start();
 require __DIR__.'\..\config.php';
 include __DIR__.'\..\scripts\verifyauth.php';
+
+/* Tools*/
+for($a=0; $a<$_SESSION['UserTools']['CountTools']; $a++){
+
+    switch ($_SESSION['UserTools'][$a][2]) {
+        case 1:
+            $UserAnyDeskID = $_SESSION['UserTools'][$a][0];
+            $UserAnyDeskPass = $_SESSION['UserTools'][$a][1];
+            break;
+        case 2:
+            $UserTeamViewerID = $_SESSION['UserTools'][$a][0];
+            $UserTeamViewerPass = $_SESSION['UserTools'][$a][1];
+            break;
+        case 3:
+            $UserRealVncID = $_SESSION['UserTools'][$a][0];
+            $UserRealVncPass = $_SESSION['UserTools'][$a][1];
+            break;
+        case 4:
+            $UserPcName = $_SESSION['UserTools'][$a][0];
+            $UserIP = $_SESSION['UserTools'][$a][1];
+            break;
+    }
+}
+/* Tools*/
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <title>Corporativo do <?= $_SESSION['SocialUser'].' - '.$SERVER_NAME; ?></title>
+        <title>Corporativo do <?= $_SESSION['DataAccount']['social'].' - '.$SERVER_NAME; ?></title>
         <meta name="description" content="Pagina principal do Pleiades">
         <meta name="keywords" content="HTML, CSS, Javascript, PHP">
         <meta name="author" content="Vitor G. Dantas">
@@ -46,28 +71,36 @@ include __DIR__.'\..\scripts\verifyauth.php';
                         <span class="badge rounded-pill text-bg-light"><i class="bi bi-person-badge"></i></span> Coorporativo
                     </a>
                     <a class="col-sm-1 dropdown-toggle" id="menubuttons" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['ContNotify']; ?></span>
+                        <span class="badge rounded-pill text-bg-light"><i class="bi bi-bell"></i><?= $_SESSION['DataNotifications']['CountNotifications']; ?></span>
                     </a>
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
-                            if(isset($_SESSION['NotificationTop1'])){
-                                echo $_SESSION['NotificationTop1'];
-                                if(isset($_SESSION['NotificationTop2'])){
-                                    echo $_SESSION['NotificationTop2'];                                    
-                                    if(isset($_SESSION['NotificationTop3'])){
-                                        echo $_SESSION['NotificationTop3'];
+                            if($_SESSION['DataNotifications']['CountNotifications']>=1){
+                                for($i=0; $i<$_SESSION['DataNotifications']['CountNotifications']; $i++){
+
+                                    switch ($_SESSION['DataNotifications'][$i][1]) {
+                                        case 1:
+                                            echo '<li><a class="dropdown-item" href="system.php"><span class="badge rounded-pill text-bg-danger"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications'][$i][0].'<br><small>Você tem um alerta do sistema!</small></a></li>';
+                                            break;
+                                        case 2:
+                                            echo '<li><a class="dropdown-item" href="mytickets.php"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications'][$i][0].'<br><small>Você tem uma nova notificação!</small></a></li>';
+                                            break;
+                                        case 3:
+                                            echo '<li><a class="dropdown-item" href="myprofile.php"><span class="badge rounded-pill text-bg-info"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications'][$i][0].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                                            break;
+                                        case 4:
+                                            echo '<li><a class="dropdown-item" href="corporate_page.php"><span class="badge rounded-pill text-bg-success"><i class="bi bi-bell-fill"></i> Novo</span> '.$_SESSION['DataNotifications'][$i][0].'<br><small>Nova alteração efetuada na conta!</small></a></li>';
+                                            break;
                                     }
                                 }
-                                echo '<li><a class="dropdown-item text-center" href="../scripts/cleantopnotifications.php"><i class="bi bi-check2-square"></i> Limpar notificações</a></li>';
-                            }
-                            else{
+                                echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a></li>';
+                            }else{
                                 echo '<p class="text-center">Você não tem notificações!</p>';
                             }
-                            echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a></li>';
                         ?>
                     </ul>
                     <a class="col-sm-2 dropdown-toggle" id="accbutton" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span><?= $_SESSION['SocialUser']; ?></span><?php if($_SESSION['EmailVerificadoUser']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
+                        <span><?= $_SESSION['DataAccount']['social']?></span><?php if($_SESSION['DataAccount']['emailverificado']==1){ $msgemail='<span style="color:#2ecc71">Verificado</span>'; echo ' <i class="bi bi-patch-check-fill" id="verifyicon"></i>'; }else{ $msgemail='<span style="color:#e74c3c">Não verificado</span>';}?>
                     </a>
                     <ul class="dropdown-menu" id="accdropdown">
                         <li><i class="bi bi-envelope-at-fill"></i> E-mail:<?= ' '.$msgemail; ?></li>
@@ -98,17 +131,17 @@ include __DIR__.'\..\scripts\verifyauth.php';
                 <div class="row" align="center">
                     <div class="col">
                         <?php
-                        if(isset($_SESSION['UserAnyDeskId'])){
+                        if(isset($UserAnyDeskID)){
                             echo'<div class="card">
                                     <div class="card-body">
                                         <img src="../assets/anydesk_user.png" alt="anydesklogo"/>
                                         <h5 class="card-title">Client Anydesk</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['DataAccount']['social'].'</h6>
                                         <form action="../scripts/mytoolsquerys/uploadanydesk.php" method="POST" class="form-cards">
                                             <label for="useranydeskid" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" minlength="9" maxlength="12" value='.$_SESSION['UserAnyDeskId'].' required/>
+                                            <input type="text" class="form-control" id="useranydeskid" name="useranydeskid" minlength="9" maxlength="12" value='.$UserAnyDeskID.' required/>
                                             <label for="useranydeskpass" class="form-label">Senha</label>
-                                            <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" minlength="8" maxlength="32" value='.$_SESSION['UserAnyDeskPass'].' required/>
+                                            <input type="text" class="form-control" id="useranydeskpass" name="useranydeskpass" minlength="8" maxlength="32" value='.$UserAnyDeskPass.' required/>
                                             <button type="submit" class="card-link btn btn-primary">Atualizar</button>
                                             <a href="../scripts/mytoolsquerys/cleananydesk.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>
@@ -152,17 +185,17 @@ include __DIR__.'\..\scripts\verifyauth.php';
                     </div>
                     <div class="col">
                         <?php
-                        if(isset($_SESSION['UserTeamwId'])){
+                        if(isset($UserTeamViewerID)){
                             echo'<div class="card">
                                     <div class="card-body">
                                         <img src="../assets/teamw_user.png" alt="teamviewerlogo"/>
                                         <h5 class="card-title">Client Team Viewer</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['DataAccount']['social'].'</h6>
                                         <form action="../scripts/mytoolsquerys/uploadteamw.php" method="POST" class="form-cards">
                                             <label for="userteamwid" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="userteamwid" name="userteamwid" minlength="9" maxlength="12" value='.$_SESSION['UserTeamwId'].' required/>
+                                            <input type="text" class="form-control" id="userteamwid" name="userteamwid" minlength="9" maxlength="12" value='.$UserTeamViewerID.' required/>
                                             <label for="userteamwpass" class="form-label">Senha</label>
-                                            <input type="text" class="form-control" id="userteamwpass" name="userteamwpass" minlength="8" maxlength="32" value='.$_SESSION['UserTeamwPass'].' required/>
+                                            <input type="text" class="form-control" id="userteamwpass" name="userteamwpass" minlength="8" maxlength="32" value='.$UserTeamViewerPass.' required/>
                                             <button type="submit" class="card-link btn btn-primary">Atualizar</button>
                                             <a href="../scripts/mytoolsquerys/cleanteamw.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>
@@ -206,17 +239,17 @@ include __DIR__.'\..\scripts\verifyauth.php';
                     </div>
                     <div class="col">
                         <?php
-                        if(isset($_SESSION['UserRealVNCId'])){
+                        if(isset($UserRealVncID)){
                             echo'<div class="card">
                                     <div class="card-body">
                                         <img src="../assets/realvnc_user.png" alt="realvnclogo"/>
                                         <h5 class="card-title">Client RealVNC</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['DataAccount']['social'].'</h6>
                                         <form action="../scripts/mytoolsquerys/uploadrealvnc.php" method="POST" class="form-cards">
                                             <label for="userrealvncid" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="userrealvncid" name="userrealvncid" minlength="9" maxlength="12" value='.$_SESSION['UserRealVNCId'].' required/>
+                                            <input type="text" class="form-control" id="userrealvncid" name="userrealvncid" minlength="9" maxlength="12" value='.$UserRealVncID.' required/>
                                             <label for="userrealvncpass" class="form-label">Senha</label>
-                                            <input type="text" class="form-control" id="userrealvncpass" name="userrealvncpass" minlength="8" maxlength="32" value='.$_SESSION['UserRealVNCPass'].' required/>
+                                            <input type="text" class="form-control" id="userrealvncpass" name="userrealvncpass" minlength="8" maxlength="32" value='.$UserRealVncPass.' required/>
                                             <button type="submit" class="card-link btn btn-primary">Atualizar</button>
                                             <a href="../scripts/mytoolsquerys/cleanrealvnc.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>
@@ -262,17 +295,17 @@ include __DIR__.'\..\scripts\verifyauth.php';
                 <div class="row" align="center">
                     <div class="col">
                         <?php
-                        if(isset($_SESSION['UserNetCfgIp'])){
+                        if(isset($UserPcName)){
                             echo'<div class="card">
                                     <div class="card-body" align="center">
                                         <img src="../assets/network_user.png" alt="networklogo"/>
                                         <h5 class="card-title">Configurações de rede</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['SocialUser'].'</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted">'.$_SESSION['DataAccount']['social'].'</h6>
                                         <form action="../scripts/mytoolsquerys/uploadnetcfg.php" method="POST" class="form-cards">
                                             <label for="userpcname" class="form-label">ID</label>
-                                            <input type="text" class="form-control" id="userpcname" name="userpcname" minlength="9" maxlength="12" value='.$_SESSION['UserNetCfgName'].' required/>
+                                            <input type="text" class="form-control" id="userpcname" name="userpcname" minlength="9" maxlength="12" value='.$UserPcName.' required/>
                                             <label for="userpcip" class="form-label">Senha</label>
-                                            <input type="text" class="form-control" id="userpcip" name="userpcip" minlength="8" maxlength="32" value='.$_SESSION['UserNetCfgIp'].' required/>
+                                            <input type="text" class="form-control" id="userpcip" name="userpcip" minlength="8" maxlength="32" value='.$UserIP.' required/>
                                             <button type="submit" class="card-link btn btn-primary">Atualizar</button>
                                             <a href="../scripts/mytoolsquerys/cleannetcfg.php" class="card-link btn btn-outline-danger">Limpar</a>
                                         </form>

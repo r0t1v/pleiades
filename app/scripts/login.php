@@ -29,12 +29,29 @@ if($QueryEmailExistsResult){
 		/* Tickets */
 
 		/* Notifications*/
-		$QueryNotifications = "SELECT descricao,tipo_notification FROM notifications WHERE visualizado='0' AND id_conta='".$_SESSION['DataAccount']['id']."' ORDER BY data_notification";
+		$QueryNotifications = "SELECT descricao,tipo_notification FROM notifications WHERE visualizado='0' AND id_conta='".$_SESSION['DataAccount']['id']."' ORDER BY data_notification DESC";
 		$QueryNotificationsExec = mysqli_query($CONNECTION_DB, $QueryNotifications);
-		$_SESSION['DataNotifications'] = $QueryNotificationsExec->fetch_assoc();
+		for($j=0; $j<mysqli_num_rows($QueryNotificationsExec); $j++){
+			$DataTools = mysqli_fetch_assoc($QueryNotificationsExec);
+			$_SESSION['DataNotifications'][$j][] = $DataTools['descricao'];
+			$_SESSION['DataNotifications'][$j][] = $DataTools['tipo_notification'];
+		}
 		$_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
 		/* Notifications*/
-	
+
+		/* Tools*/
+		$QueryAnydeskUser = "SELECT login,pass,tipotool FROM usertools WHERE id_conta='".$_SESSION['DataAccount']['id']."'";
+		$QueryAnydeskUserExec = mysqli_query($CONNECTION_DB, $QueryAnydeskUser);
+
+		for($k=0; $k<mysqli_num_rows($QueryAnydeskUserExec); $k++){
+			$DataTools = mysqli_fetch_assoc($QueryAnydeskUserExec);
+			$_SESSION['UserTools'][$k][] = $DataTools['login'];
+			$_SESSION['UserTools'][$k][] = $DataTools['pass'];
+			$_SESSION['UserTools'][$k][] = $DataTools['tipotool'];
+		}
+		$_SESSION['UserTools']['CountTools'] = mysqli_num_rows($QueryAnydeskUserExec);
+		/* Tools*/
+			
 			if($_SESSION['DataAccount']['classe']==0){
 				header("Location: ../pages/systemadmin.php");
 				exit;

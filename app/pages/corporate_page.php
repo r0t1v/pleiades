@@ -3,7 +3,7 @@ session_start();
 require __DIR__.'\..\config.php';
 include __DIR__.'\..\scripts\verifyauth.php';
 
-/* Tools*/
+/* Format Tools*/
 for($a=0; $a<$_SESSION['UserTools']['CountTools']; $a++){
 
     switch ($_SESSION['UserTools'][$a][2]) {
@@ -25,7 +25,7 @@ for($a=0; $a<$_SESSION['UserTools']['CountTools']; $a++){
             break;
     }
 }
-/* Tools*/
+/* Format Tools*/
 
 ?>
 <!DOCTYPE html>

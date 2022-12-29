@@ -2,6 +2,7 @@
 session_start();
 require __DIR__.'\..\config.php';
 include __DIR__.'\..\scripts/verifyauth.php';
+$TicketGen = date('ymd').'.'.date('Hi').$_SESSION['DataAccount']['id'].mt_rand(1, 99);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -99,7 +100,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                         <div class="col">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-ticket"></i> Ticket Nº</span>
-                                <input type="text" class="form-control" value="2022.2048031" aria-describedby="basic-addon1" disabled readonly/>
+                                <input type="text" class="form-control" value="<?= $TicketGen; ?>" aria-describedby="basic-addon1" disabled readonly/>
                             </div>
                         </div>
                         <div class="col">

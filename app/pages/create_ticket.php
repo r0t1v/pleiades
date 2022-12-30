@@ -2,7 +2,6 @@
 session_start();
 require __DIR__.'\..\config.php';
 include __DIR__.'\..\scripts/verifyauth.php';
-$TicketGen = date('ymd').'.'.date('Hi').$_SESSION['DataAccount']['id'].mt_rand(1, 99);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -94,57 +93,60 @@ $TicketGen = date('ymd').'.'.date('Hi').$_SESSION['DataAccount']['id'].mt_rand(1
         </nav>
         <section class="createticketheader">
             <h1><i class="bi bi-ticket-perforated-fill"></i> Criação de ticket</h1>
-            <form class="formticket">
+            <form class="formticket" action="../scripts/createnewticket.php" method="POST">
                 <div class="container">
                     <div class="row">
                         <div class="col">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-ticket"></i> Ticket Nº</span>
-                                <input type="text" class="form-control" value="<?= $TicketGen; ?>" aria-describedby="basic-addon1" disabled readonly/>
+                                <span class="input-group-text" id="newnumticketlabel"><i class="bi bi-ticket"></i> Ticket Nº</span>
+                                <input type="text" id="newnumticket" name="newnumticket" class="form-control" value="sim" aria-describedby="newnumticketlabel" disabled readonly/>
                             </div>
                         </div>
                         <div class="col">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-hash"></i> Ticket hash</span>
-                                <input type="text" class="form-control" value="#20222048031" aria-describedby="basic-addon1" disabled readonly/>
+                                <span class="input-group-text" id="newtickethashlabel"><i class="bi bi-hash"></i> Ticket hash</span>
+                                <input type="text" id="newtickethash" name="newtickethash" class="form-control" value="sim2" aria-describedby="newtickethashlabel" disabled readonly/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-card-text"></i> Assunto do ticket</span>
-                                <input type="text" class="form-control" value="Assunto do ticket" aria-describedby="basic-addon1"/>
+                                <span class="input-group-text" id="newtickettitlelabel"><i class="bi bi-card-text"></i> Assunto do ticket</span>
+                                <input type="text" id="newtickettitle" name="newtickettitle" class="form-control" placeholder="Digite o assunto do ticket" aria-describedby="newtickettitlelabel" minlength="5" maxlength="80" required/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label"><i class="bi bi-chat-square-text"></i> Mensagem do ticket</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="newticketmsg" class="form-label"><i class="bi bi-chat-square-text"></i> Mensagem do ticket</label>
+                                <textarea class="form-control" id="newticketmsg" name="newticketmsg" rows="9" minlength="5" maxlength="1000" required></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="ticketdesignacao" class="form-label"><i class="bi bi-cursor"></i> Setor de interesse</label>
-                                <select class="form-select" id="ticketdesignacao" aria-label="Default select example" required>
-                                    <option selected value="1">Tecnologia da informação</option>
-                                    <option value="2">Desenvolvimento</option>
-                                    <option value="3">DevOps</option>
+                                <label for="newticketdesign" class="form-label"><i class="bi bi-cursor"></i> Setor de interesse</label>
+                                <select class="form-select" id="newticketdesign" name="newticketdesign" aria-label="Seleção de setor" required>
+                                    <?php 
+                                        for($b=0; $b<count($TICKET_TEAM); $b++){
+                                            echo '<option value="'.$TICKET_TEAM[$b].'">'.$TICKET_TEAM[$b].'</option>';
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
                         <div class="col">
                             <div class="mb-3">
-                                <label for="ticketdesignacao" class="form-label"><i class="bi bi-stopwatch-fill"></i> SLA</label>
-                                <select class="form-select" id="ticketdesignacao" aria-label="Default select example" required>
-                                    <option selected value="1">8hrs</option>
-                                    <option value="2">12hrs</option>
-                                    <option value="3">24hrs</option>
-                                    <option value="4">48hrs</option>
+                                <label for="newticketsla" class="form-label"><i class="bi bi-stopwatch-fill"></i> SLA</label>
+                                <select class="form-select" id="newticketsla" name="newticketsla" aria-label="Seleção de SLA" required>
+                                    <?php 
+                                        for($c=0; $c<count($TICKET_SLA ); $c++){
+                                            echo '<option value="'.$TICKET_SLA [$c].'">'.$TICKET_SLA[$c].'hrs</option>';
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -152,7 +154,7 @@ $TicketGen = date('ymd').'.'.date('Hi').$_SESSION['DataAccount']['id'].mt_rand(1
                     <div class="row" align="center">
                         <div class="col">
                             <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-primary" type="submit"><i class="bi bi-plus-circle-dotted"></i> Criar Ticket</button>
+                            <button class="btn btn-primary" id="buttonformtkt" type="submit"><i class="bi bi-plus-circle-dotted"></i> Criar Ticket</button>
                             </div>
                         </div>
                     </div>

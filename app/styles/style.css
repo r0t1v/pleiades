@@ -418,7 +418,21 @@
     color: #fff;
 }
 .createticketheader .formticket button{
-    font-size: 22px;
+    font-size: 24px;
     padding: 20px 10px;
 }
 /* ----------------- create-ticket -------------- */
+/* ----------------- Ticket-page  -------------- */
+.ticketcontent{
+    width: 55%;
+    margin: 10px auto;
+}
+.ticketcontent h1{
+    padding: 10px 30px;
+    margin-bottom: 20px;
+    border-radius: 1rem;
+    background-color: #34495e;
+    box-shadow: 0px 8px #2c3e50;
+    color: #fff;
+}
+/* ----------------- Ticket-page  -------------- */

@@ -60,12 +60,12 @@ if($QueryEmailExistsResult){
 				exit;
 			}
 	}else{
-		$_SESSION['MsgLogin'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> A senha informada está incorreta!</div>';
+		$_SESSION['Msg'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> A senha informada está incorreta!</div>';
 		header("Location: ..\index.php");
 		exit;
 	}
 }else{
-	$_SESSION['MsgLogin'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O email informado não está no banco de dados do servidor!</div>';
+	$_SESSION['Msg'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O email informado não está no banco de dados do servidor!</div>';
 	header("Location: ..\index.php");
 	exit;
 }

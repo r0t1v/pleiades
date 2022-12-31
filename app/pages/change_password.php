@@ -93,12 +93,12 @@ include __DIR__.'\..\scripts\verifyauth.php';
         </nav>
         <form action="../scripts/changepass.php" method="POST" class="formpassword" align="center">
             <?php
-                if(isset($_SESSION['MsgChangePass'])){
-                    echo $_SESSION['MsgChangePass'];
-                    unset($_SESSION['MsgChangePass']);
+                if(isset($_SESSION['Msg'])){
+                    echo $_SESSION['Msg'];
+                    unset($_SESSION['Msg']);
                 }
                 else{
-                    unset($_SESSION['MsgChangePass']);
+                    unset($_SESSION['Msg']);
                 }
             ?>
             <strong><i class="bi bi-arrow-repeat"></i> Troque sua senha!</i></strong>

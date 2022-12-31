@@ -93,12 +93,12 @@ include __DIR__.'\..\scripts\verifyauth.php';
         </nav>
         <section class="profileinfo">
             <?php
-                if(isset($_SESSION['MsgUpdateProfile'])){
-                    echo $_SESSION['MsgUpdateProfile'];
-                    unset($_SESSION['MsgUpdateProfile']);
+                if(isset($_SESSION['Msg'])){
+                    echo $_SESSION['Msg'];
+                    unset($_SESSION['Msg']);
                 }
                 else{
-                    unset($_SESSION['MsgUpdateProfile']);
+                    unset($_SESSION['Msg']);
                 }
             ?>
             <h1><i class="bi bi-person-square"></i> Informações do Perfil</h1>

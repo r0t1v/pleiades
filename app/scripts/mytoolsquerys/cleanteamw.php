@@ -35,7 +35,7 @@ for($j=0; $j<mysqli_num_rows($QueryNotificationsExec); $j++){
 $_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
 /* Update Notifications */
 
-$_SESSION['MsgCorpPage'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
+$_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
 header("Location: ..\..\pages\corporate_page.php");
 exit;
 

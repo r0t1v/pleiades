@@ -24,12 +24,12 @@ include __DIR__.'./scripts/verifylogged.php';
         </nav>
         <aside class="msglogin" align="center">
             <?php
-                if(isset($_SESSION['MsgLogin'])){
-                    echo $_SESSION['MsgLogin'];
-                    unset($_SESSION['MsgLogin']);
+                if(isset($_SESSION['MsgError'])){
+                    echo $_SESSION['MsgError'];
+                    unset($_SESSION['MsgError']);
                 }
                 else{
-                    unset($_SESSION['MsgLogin']);
+                    unset($_SESSION['MsgError']);
                 }
             ?>
         </aside>

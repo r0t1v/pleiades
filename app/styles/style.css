@@ -418,6 +418,7 @@
     color: #fff;
 }
 .createticketheader .formticket button{
+    font-size: 22px;
     padding: 20px 10px;
 }
 /* ----------------- create-ticket -------------- */

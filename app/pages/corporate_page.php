@@ -118,12 +118,12 @@ for($a=0; $a<$_SESSION['UserTools']['CountTools']; $a++){
         </nav>
         <section class="cardstool">
             <?php
-                if(isset($_SESSION['MsgCorpPage'])){
-                    echo $_SESSION['MsgCorpPage'];
-                    unset($_SESSION['MsgCorpPage']);
+                if(isset($_SESSION['Msg'])){
+                    echo $_SESSION['Msg'];
+                    unset($_SESSION['Msg']);
                 }
                 else{
-                    unset($_SESSION['MsgCorpPage']);
+                    unset($_SESSION['Msg']);
                 }
             ?>
             <h1><i class="bi bi-tools"></i> Minhas ferramentas</h1>

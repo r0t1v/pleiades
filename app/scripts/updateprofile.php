@@ -35,7 +35,7 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
 		$_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
         /* Update Notifications */
 
-        $_SESSION['MsgUpdateProfile'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas no banco de dados!</div>';
+        $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas no banco de dados!</div>';
         header("Location: ..\pages\myprofile.php");
         exit;
 
@@ -64,7 +64,7 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
 		$_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
         /* Update Notifications */
 
-        $_SESSION['MsgUpdateProfile'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas com sucesso no banco de dados!</div>';
+        $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas com sucesso no banco de dados!</div>';
         header("Location: ..\pages\myprofile.php");
         exit;
 
@@ -98,11 +98,11 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
             $_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
             /* Update Notifications */
 
-            $_SESSION['MsgUpdateProfile'] =' <div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas no banco de dados!</div>';
+            $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas no banco de dados!</div>';
             header("Location: ..\pages\myprofile.php");
             exit;
         }else{
-            $_SESSION['MsgUpdateProfile'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O nome de usuário já existe em nosso banco de dados, por favor tente outro!</div>';
+            $_SESSION['Msg'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O nome de usuário já existe em nosso banco de dados, por favor tente outro!</div>';
             header("Location: ..\pages\myprofile.php");
             exit;
         }
@@ -137,17 +137,17 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
             $_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
             /* Update Notifications */
 
-            $_SESSION['MsgUpdateProfile'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas com sucesso no banco de dados!</div>';
+            $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas com sucesso no banco de dados!</div>';
             header("Location: ..\pages\myprofile.php");
             exit;
         }else{
-            $_SESSION['MsgUpdateProfile'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O nome de usuário ou e-mail já existe em nosso banco de dados, por favor tente outro!</div>';
+            $_SESSION['Msg'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O nome de usuário ou e-mail já existe em nosso banco de dados, por favor tente outro!</div>';
             header("Location: ..\pages\myprofile.php");
             exit;
         }
     }
 }else{
-    $_SESSION['MsgUpdateProfile'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> As condições não foram atendidas! Por favor, tente novamente.</div>';
+    $_SESSION['Msg'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> As condições não foram atendidas! Por favor, tente novamente.</div>';
     header("Location: ..\pages\myprofile.php");
 	exit;
 }

@@ -92,23 +92,18 @@ include __DIR__.'\..\scripts/verifyauth.php';
             <a href="system.php"><i class="bi bi-arrow-left-circle-fill"></i> Voltar</a>
         </nav>
         <section class="createticketheader">
+            <?php
+                if(isset($_SESSION['Msg'])){
+                    echo $_SESSION['Msg'];
+                    unset($_SESSION['Msg']);
+                }
+                else{
+                    unset($_SESSION['Msg']);
+                }
+            ?>
             <h1><i class="bi bi-ticket-perforated-fill"></i> Criação de ticket</h1>
             <form class="formticket" action="../scripts/createnewticket.php" method="POST">
                 <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="newnumticketlabel"><i class="bi bi-ticket"></i> Ticket Nº</span>
-                                <input type="text" id="newnumticket" name="newnumticket" class="form-control" value="sim" aria-describedby="newnumticketlabel" disabled readonly/>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="newtickethashlabel"><i class="bi bi-hash"></i> Ticket hash</span>
-                                <input type="text" id="newtickethash" name="newtickethash" class="form-control" value="sim2" aria-describedby="newtickethashlabel" disabled readonly/>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="input-group mb-3">

@@ -69,7 +69,7 @@ if(strlen($NetCfgNameCreate)>=4 and strlen($NetCfgNameCreate)<=50 and strlen($Ne
             $_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
             /* Update Notifications */
 
-            $_SESSION['MsgCorpPage'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
+            $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
             header("Location: ..\..\pages\corporate_page.php");
             exit;
 
@@ -106,19 +106,19 @@ if(strlen($NetCfgNameCreate)>=4 and strlen($NetCfgNameCreate)<=50 and strlen($Ne
             $_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
             /* Update Notifications */
 
-            $_SESSION['MsgCorpPage'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
+            $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
             header("Location: ..\..\pages\corporate_page.php");
             exit;
         }
 
     }else{
-        $_SESSION['MsgCorpPage'] = '<div class="alert alert-info" role="alert"><i class="bi bi-info-circle-fill"></i> Informações não podem ser as mesmas ao salvar!</div>';
+        $_SESSION['Msg'] = '<div class="alert alert-info" role="alert"><i class="bi bi-info-circle-fill"></i> Informações não podem ser as mesmas ao salvar!</div>';
         header("Location: ..\..\pages\corporate_page.php");
         exit;
     }
 
 }else{
-    $_SESSION['MsgCorpPage'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> Não foi possível salvar as informações!</div>';
+    $_SESSION['Msg'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> Não foi possível salvar as informações!</div>';
     header("Location: ..\..\pages\corporate_page.php");
 	exit;
 }

@@ -103,7 +103,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <img src="../assets/tickets_pending.png" alt="ticketspending"/>
                         <br>
                         <strong><?= '0'; ?></strong>
-                        <h5>Tickets Concluídos</h5>
+                        <h5>Tickets Pendentes</h5>
                     </a>
                     <a class="col" href="#">
                     <img src="../assets/tickets_rejected.png" alt="tickets_rejected"/>

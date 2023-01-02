@@ -122,15 +122,24 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="newticketmsg" class="form-label"><i class="bi bi-chat-square-text"></i> Mensagem do ticket</label>
-                                <textarea class="form-control" id="newticketmsg" name="newticketmsg" rows="9" minlength="5" maxlength="1000" required></textarea>
+                                <label for="newticketmsg" class="form-label"><i class="bi bi-chat-square-text"></i> Chat</label>
+                                <textarea class="form-control" id="newticketmsg" name="newticketmsg" rows="15" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Digite sua mensagem aqui" aria-label="Recipient's username" aria-describedby="submitmsg">
+                                <a class="btn btn-outline-secondary" href="#" role="button" id="submitmsg"><i class="bi bi-paperclip"></i></a>
+                                <button class="btn btn-primary" type="submit" id="submitmsg"><i class="bi bi-send"></i> Enviar</button>
                             </div>
                         </div>
                     </div>
                     <div class="row" align="center">
                         <div class="col">
                             <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-primary" id="buttonformtkt" type="submit"><i class="bi bi-plus-circle-dotted"></i> Criar Ticket</button>
+                                <a class="btn btn-outline-danger" href="#" role="button"><i class="bi bi-x-square"></i> Cancelar Ticket</a>
                             </div>
                         </div>
                     </div>

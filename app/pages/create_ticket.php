@@ -123,6 +123,14 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
+                                <label for="formFile" class="form-label"><i class="bi bi-paperclip"></i> Escolha um arquivo para anexar</label>
+                                <input class="form-control" type="file" id="formFile"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
                                 <label for="newticketdesign" class="form-label"><i class="bi bi-cursor"></i> Setor de interesse</label>
                                 <select class="form-select" id="newticketdesign" name="newticketdesign" aria-label="Seleção de setor" required>
                                     <?php 
@@ -149,7 +157,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <div class="row" align="center">
                         <div class="col">
                             <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-primary" id="buttonformtkt" type="submit"><i class="bi bi-plus-circle-dotted"></i> Criar Ticket</button>
+                            <button class="btn btn-primary" type="submit"><i class="bi bi-plus-circle-dotted"></i> Criar Ticket</button>
                             </div>
                         </div>
                     </div>

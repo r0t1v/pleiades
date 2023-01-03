@@ -435,4 +435,9 @@
     box-shadow: 0px 8px #2c3e50;
     color: #fff;
 }
+.ticketcontent .formticket .container .row .col .chatticket{
+    background-color: #dcdde1;
+    border-radius: 2rem;
+    border: solid 1px #4b6584;
+}
 /* ----------------- Ticket-page  -------------- */

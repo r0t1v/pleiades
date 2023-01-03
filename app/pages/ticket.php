@@ -2,6 +2,7 @@
 session_start();
 require __DIR__.'\..\config.php';
 include __DIR__.'\..\scripts/verifyauth.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -121,10 +122,10 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="mb-3">
-                                <label for="newticketmsg" class="form-label"><i class="bi bi-chat-square-text"></i> Chat</label>
-                                <textarea class="form-control" id="newticketmsg" name="newticketmsg" rows="15" readonly></textarea>
-                            </div>
+                                <label for="newticketmsg" class="form-label"><i class="bi bi-chat-square-text"></i> Bate-papo</label>
+                                <div class="chatticket">
+                                    
+                                </div>
                         </div>
                     </div>
                     <div class="row">

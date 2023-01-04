@@ -36,7 +36,7 @@ $_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNot
 /* Update Notifications */
 
 $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
-header("Location: ..\..\pages\corporate_page.php");
+header("Location: ..\..\pages\Corporate_page.php");
 exit;
 
 mysqli_close($CONNECTION_DB);

@@ -427,7 +427,7 @@
     width: 55%;
     margin: 10px auto;
 }
-.ticketcontent h1{
+.ticketcontent h3{
     padding: 10px 30px;
     margin-bottom: 20px;
     border-radius: 1rem;
@@ -435,9 +435,23 @@
     box-shadow: 0px 8px #2c3e50;
     color: #fff;
 }
-.ticketcontent .formticket .container .row .col .chatticket{
-    background-color: #dcdde1;
-    border-radius: 2rem;
-    border: solid 1px #4b6584;
+.ticketcontent .container .row .col .input-group span, .col-sm-2 .input-group span, #formviewticket{
+    background-color: #34495e;
+    border: solid 1px #fff;
+    color:#fff;
+}
+.ticketcontent .container .row .col .input-group i,.col-sm-2 .input-group i{
+    padding-right: 5px;
+}
+.ticketcontent .container .row .col .chatticket{
+    height: 500px;
+    margin-bottom: 13px;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    border: solid 2px #4b6584;
+}
+.ticketcontent .container .row .col .d-grid a{
+    font-size: 18px;
+    padding: 10px 4px;
 }
 /* ----------------- Ticket-page  -------------- */

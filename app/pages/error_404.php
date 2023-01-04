@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>!Ops - Pleiades</title>
+    <meta name="description" content="Pagina de erro">
+    <meta name="keywords" content="HTML, CSS, Javascript, PHP">
+    <meta name="author" content="Vitor G. Dantas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="../assets/base/favicon.png"/>
     <link rel="stylesheet" href="../styles/style.css"/>
     <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.css"/>

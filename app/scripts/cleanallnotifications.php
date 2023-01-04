@@ -19,11 +19,11 @@ if($_SESSION['DataNotifications']['CountNotifications']>=1){
     $_SESSION['DataNotifications']['CountNotifications'] = mysqli_num_rows($QueryNotificationsExec);
     /* Update Notifications */
 
-    $Fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/system.php';
+    $Fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/System.php';
     header("Location: {$Fallback}");
     exit;
 }else{
-    $Fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/system.php';
+    $Fallback = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '../pages/System.php';
     header("Location: {$Fallback}");
     exit;
 }

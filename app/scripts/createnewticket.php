@@ -28,6 +28,6 @@ if(strlen($NewTicketTitle)>5 and strlen($NewTicketTitle)<=80 and strlen($NewTick
 }
 else{
     $_SESSION['Msg'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> As condições não foram atendidas! Por favor, tente novamente!</div>';
-	header("Location: ..\pages\create_ticket.php");
+	header("Location: ..\pages\Create_ticket.php");
 	exit;
 }

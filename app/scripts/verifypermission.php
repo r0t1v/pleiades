@@ -2,10 +2,10 @@
 session_start();
 if($_SESSION['DataAccount']['classe']==0)
 {
-    header("Location: ..\system\systemadmin.php");
+    header("Location: ..\system\SystemAdmin.php");
     exit;
 }
 else{
-    header("Location: ..\system.php");
+    header("Location: ..\System.php");
     exit;
 }

@@ -70,7 +70,7 @@ if(strlen($IdRealVNCCreate)>=9 and strlen($IdRealVNCCreate)<=12 and strlen($Pass
             /* Update Notifications */
 
             $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
-            header("Location: ..\..\pages\corporate_page.php");
+            header("Location: ..\..\pages\Corporate_page.php");
             exit;
 
         }else{
@@ -107,19 +107,19 @@ if(strlen($IdRealVNCCreate)>=9 and strlen($IdRealVNCCreate)<=12 and strlen($Pass
             /* Update Notifications */
 
             $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram salvas com sucesso no banco de dados!</div>';
-            header("Location: ..\..\pages\corporate_page.php");
+            header("Location: ..\..\pages\Corporate_page.php");
             exit;
         }
 
     }else{
         $_SESSION['Msg'] = '<div class="alert alert-info" role="alert"><i class="bi bi-info-circle-fill"></i> Informações não podem ser as mesmas ao salvar!</div>';
-        header("Location: ..\..\pages\corporate_page.php");
+        header("Location: ..\..\pages\Corporate_page.php");
         exit;
     }
 
 }else{
     $_SESSION['Msg'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> Não foi possível salvar as informações!</div>';
-    header("Location: ..\..\pages\corporate_page.php");
+    header("Location: ..\..\pages\Corporate_page.php");
 	exit;
 }
 

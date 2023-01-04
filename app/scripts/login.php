@@ -53,10 +53,10 @@ if($QueryEmailExistsResult){
 		/* Tools*/
 			
 			if($_SESSION['DataAccount']['classe']==0){
-				header("Location: ../pages/systemadmin.php");
+				header("Location: ..\pages\SystemAdmin.php");
 				exit;
 			}else{
-				header("Location: ../pages/system.php");
+				header("Location: ..\pages\System.php");
 				exit;
 			}
 	}else{

@@ -31,18 +31,18 @@ if($ChangeNewPass==$ChangeNewPassConfirm and strlen($ChangeNewPass)>=8 and strle
             /* Update Notifications */
 
             $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> As condições foram atendidas e a senha foi trocada!</div>';
-            header("Location: ..\pages\change_password.php");
+            header("Location: ..\pages\Change_password.php");
             exit;
         }
         else{
             $_SESSION['Msg'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> A nova senha não pode ser igual a atual!</div>';
-            header("Location: ..\pages\change_password.php");
+            header("Location: ..\pages\Change_password.php");
 	        exit;
         }
 }
 else{
     $_SESSION['Msg'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> As condições não foram atendidas! Por favor, tente novamente.</div>';
-    header("Location: ..\pages\change_password.php");
+    header("Location: ..\pages\Change_password.php");
 	exit;
 }
 

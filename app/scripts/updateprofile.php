@@ -36,7 +36,7 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
         /* Update Notifications */
 
         $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas no banco de dados!</div>';
-        header("Location: ..\pages\myprofile.php");
+        header("Location: ..\pages\MyProfile.php");
         exit;
 
     }elseif($ChangeProfileSocial==$_SESSION['DataAccount']['social'] and $ChangeProfileEmail!=$_SESSION['DataAccount']['email']){
@@ -65,7 +65,7 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
         /* Update Notifications */
 
         $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas com sucesso no banco de dados!</div>';
-        header("Location: ..\pages\myprofile.php");
+        header("Location: ..\pages\MyProfile.php");
         exit;
 
     }elseif($ChangeProfileSocial!=$_SESSION['DataAccount']['social'] and $ChangeProfileEmail==$_SESSION['DataAccount']['email']){
@@ -99,11 +99,11 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
             /* Update Notifications */
 
             $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas no banco de dados!</div>';
-            header("Location: ..\pages\myprofile.php");
+            header("Location: ..\pages\MyProfile.php");
             exit;
         }else{
             $_SESSION['Msg'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O nome de usuário já existe em nosso banco de dados, por favor tente outro!</div>';
-            header("Location: ..\pages\myprofile.php");
+            header("Location: ..\pages\MyProfile.php");
             exit;
         }
 
@@ -138,17 +138,17 @@ if(strlen($ChangeProfileUsername)>=3 and strlen($ChangeProfileUsername)<100 and 
             /* Update Notifications */
 
             $_SESSION['Msg'] = '<div class="alert alert-success" role="alert"><i class="bi bi-check-circle-fill"></i> Informações foram atualizadas com sucesso no banco de dados!</div>';
-            header("Location: ..\pages\myprofile.php");
+            header("Location: ..\pages\MyProfile.php");
             exit;
         }else{
             $_SESSION['Msg'] = '<div class="alert alert-warning" role="alert"><i class="bi bi-exclamation-triangle-fill"></i> O nome de usuário ou e-mail já existe em nosso banco de dados, por favor tente outro!</div>';
-            header("Location: ..\pages\myprofile.php");
+            header("Location: ..\pages\MyProfile.php");
             exit;
         }
     }
 }else{
     $_SESSION['Msg'] = '<div class="alert alert-danger" role="alert"><i class="bi bi-x-circle-fill"></i> As condições não foram atendidas! Por favor, tente novamente.</div>';
-    header("Location: ..\pages\myprofile.php");
+    header("Location: ..\pages\MyProfile.php");
 	exit;
 }
 

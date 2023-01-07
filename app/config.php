@@ -8,21 +8,22 @@ $SYSTEM_VERSION = 'v0.1.1';
 # ------------------------------------------------------------------------------
 # Database config
 # ------------------------------------------------------------------------------
-$DB_SERVER = "127.0.0.1:3306";
-$DB_USERNAME = "root";
-$DB_PASSWORD = "";
-$DB = "pleiades";
+$DB_SERVER = '127.0.0.1:3306';
+$DB_USERNAME = 'root';
+$DB_PASSWORD = '';
+$DB = 'pleiades';
 
 $CONNECTION_DB = mysqli_connect($DB_SERVER,$DB_USERNAME,$DB_PASSWORD,$DB);
 # ------------------------------------------------------------------------------
 # File Transfer Protocol - FTP config
 # ------------------------------------------------------------------------------
-$FTP_SERVER = '127.0.0.1:21';
+$FTP_SERVER = '127.0.0.1';
 $FTP_USERNAME = 'admin';
 $FTP_PASSWORD = 'admin';
+$WORKDIR_FTP = './ftpfiles/';
+
 $CONNECTION_FTP = ftp_connect($FTP_SERVER);
 $AUTHENTICATION_FTP = ftp_login($CONNECTION_FTP, $FTP_USERNAME, $FTP_PASSWORD);
-$WORKDIR_FTP = './ftpserver/';
 # ------------------------------------------------------------------------------
 # Ticket system parameters
 # ------------------------------------------------------------------------------

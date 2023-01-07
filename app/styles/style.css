@@ -421,6 +421,9 @@
     font-size: 24px;
     padding: 15px 8px;
 }
+.createticketheader .formticket .container .row .col .mb-3 small{
+    color: #95a5a6;
+}
 /* ----------------- create-ticket -------------- */
 /* ----------------- Ticket-page  -------------- */
 .ticketcontent{

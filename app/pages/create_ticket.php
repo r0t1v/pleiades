@@ -102,7 +102,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                 }
             ?>
             <h1><i class="bi bi-ticket-perforated-fill"></i> Criação de ticket</h1>
-            <form class="formticket" action="../scripts/createnewticket.php" method="POST">
+            <form class="formticket" action="../scripts/createnewticket.php" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -123,8 +123,9 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <label for="formFile" class="form-label"><i class="bi bi-paperclip"></i> Escolha um arquivo para anexar</label>
-                                <input class="form-control" type="file" id="formFile"/>
+                                <label for="newfileattach" class="form-label"><i class="bi bi-paperclip"></i> Escolha um arquivo para anexar</label>
+                                <input class="form-control" type="file" id="newfileattach" name="newfileattach"/>
+                                <small>É possível encaminhar um arquivo de qualquer extensão, desde que o tamanho máximo seja<?= ' '.$FILE_MAX_SIZE/1048576;?> Mb.</small>
                             </div>
                         </div>
                     </div>

@@ -69,3 +69,5 @@ if($QueryEmailExistsResult){
 	header("Location: ..\index.php");
 	exit;
 }
+
+mysqli_close($CONNECTION_DB);

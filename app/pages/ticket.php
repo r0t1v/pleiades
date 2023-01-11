@@ -2,6 +2,9 @@
 session_start();
 require __DIR__.'\..\config.php';
 include __DIR__.'\..\scripts/verifyauth.php';
+$TicketInfoQuery = "SELECT protocolo,tickethash,designacao,nometicket,sla,ticketstatus,datapedido,datasla,datafinalizado,avaliation FROM tickets WHERE solicitante='".$_SESSION['DataAccount']['id']."' AND protocolo='".'230107.1120112'."'";
+$TicketInfoExec = mysqli_query($CONNECTION_DB, $TicketInfoQuery);
+$_SESSION['DataTicketSelected'] = mysqli_fetch_assoc($TicketInfoExec);
 
 ?>
 <!DOCTYPE html>
@@ -52,6 +55,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
                             if($_SESSION['DataNotifications']['CountNotifications']>=1){
+                                echo '<div class="notificationsscroll">';
                                 for($i=0; $i<$_SESSION['DataNotifications']['CountNotifications']; $i++){
 
                                     switch ($_SESSION['DataNotifications'][$i][1]) {
@@ -69,7 +73,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                                             break;
                                     }
                                 }
-                                echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a></li>';
+                                echo '</div>','<hr class="dropdown-divider">','<a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a>';
                             }else{
                                 echo '<p class="text-center">Você não tem notificações!</p>';
                             }
@@ -102,19 +106,19 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     unset($_SESSION['Msg']);
                 }
             ?>
-            <h3><i class="bi bi-ticket-fill"></i> [AJUDA] - INSTALAÇÃO DE SOFTWARE</h3>
+            <h3><i class="bi bi-ticket-fill"></i><?= ' '.$_SESSION['DataTicketSelected']['nometicket']; ?></h3>
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="ticketlabel"><i class="bi bi-ticket"></i> Ticket Nº</span>
-                            <input type="text" class="form-control" id="formviewticket" value="221231.1022155" aria-describedby="ticketlabel" disabled readonly/>
+                            <input type="text" class="form-control" id="formviewticket" value="<?= $_SESSION['DataTicketSelected']['protocolo']; ?>" aria-describedby="ticketlabel" disabled readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="tickethashlabel"><i class="bi bi-hash"></i> Ticket hash</span>
-                            <input type="text" class="form-control" id="formviewticket" value="#2212311022155" aria-describedby="tickethashlabel" disabled readonly/>
+                            <input type="text" class="form-control" id="formviewticket" value="<?= $_SESSION['DataTicketSelected']['tickethash']; ?>" aria-describedby="tickethashlabel" disabled readonly/>
                         </div>
                     </div>
                 </div>
@@ -122,19 +126,19 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <div class="col">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="ticketdesign"><i class="bi bi-cursor"></i> Setor de interesse</span>
-                            <input type="text" class="form-control" id="formviewticket" value="Desenvolvimento" aria-describedby="ticketdesign" disabled readonly/>
+                            <input type="text" class="form-control" id="formviewticket" value="<?= $_SESSION['DataTicketSelected']['designacao']; ?>" aria-describedby="ticketdesign" disabled readonly/>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="ticketsla"><i class="bi bi-stopwatch-fill"></i> SLA</span>
-                            <input type="text" class="form-control" id="formviewticket" value="48hrs" aria-describedby="ticketsla" disabled readonly/>
+                            <input type="text" class="form-control" id="formviewticket" value="<?= $_SESSION['DataTicketSelected']['sla'].'hrs'; ?>" aria-describedby="ticketsla" disabled readonly/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="ticketdateinit"><i class="bi bi-calendar"></i> Data de criação</span>
-                            <input type="text" class="form-control" id="formviewticket" value="01/01/2023 ás 22:00" aria-describedby="ticketdateinit" disabled readonly/>
+                            <input type="text" class="form-control" id="formviewticket" value="<?php $DataTicketFormatada = new DateTime($_SESSION['DataTicketSelected']['datapedido']); echo $DataTicketFormatada->format('d/m/Y').' ás '.$DataTicketFormatada->format('H:i:s'); ?>" aria-describedby="ticketdateinit" disabled readonly/>
                         </div>
                     </div>
                 </div>
@@ -149,8 +153,9 @@ include __DIR__.'\..\scripts/verifyauth.php';
                 <div class="row">
                     <div class="col">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Digite sua mensagem aqui" aria-label="Recipient's username" aria-describedby="submitmsg">
-                            <a class="btn btn-outline-secondary" href="#" role="button" id="submitmsg"><i class="bi bi-paperclip"></i></a>
+                            <input type="text" class="form-control" placeholder="Digite sua mensagem aqui" aria-describedby="submitmsg">
+                            <label for="submitmsg"><strong class="btn btn-outline-secondary"><i class="bi bi-paperclip"></i></strong></label>
+                            <input type="file" id="submitmsg"/>
                             <button class="btn btn-primary" type="submit" id="submitmsg"><i class="bi bi-send"></i> Enviar</button>
                         </div>
                     </div>

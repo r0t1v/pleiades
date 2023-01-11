@@ -51,6 +51,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                     <ul class="dropdown-menu" id="notifydropdown">
                         <?php 
                             if($_SESSION['DataNotifications']['CountNotifications']>=1){
+                                echo '<div class="notificationsscroll">';
                                 for($i=0; $i<$_SESSION['DataNotifications']['CountNotifications']; $i++){
 
                                     switch ($_SESSION['DataNotifications'][$i][1]) {
@@ -68,7 +69,7 @@ include __DIR__.'\..\scripts/verifyauth.php';
                                             break;
                                     }
                                 }
-                                echo '<li><hr class="dropdown-divider"></li>','<li><a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a></li>';
+                                echo '</div>','<hr class="dropdown-divider">','<a class="dropdown-item text-center" href="../scripts/cleanallnotifications.php"><i class="bi bi-ui-checks"></i> Limpar todas as notificações</a>';
                             }else{
                                 echo '<p class="text-center">Você não tem notificações!</p>';
                             }

@@ -6,6 +6,17 @@ $TicketInfoQuery = "SELECT protocolo,tickethash,designacao,nometicket,sla,ticket
 $TicketInfoExec = mysqli_query($CONNECTION_DB, $TicketInfoQuery);
 $_SESSION['DataTicketSelected'] = mysqli_fetch_assoc($TicketInfoExec);
 
+$TicketChatQuery = "SELECT id,msgcontent,isfile,enviadapor,datamsg FROM chat WHERE ticketprotocolo='".$_SESSION['DataTicketSelected']['protocolo']."' ORDER BY datamsg ASC";
+$TicketChatExec = mysqli_query($CONNECTION_DB, $TicketChatQuery);
+for($j=0; $j<mysqli_num_rows($TicketChatExec); $j++){
+    $DataTools = mysqli_fetch_assoc($TicketChatExec);
+    $_SESSION['DataTicketChatSelected'][$j][] = $DataTools['msgcontent'];
+    $_SESSION['DataTicketChatSelected'][$j][] = $DataTools['isfile'];
+    $_SESSION['DataTicketChatSelected'][$j][] = $DataTools['enviadapor'];
+    $_SESSION['DataTicketChatSelected'][$j][] = $DataTools['datamsg'];
+}
+$_SESSION['DataTicketChatSelected']['CountMsgs'] = mysqli_num_rows($TicketChatExec);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -144,9 +155,64 @@ $_SESSION['DataTicketSelected'] = mysqli_fetch_assoc($TicketInfoExec);
                 </div>
                 <div class="row">
                     <div class="col">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="ticketstatus"><i class="bi bi-stopwatch-fill"></i> Situação</span>
+                            <input type="text" class="form-control" id="formviewticket" value="<?= 'Ticket '.$_SESSION['DataTicketSelected']['ticketstatus']; ?>" aria-describedby="ticketstatus" disabled readonly/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="ticketdatasla"><i class="bi bi-hourglass-split"></i> Data combinada</span>
+                            <input type="text" class="form-control" id="formviewticket" value="<?php $DataTicketFormatadaSla = new DateTime($_SESSION['DataTicketSelected']['datasla']); echo $DataTicketFormatadaSla->format('d/m/Y').' ás '.$DataTicketFormatadaSla->format('H:i:s'); ?>" aria-describedby="ticketdatasla" disabled readonly/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
                         <label for="newticketmsg" class="form-label"><i class="bi bi-chat-square-text"></i> Bate-papo</label>
                         <div class="chatticket">
-                                    
+                            <div class="container">
+                            <?php 
+                                for($a=0; $a<$_SESSION['DataTicketChatSelected']['CountMsgs']; $a++){
+
+                                    if($_SESSION['DataTicketChatSelected'][$a][2]==$_SESSION['DataAccount']['id']) {
+                                        $DataTicketFormatadaSla = new DateTime($_SESSION['DataTicketChatSelected'][$a][3]);
+                                        echo'<div class="row" align="left">
+                                                <div class="col">
+                                                    <div class="card" id="dialoguser">
+                                                        <div class="card-header">
+                                                            <strong>'.$_SESSION['DataAccount']['social'].'</strong>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p>'.$_SESSION['DataTicketChatSelected'][$a][0].'</p>
+                                                            <footer><i class="bi bi-clock"></i>
+                                                                '.$DataTicketFormatadaSla->format('d/m/Y').' ás '.$DataTicketFormatadaSla->format('H:i:s').'
+                                                            </footer>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>';
+                                    }else{
+                                        $DataTicketFormatadaSla = new DateTime($_SESSION['DataTicketChatSelected'][$a][3]);
+                                        echo'<div class="row" align="right">
+                                        <div class="col">
+                                            <div class="card" id="dialogpleiade" align="left">>
+                                                <div class="card-header">
+                                                    <strong>'.$_SESSION['DataAccount']['social'].'</strong>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>'.$_SESSION['DataTicketChatSelected'][$a][0].'</p>
+                                                    <footer><i class="bi bi-clock"></i>
+                                                        '.$DataTicketFormatadaSla->format('d/m/Y').' ás '.$DataTicketFormatadaSla->format('H:i:s').'
+                                                    </footer>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>';
+                                }
+                            }
+                            ?>
+                            </div>
                         </div>
                      </div>
                 </div>

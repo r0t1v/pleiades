@@ -21,10 +21,10 @@ if($NewTicketFile['name']!=''){
         $CreateTicketNew = "INSERT INTO tickets(protocolo,solicitante,tickethash,designacao,nometicket,sla,ticketstatus,datapedido,datasla,datafinalizado,avaliation) VALUES ('".$TICKET_GEN."','".$_SESSION['DataAccount']['id']."','".$TICKET_HASH."','".$NewTicketDesign."','".$NewTicketTitle."','".$NewTicketSLA."','Pendente','".date('Y-m-d H:i:s')."','".date('Y-m-d H:i:s',$DataSLA)."','','')";
         $CreateTicketNewQuery = mysqli_query($CONNECTION_DB, $CreateTicketNew);
 
-        $CreateTicketChat = "INSERT INTO chat(id,msgcontent,enviadapor,ticketprotocolo,datamsg) VALUES ('','".$NewTicketMsg."','".$_SESSION['DataAccount']['id']."','".$TICKET_GEN."','".date('Y-m-d H:i:s')."')";
+        $CreateTicketChat = "INSERT INTO chat(id,msgcontent,isfile,enviadapor,ticketprotocolo,datamsg) VALUES ('','".$NewTicketMsg."',0,'".$_SESSION['DataAccount']['id']."','".$TICKET_GEN."','".date('Y-m-d H:i:s')."')";
         $CreateTicketChatQuery = mysqli_query($CONNECTION_DB, $CreateTicketChat);
 
-        $InsertTicketAttach = "INSERT INTO chat(id,msgcontent,enviadapor,ticketprotocolo,datamsg) VALUES ('','".$FileNameUpload."','".$_SESSION['DataAccount']['id']."','".$TICKET_GEN."','".date('Y-m-d H:i:s')."')";
+        $InsertTicketAttach = "INSERT INTO chat(id,msgcontent,isfile,enviadapor,ticketprotocolo,datamsg) VALUES ('','".$FileNameUpload."',1,'".$_SESSION['DataAccount']['id']."','".$TICKET_GEN."','".date('Y-m-d H:i:s')."')";
         $InsertTicketAttachQuery = mysqli_query($CONNECTION_DB, $InsertTicketAttach);
 
         ftp_put($CONNECTION_FTP, $FileNameUpload, $_FILES['newfileattach']['tmp_name'], FTP_BINARY);
@@ -49,7 +49,7 @@ if($NewTicketFile['name']!=''){
         $CreateTicketNew = "INSERT INTO tickets(protocolo,solicitante,tickethash,designacao,nometicket,sla,ticketstatus,datapedido,datasla,datafinalizado,avaliation) VALUES ('".$TICKET_GEN."','".$_SESSION['DataAccount']['id']."','".$TICKET_HASH."','".$NewTicketDesign."','".$NewTicketTitle."','".$NewTicketSLA."','Pendente','".date('Y-m-d H:i:s')."','".date('Y-m-d H:i:s',$DataSLA)."','','')";
         $CreateTicketNewQuery = mysqli_query($CONNECTION_DB, $CreateTicketNew);
 
-        $CreateTicketChat = "INSERT INTO chat(id,msgcontent,enviadapor,ticketprotocolo,datamsg) VALUES ('','".$NewTicketMsg."','".$_SESSION['DataAccount']['id']."','".$TICKET_GEN."','".date('Y-m-d H:i:s')."')";
+        $CreateTicketChat = "INSERT INTO chat(id,msgcontent,isfile,enviadapor,ticketprotocolo,datamsg) VALUES ('','".$NewTicketMsg."',0,'".$_SESSION['DataAccount']['id']."','".$TICKET_GEN."','".date('Y-m-d H:i:s')."')";
         $CreateTicketChatQuery = mysqli_query($CONNECTION_DB, $CreateTicketChat);
 
         $QueryInsertNotification = "INSERT INTO notifications(id_conta,descricao,tipo_notification,data_notification,visualizado) VALUES ('".$_SESSION['DataAccount']['id']."','Ticket criado','2','".date('Y-m-d H:i:s')."','0')";

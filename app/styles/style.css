@@ -458,6 +458,48 @@
     border-radius: 0.5rem;
     border: solid 2px #4b6584;
 }
+.ticketcontent .container .row .col .chatticket .container .row{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+#dialoguser{
+    width: 55%;
+    border-radius: 1rem;
+    border: none;
+    color: #fff;
+}
+#dialoguser .card-header{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: #4834d4;
+}
+#dialoguser .card-body{
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color: #686de0;
+}
+#dialoguser footer{
+    font-size: 12px;
+}
+#dialogpleiade{
+    width: 55%;
+    border-radius: 1rem;
+    border: none;
+    color: #fff;
+}
+#dialogpleiade .card-header{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    background-color: #130f40;
+}
+#dialogpleiade .card-body{
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color: #30336b;
+}
+#dialogpleiade footer{
+    font-size: 12px;
+}
 .ticketcontent .container .row .col .d-grid a{
     font-size: 18px;
     padding: 10px 4px;
